@@ -1,0 +1,130 @@
+blockquote {
+    border: 10px solid #9879b0;
+    border-radius: 60px;
+    background-color: #fae351;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 80%;
+}
+
+body {
+    background-color: #c9eaf4;
+    margin-bottom: 5px;
+}
+
+footer {
+    width: 97%;
+    background-color: #fae351;
+    border: 5px solid #9879b0;
+    clear: both;
+    margin-bottom: 0;
+    padding: 5px;
+}
+
+.Pappus_trick1 {
+    display: flex;
+    width: 100%;
+}
+
+/*
+.Pappus_trick1 div {
+    display: inline-block;
+    width: 50%;
+}*/
+/*
+#pappus_drop {
+    float: left;
+    width: 48%;
+    border: 2px solid #000000;
+    background-color: #9879b0;
+    border-radius: 15px;
+    background-image: url(pappus1.png), url();
+}
+*/
+#card-container {
+    float: center;
+    border: 4px solid #9879b0;
+    background-color: #fae351;
+    width: 600px;
+    height: 440px;
+    font-family: sans-serif;
+    padding: 5px;
+    border-radius: 10px;
+    border-bottom: 2px solid #9879b0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    overflow-y: scroll;
+    text-align: center;
+}
+
+#card-container img {
+    cursor: grab;
+    border-color: none;
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+#symbol-container {
+    float: center;
+    border: 4px solid #9879b0;
+    background-color: #fae351;
+    width: 600px;
+    height: 140px;
+    font-family: sans-serif;
+    padding: 5px;
+    border-radius: 10px;
+    border-top: 2px solid #9879b0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    overflow-y: scroll;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#symbol-container button {
+    background-color: #ffffff;
+    border: 3px solid #000000;
+    border-radius: 5px;
+    padding: 7px;
+}
+
+button:hover {
+    box-shadow: 0 5px 10px 0 #3b363f;
+}
+
+#circleg1,
+#circleg2,
+#circleg3 {
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    background-color: #000000;
+}
+
+#pappus_canvas {
+    float: left;
+    width: auto;
+    height: 608px;
+    background-color: #cae89b;
+    border: #9879b0 4px solid;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.dropzone {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    z-index: 1;
+    cursor: grab;
+    /*background-color: #9879b0;
+    opacity: 50%;*/
+}
+
+.canvas_container {
+    position: relative;
+}

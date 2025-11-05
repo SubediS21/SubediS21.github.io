@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <meta charset="utf-8" />
+    <title>Pappus's Theorem</title>
+    <link href="pappusStyle.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="banner">
+        <blockquote>
+            <h1>The Mathematics of Dobble</h1>
+            <p> Back to the <a href="../Existing files/mathematics_of_dobble.html">Main Page</a></p>
+        </blockquote>
+    </div>
+    <hr style="height:10px; background-color:#9879b0">
+    <h2>Pappus's Theorem</h2>
+    <p>Pappus's theorem states that given <b>one set of collinear points </b> A,B,C, and <b> another set of collinear
+            points </b> a, b, c, then the <b>intersection points </b> X, Y, Z of line pairs Ab and aB, Ac and aC, Bc and
+        bC are <b>collinear</b>,
+        lying on the <b><i>Pappus </i>line</b>.
+    </p>
+    <img src="pappus1.png" />
+
+    <h3>Play around with Pappus</h3>
+    Use the following applet produced in GeoGebra to play around the with the points on the lines to see Pappus's
+    theorem
+    in action.
+    <br>
+    <iframe scrolling="no" title="pappus"
+        src="https://www.geogebra.org/material/iframe/id/prf4uusy/width/500/height/267/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false"
+        width="500px" height="267px" style="border:0px; margin-bottom:1em;" allowfullscreen>
+    </iframe>
+    <h3>Dobble card trick with Pappus Theorem</h3>
+    <p>Let's try Pappus's Theorem with Level 5 Dobble!</p>
+    <p>Drag the cards from the cards containers into the black circle(points) on the lines. You can click a card to see
+        which symbols it conatins and click on two cards to see the common symbol of the two. Similarly, you can click
+        on a symbol to highlight the cards that contains that symbol and click on two symbols to see a card that
+        contains both of those symbols. </p>
+    <p>Happy Pappus-Dobble playing!</p>
+    <div class="canvas_container">
+        <canvas id="pappus_canvas" width="600" height="760"></canvas>
+        <div class="dropzone" id="top1" style="left: 37px; top: 107px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="top2" style="left: 205px; top: 97px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="top3" style="left: 375px; top: 87px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="bottom1" style="left: 60px; top: 427px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="bottom2" style="left: 220px; top: 440px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="bottom3" style="left: 365px; top: 447px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="intersection1" style="left: 127px; top: 272px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="intersection2" style="left: 200px; top: 277px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="intersection3" style="left: 287px; top: 282px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+    </div>
+    <div class="pappus_trick1">
+        
+        <div id="card-container" ondragover="allowDrop(event)" ondrop="dropBack(event)">
+            <p><strong>CARDS:</strong></p>
+            
+            <img id="card5-1" src="L5_cards/card5-1.PNG" onclick="selectCard('card5-1')" ondragstart="dragStart(event)"
+                ondrag="dragging(event)" draggable="true" />
+            <img id="card5-2" src="L5_cards/card5-2.PNG" onclick="selectCard('card5-2')" ondragstart="dragStart(event)"
+                ondrag="dragging(event)" draggable="true" />
+            <img id="card5-3" src="L5_cards/card5-3.PNG" onclick="selectCard('card5-3')" ondragstart="dragStart(event)"
+                ondrag="dragging(event)" draggable="true" />
+            <img id="card5-4" src="L5_cards/card5-4.PNG" onclick="selectCard('card5-4')" ondragstart="dragStart(event)"
+                ondrag="dragging(event)" draggable="true" />
+            <img id="card5-5" src="L5_cards/card5-5.PNG" onclick="selectCard('card5-5')" ondragstart="dragStart(event)"
+                ondrag="dragging(event)" draggable="true" />
+            <img id="card5-6" src="L5_cards/card5-6.PNG" onclick="selectCard('card5-6')" ondragstart="dragStart(event)"
+                ondrag="dragging(event)" draggable="true" />
+            <img id="card5-7" src="L5_cards/card5-7.PNG" onclick="selectCard('card5-7')" ondragstart="dragStart(event)"
+                ondrag="dragging(event)" draggable="true" />
+            <img id="card5-8" src="L5_cards/card5-8.PNG" onclick="selectCard('card5-8')" ondragstart="dragStart(event)"
+                ondrag="dragging(event)" draggable="true" />
+            <img id="card5-9" src="L5_cards/card5-9.PNG" onclick="selectCard('card5-9')" ondragstart="dragStart(event)"
+                ondrag="dragging(event)" draggable="true" />
+            <img id="card5-10" src="L5_cards/card5-10.PNG" onclick="selectCard('card5-10')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-11" src="L5_cards/card5-11.PNG" onclick="selectCard('card5-11')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-12" src="L5_cards/card5-12.PNG" onclick="selectCard('card5-12')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-13" src="L5_cards/card5-13.PNG" onclick="selectCard('card5-13')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-14" src="L5_cards/card5-14.PNG" onclick="selectCard('card5-14')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-15" src="L5_cards/card5-15.PNG" onclick="selectCard('card5-15')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-16" src="L5_cards/card5-16.PNG" onclick="selectCard('card5-16')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-17" src="L5_cards/card5-17.PNG" onclick="selectCard('card5-17')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-18" src="L5_cards/card5-18.PNG" onclick="selectCard('card5-18')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-19" src="L5_cards/card5-19.PNG" onclick="selectCard('card5-19')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-20" src="L5_cards/card5-20.PNG" onclick="selectCard('card5-20')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-21" src="L5_cards/card5-21.PNG" onclick="selectCard('card5-21')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+    
+        </div>
+        <div id="symbol-container">
+            <p><strong>SYMBOLS:</strong></p>
+            <button id="symbol5-1" style="font-size: 18px;" onclick="selectSymbol('symbol5-1')"> A </button>
+            <button id="symbol5-2" style="font-size: 18px;" onclick="selectSymbol('symbol5-2')"> B </button>
+            <button id="symbol5-3" style="font-size: 18px;" onclick="selectSymbol('symbol5-3')"> C </button>
+            <button id="symbol5-4" style="font-size: 18px;" onclick="selectSymbol('symbol5-4')"> D </button>
+            <button id="symbol5-5" style="font-size: 18px;" onclick="selectSymbol('symbol5-5')"> E </button>
+            <button id="symbol5-6" style="font-size: 18px;" onclick="selectSymbol('symbol5-6')"> F </button>
+            <button id="symbol5-7" style="font-size: 18px;" onclick="selectSymbol('symbol5-7')"> G </button>
+            <button id="symbol5-8" style="font-size: 18px;" onclick="selectSymbol('symbol5-8')"> H </button>
+            <button id="symbol5-9" style="font-size: 18px;" onclick="selectSymbol('symbol5-9')"> I </button>
+            <button id="symbol5-10" style="font-size: 18px;" onclick="selectSymbol('symbol5-10')"> J </button>
+            <button id="symbol5-11" style="font-size: 18px;" onclick="selectSymbol('symbol5-11')"> K </button>
+            <button id="symbol5-12" style="font-size: 18px;" onclick="selectSymbol('symbol5-12')"> L </button>
+            <button id="symbol5-13" style="font-size: 18px;" onclick="selectSymbol('symbol5-13')"> M </button>
+            <button id="symbol5-14" style="font-size: 18px;" onclick="selectSymbol('symbol5-14')"> N </button>
+            <button id="symbol5-15" style="font-size: 18px;" onclick="selectSymbol('symbol5-15')"> O </button>
+            <button id="symbol5-16" style="font-size: 18px;" onclick="selectSymbol('symbol5-16')"> P </button>
+            <button id="symbol5-17" style="font-size: 18px;" onclick="selectSymbol('symbol5-17')"> Q </button>
+            <button id="symbol5-18" style="font-size: 18px;" onclick="selectSymbol('symbol5-18')"> R </button>
+            <button id="symbol5-19" style="font-size: 18px;" onclick="selectSymbol('symbol5-19')"> S </button>
+            <button id="symbol5-20" style="font-size: 18px;" onclick="selectSymbol('symbol5-20')"> T </button>
+            <button id="symbol5-21" style="font-size: 18px;" onclick="selectSymbol('symbol5-21')"> U </button>
+        </div>
+        <p id="test"></p>
+
+    </div>
+
+    <script src="pappus.js"></script>
+    <br><br>
+</body>
+<hr style="height:5px; background-color:#9879b0">
+
+<footer>
+    <h3>References:</h3>
+    <ol>
+        <li>
+            <p><a href=https://en.wikipedia.org/wiki/Pappus%27s_hexagon_theorem>Wikipedia - Pappus's hexagon theorem</a>
+            </p>
+        </li>
+        <li>
+            <p><a href="https://www.geogebra.org/">GeoGebra</a></p>
+        </li>
+    </ol>
+</footer>
+
+</html>
