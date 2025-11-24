@@ -1,0 +1,183 @@
+blockquote {
+    border: 10px solid #9879b0;
+    border-radius: 60px;
+    background-color: #fae351;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 80%;
+    font-family: "Luckiest Guy";
+    font-style: normal;
+}
+
+body {
+    background-color: #c9eaf4;
+    margin-bottom: 5px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.navbar {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+.navbar div {
+    float: left;
+}
+
+.part1,
+.part2,
+.part3,
+.part4,
+.part5 {
+    background-color: #fae351;
+    color: #000000;
+    padding: 16px;
+    font-size: 16px;
+    border: 2px solid #9879b0;
+}
+
+.part1hide,
+.part2hide,
+.part3hide,
+.part4hide,
+.part5hide {
+    background-color: #fae351;
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.part1hide a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.part1hide a:hover {
+    background-color: #b8a83c;
+}
+
+/*1*/
+.intro:hover .part1hide {
+    display: block;
+}
+
+.intro:hover .part1 {
+    background-color: #9879b0;
+}
+
+/*2*/
+.dobbleGeometry:hover .part2hide {
+    display: block;
+}
+
+.dobbleGeometry:hover .part2 {
+    background-color: #9879b0;
+}
+
+/*3*/
+.cardTrick:hover .part3hide {
+    display: block;
+}
+
+.cardTrick:hover .part3 {
+    background-color: #9879b0;
+}
+
+/*4*/
+.finite:hover .part4hide {
+    display: block;
+}
+
+.finite:hover .part4 {
+    background-color: #9879b0;
+}
+
+/*5*/
+.block:hover .part5hide {
+    display: block;
+}
+
+.block:hover .part5 {
+    background-color: #9879b0;
+}
+
+#card-container {
+    float: center;
+    border: 4px solid #9879b0;
+    background-color: #fae351;
+    width: 600px;
+    height: 440px;
+    font-family: sans-serif;
+    padding: 5px;
+    border-radius: 10px;
+    border-bottom: 2px solid #9879b0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    overflow-y: scroll;
+    text-align: center;
+}
+
+#card-container img {
+    cursor: grab;
+    border-color: none;
+    width: 100px;
+    height: 100px;
+    margin: 2px;
+}
+
+#symbol-container {
+    float: center;
+    border: 4px solid #9879b0;
+    background-color: #fae351;
+    width: 600px;
+    height: 140px;
+    font-family: sans-serif;
+    padding: 5px;
+    border-radius: 10px;
+    border-top: 2px solid #9879b0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    overflow-y: scroll;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#symbol-container button {
+    background-color: #ffffff;
+    border: 3px solid #000000;
+    border-radius: 5px;
+    padding: 7px;
+}
+
+button:hover {
+    box-shadow: 0 5px 10px 0 #3b363f;
+}
+
+.canvas_container {
+    position: relative;
+}
+
+.dropzone {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 1;
+    cursor: grab;
+    /*background-color: #9879b0;
+    opacity: 50%;*/
+}
+
+#desargeus_canvas {
+    float: left;
+    width: 650px;
+    height: 600px;
+    background-color: #cae89b;
+    border: #9879b0 4px solid;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}

@@ -6,11 +6,14 @@ blockquote {
     text-align: center;
     align-items: center;
     width: 80%;
+    font-family: "Luckiest Guy";
+    font-style: normal;
 }
 
 body {
     background-color: #c9eaf4;
     margin-bottom: 5px;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 footer {
@@ -22,26 +25,6 @@ footer {
     padding: 5px;
 }
 
-.Pappus_trick1 {
-    display: flex;
-    width: 100%;
-}
-
-/*
-.Pappus_trick1 div {
-    display: inline-block;
-    width: 50%;
-}*/
-/*
-#pappus_drop {
-    float: left;
-    width: 48%;
-    border: 2px solid #000000;
-    background-color: #9879b0;
-    border-radius: 15px;
-    background-image: url(pappus1.png), url();
-}
-*/
 #card-container {
     float: center;
     border: 4px solid #9879b0;
@@ -61,9 +44,9 @@ footer {
 #card-container img {
     cursor: grab;
     border-color: none;
-    position: relative;
     width: 100px;
     height: 100px;
+    margin: 2px;
 }
 
 #symbol-container {
@@ -123,6 +106,17 @@ button:hover {
     cursor: grab;
     /*background-color: #9879b0;
     opacity: 50%;*/
+}
+
+.lineLabel {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #9879b0;
+    background-color: #ffffff;
+    border: #000000 2px solid;
+    padding: 2px;
 }
 
 .canvas_container {

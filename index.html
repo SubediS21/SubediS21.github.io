@@ -1,0 +1,696 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+  <title>The Mathematics of Dobble</title>
+  <style>
+    .card-container {
+      display: flex;
+      width: 400px;
+      min-width: 400px;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: #fae351;
+      border: #9879b0 10px solid;
+      border-radius: 20px;
+    }
+
+    .card-container>canvas {
+      width: 100px;
+      min-width: 100px;
+      height: 100px;
+      min-height: 100px;
+    }
+
+    .button-container {
+      display: flex;
+      width: 250px;
+      min-width: 250px;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: #9879b0;
+      border: #fae351;
+      border-radius: 10px;
+    }
+
+    .button-container>input {
+      width: 30px;
+      font-size: 20px;
+      margin: 2px;
+    }
+
+    body {
+      background-color: #c9eaf4;
+    }
+
+    h2{
+      font-family: "Luckiest Guy";
+      font-style: normal;
+    }
+  </style>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+  </style>
+</head>
+
+<body>
+  <font size=4pt>
+
+    <center>
+      <blockquote
+        style="border: 15px solid #9879b0; border-radius: 60px; background-color: #fae351; max-width: 500px; justify-content: center">
+        <center>
+          <h1 style="color:Black; font-family: 'Luckiest Guy'; font-style:normal;">The Mathematics of Dobble</h1>
+          <p>
+          <h4 style="color:Black">John Longley, School of Informatics,<br> University of Edinburgh</h4>
+          <p>
+        </center>
+      </blockquote>
+    </center>
+
+    <font size=4pt>
+      <p>
+        <a href="https://www.dobblegame.com/en/homepage/">Dobble</a><sup>&reg;</sup>
+        is a fantastic card game
+        developed by <a href="https://www.zygomatic-games.com/en/homepage/">Zygomatic Games</a>
+        and published by <a href="https://www.asmodee.co.uk/">Asmodee Group</a>.
+        It is widely available via <a
+          href="https://www.amazon.co.uk/Asmodee-ASMDOBB01EN-Dobble-Card-Game/dp/B0031QBHMA/ref=sr_1_1?dchild=1&keywords=Dobble&qid=1586952906&s=kids&sr=1-1">Amazon</a>
+        and many other outlets.
+        Besides being great fun to play,
+        Dobble exhibits some remarkable and intriguing mathematical structure.
+        <!-- &ndash; especially if the standard pack is augmented with two 
+<a href="two_extra_cards.jpg">extra cards</a>, as we shall explain. -->
+
+      <p>
+        This educational and interactive website offers a gentle introduction to the maths
+        behind Dobble, including its beautiful connection with
+        <!-- <a style="color:Tomato"><b> -->
+        <i>projective geometry</i> and its relevance to <i>error-correcting codes</i>.
+        It also describes a variety of
+        <!-- <a style="color:Purple"><b> -->
+        card tricks and demonstrations
+        that illustrate this structure.
+
+      <p>
+        The main pages of this site (Parts I-V) are intended to be readable by anyone
+        with basic school-level maths,
+        but there are also links to pages offering further
+        information for more mathematically advanced readers.
+        In any case, do feel free to skip over anything that seems hard to follow &ndash;
+        it may become clearer in the light of later sections.
+
+      <p>
+        To take advantage of the interactive features,
+        you&rsquo;ll need to be using a browser with Javascript enabled.
+        For good results, Google Chrome is recommended.
+
+        <!-- <p>
+The page is organized as follows: -->
+
+        <!-- Section index -->
+
+      <p>
+        <a href="#Introduction"><b>Part I: Introduction</b></a> (this page)
+      <ul>
+        <li> <a href="#Dobble_basics">Dobble: the basics</a>
+        <li> <a href="#Levels_2_3">Getting started: Levels 2 and 3</a>
+        <li> <a href="#Card_symbol_duality">Card-symbol duality</a>
+        <li> <a href="#Complete_Dobble">Complete Dobble systems</a>
+        <li> <a href="#Levels_4_5">Levels 4 and 5</a>
+      </ul>
+
+      <p>
+        <a href="mathematics_of_dobble_II.html"><b>Part II: Dobble and geometry</b></a>
+      <ul>
+        <li> <a href="mathematics_of_dobble_II.html#Basic_connection">The basic connection</a>
+        <li> <a href="mathematics_of_dobble_II.html#Computer_game_geometry">A 7&times;7 &lsquo;computer game&rsquo;
+            geometry</a>
+        <li> <a href="mathematics_of_dobble_II.html#Dobble_grid_display">Card display: a 7&times;7 Dobble grid</a>
+        <li> <a href="mathematics_of_dobble_II.html#Slope_cards">Completing the set: Slope cards</a>
+        <li> <a href="mathematics_of_dobble_II.html#Projective_3D">A three-dimensional perspective</a>
+        <li> <a href="mathematics_of_dobble_II.html#Infinite_Dobble">&lsquo;Infinite Dobble&rsquo;</a>
+      </ul>
+
+      <p>
+        <a href="mathematics_of_dobble_III.html"><b>Part III: Some card tricks inspired by geometry</b></a>
+      <ul>
+        <li> <a href="../Pappus/pappus_theorem.html">Pappus&rsquo;s theorem (card trick 1)</a>
+        <li> <a href="../Desargues/desargues_theorem.html">Desargues&rsquo; theorem (card trick 2)</a>
+        <li> <a href="mathematics_of_dobble_III.html#Orthogonality">Orthogonality (card trick 3)</a>
+        <li> <a href="mathematics_of_dobble_III.html#Altitudes">Altitudes of a triangle (card trick 4)</a>
+      </ul>
+
+      <p>
+        <a href="mathematics_of_dobble_IV.html"><b>Part IV: Finite projective planes</b></a>
+      <ul>
+        <li> <a href="">Dobble systems and FPPs</a>
+        <li> <a href="">Known and unknown Dobble systems</a>
+        <li> <a href="">Symmetries of Dobble systems</a>
+        <li> <a href="">Card display: a Singer cycle</a>
+        <li> <a href="">Subplanes and &lsquo;Happy Families&rsquo;</a>
+      </ul>
+
+      <p>
+        <a href="mathematics_of_dobble_V.html"><b>Part V: Block designs and their applications</b></a>
+      <ul>
+        <li> <a href="#Block designs">Block designs</a>
+        <li> <a href="#Experiment_design">Experiment design</a>
+        <li> <a href="#Error_correcting_codes">Error-correcting codes</a>
+      </ul>
+
+      <p>
+        <a href="#Related_Links"><b>References and related links</b></a>
+
+        <hr style="height:10px; background-color:#9879b0">
+
+
+      <h2 id="Introduction">Part I: Introduction</h2>
+
+      <h3 id="Dobble_basics">Dobble: the basics</h3>
+
+      The commercially produced Dobble set consists of 55 cards, each containing 8 pictures
+      (or <i>symbols</i> as we&rsquo;ll call them) drawn from a pool of 57 possible symbols.
+      The key property on which the game is based is that any two cards have
+      <i>one, and only one, symbol in common</i>.
+      For example, here are two of the Dobble cards:
+
+      <center>
+        <p>
+          <img src="cardpair2.jpg" width=350>
+        <p>
+      </center>
+
+      You can see that these cards have 8 symbols each, and that they have
+      just one symbol in common: namely, the BONES.
+      (The size and positioning of a symbol might vary between cards,
+      and this can make the common symbol harder to spot!)
+      The booklet that comes with Dobble suggests five games you can play with the cards,
+      all based on the idea of racing to be the fastest to spot these common symbols.
+
+      <p>
+        The key property we&rsquo;ve just described is actually pretty remarkable.
+        Think for a moment about how you might set about constructing a Dobble pack for yourself &ndash; say, if you
+        were on a desert island, with
+        plenty of card, coloured pens, etc.
+        How would you decide which symbols to put on which cards,
+        so as to ensure that the fundamental rule is satisfied:
+        <i>any two cards share exactly one symbol</i>?
+
+
+      <h3 id="Levels_2_3">Getting started: Levels 2 and 3</h3>
+
+      <p>
+        The answer to this question is probably not obvious.
+        So let&rsquo;s begin by thinking about an easier version of the question.
+        Let&rsquo;s consider a tiny &lsquo;baby&rsquo; version of Dobble,
+        where each card carries <i>just 2 symbols</i>.
+        I&rsquo;ll refer to this as <b>Level 2 Dobble</b> &ndash; in contrast to
+        the standard version which I&rsquo;ll call <b>Level 8 Dobble</b>,
+        because it has 8 symbols per card.
+        (There are also versions of <b>Level 6 Dobble</b> commercially marketed as
+        <a href="https://www.dobblegame.com/en/games/dobble-junior/">Dobble Junior</a>,
+        <a href="https://www.dobblegame.com/en/games/dobble-1-2-3/">Dobble 1-2-3</a> and
+        <a href="https://www.dobblegame.com/en/games/dobble-kids">Dobble Kids</a>.)
+
+      <p>
+        In Level 2 Dobble, we will have just 3 cards, and 3 distinct symbols: let&rsquo;s take them to be the APPLE, the
+        BIRD and the CLOWN. The question, then, is how we&rsquo;d place these symbols on our cards (with 2 symbols per
+        card)
+        so that any two cards share exactly one symbol.
+
+      <p>
+        This is not hard at all.
+        A moment&rsquo;s thought shows that we can do it like this:
+
+        <center>
+          <p>
+            <img src="dobble2.jpg" width=350>
+          <p>
+        </center>
+
+        Of course, this set of cards would hardly make for a very exciting game,
+        but we have to start somewhere!
+        Actually, I could have started with <b>Level 1 Dobble</b> &ndash;
+        just a single symbol on a single card! &ndash; but that would be rather silly.
+
+      <p>
+        Replacing the 3 pictures by the letters A,B,C, our solution looks like this:
+
+        <center>
+          <p>
+            <img src="dobble2_letters.jpg" width=350>
+          <p>
+        </center>
+
+        From now on we shall mostly use letters rather than pictures,
+        as they generally make it clearer what&rsquo;s really going on.
+
+      <p>
+        Now let&rsquo;s take a step up, and see if we can design a <b>Level 3 Dobble</b> system: one with 3 symbols on
+        each card.
+        I&rsquo;ll tell you for free here that this set should have 7 cards, with
+        a pool of 7 distinct symbols, which we&rsquo;ll take to be the letters A,B,C,D,E,F,G.
+        (We shall see later where the number 7 comes from.)
+        The challenge, then, is to fill 7 cards with 3 of these letters each,
+        in such a way that <i>any two cards share exactly one letter</i>.
+
+        <!--
+<center>
+<p>
+<img src="dobble3_template.jpg" width=400>
+<p>
+</center>
+-->
+
+      <p>
+        This makes for quite a good puzzle.
+        See if you can do it for yourself, perhaps by trial and error
+        (I've filled in the first circle to get you started).
+        To add a symbol to any card (or replace an existing symbol),
+        use the buttons A-G to select the symbol you want,
+        then click on the appropriate position within the card
+        (as illustrated by card 1).
+        Once you&rsquo;ve finished, click &lsquo;Check answer&rsquo;
+        to see if your solution is correct.
+
+        <center>
+          <h3 id="puzzle-message3">Level 3 Dobble challenge</h2>
+
+            <p>
+              <input type="button" id="restart-btn3" value="Start again" onclick="initialize(3)">
+              <input type="button" id="check-btn3" value="Check answer" onclick="checkAnswer(3)">
+              <input type="button" id="reveal-btn3" value="Reveal solution" onclick="revealSolution(3)">
+            </p>
+
+            <p>
+            <div class="card-container">
+              <!-- Can't seem to manage the width/height in CSS. Done in Javascript by 'onload' below -->
+              <canvas id="card3-1" onclick="writeCurrSymbol(3,event,1)"></canvas>
+              <canvas id="card3-2" onclick="writeCurrSymbol(3,event,2)"></canvas>
+              <canvas id="card3-3" onclick="writeCurrSymbol(3,event,3)"></canvas>
+              <canvas id="card3-4" onclick="writeCurrSymbol(3,event,4)"></canvas>
+              <canvas id="card3-5" onclick="writeCurrSymbol(3,event,5)"></canvas>
+              <canvas id="card3-6" onclick="writeCurrSymbol(3,event,6)"></canvas>
+              <canvas id="card3-7" onclick="writeCurrSymbol(3,event,7)"></canvas>
+            </div>
+      </p>
+
+      <p>
+      <div class="button-container">
+        <input type="button" id="btn3-1" value="A" onclick="setCurrSymbol(3,'A',1)">
+        <input type="button" id="btn3-2" value="B" onclick="setCurrSymbol(3,'B',2)">
+        <input type="button" id="btn3-3" value="C" onclick="setCurrSymbol(3,'C',3)">
+        <input type="button" id="btn3-4" value="D" onclick="setCurrSymbol(3,'D',4)">
+        <input type="button" id="btn3-5" value="E" onclick="setCurrSymbol(3,'E',5)">
+        <input type="button" id="btn3-6" value="F" onclick="setCurrSymbol(3,'F',6)">
+        <input type="button" id="btn3-7" value="G" onclick="setCurrSymbol(3,'G',7)">
+      </div>
+      </p>
+
+      </center>
+
+      <script src="challenge345.js"></script>
+
+
+      <!-- OLD:
+<center>
+<p>
+<button type="button" id="dobble3_button" onclick="revealDobble3()">Click here to reveal solution</button>
+
+<p id="dobble3_solution"></p>
+</center>
+
+<script>
+function revealDobble3() {
+  document.getElementById("dobble3_solution").innerHTML = '<img src="dobble3.jpg" width=400>';
+  document.getElementById("dobble3_button").innerHTML = 'One possible solution:';
+}
+</script>
+-->
+
+      <p>
+        It's very possible that you come up with a solution that looks different from mine.
+        However, there is also a sense in which all possible solutions to this puzzle are
+        &lsquo;essentially the same &rsquo;, and only differ in relatively superficial ways.
+        In mathematical jargon, we say that all solutions are <i>isomorphic</i>.
+        Click the link for more on this question of
+        <a href="dobble_isomorphic_solutions.html">when are two Dobble systems &lsquo;the same&rsquo;</a>.
+
+
+      <h3 id="Card_symbol_duality">Card-symbol duality</h3>
+
+      Whatever Level 3 Dobble solution you came up with, it will possess
+      some interesting properties.
+      For example, we&rsquo;ve already said that in Level 3 Dobble,
+      every card must have exactly 3 symbols associated with it &ndash;
+      but we can see that the &lsquo;reverse&rsquo; is also true:
+      <i>every symbol has exactly 3 cards associated with it</i>.
+      That is, whichever of the letters A,...,G you pick,
+      you'll see that there are exactly three cards on which that letter appears.
+
+      <p>
+        Even more strikingly: we&rsquo;ve already stated the fundamental rule that
+        any two cards share exactly one symbol &ndash;
+        but we can now also see that <i>any two symbols share exactly one card</i>.
+        For example, suppose we pick the two symbols B and E.
+        You will see that there&rsquo;s one, and only one, card on which both these symbols appear. (In my solution,
+        this is card 5.)
+        The same is true whichever two symbols we pick.
+
+      <p>
+        Let&rsquo;s organize what we&rsquo;ve observed so far into two lists:
+
+      <ul>
+        <li> There are 7 cards.
+        <li> Every card is associated with exactly 3 symbols.
+        <li> Any two cards share exactly one symbol.
+      </ul>
+
+      <ul>
+        <li> There are 7 symbols.
+        <li> Every symbol is associated with exactly 3 cards.
+        <li> Any two symbols share exactly one card.
+      </ul>
+
+      <p>
+        You&rsquo;ll see that these two lists are in a sense &lsquo;mirror images&rsquo;
+        of each other:
+        we can get one list from the other simply by swapping the roles of
+        <i>cards</i> and <i>symbols</i>.
+        In other words, there is apparently some kind of symmetry &ndash;
+        or <i>duality</i> as mathematicians would call it &ndash; between cards and symbols.
+        This idea of card-symbol duality will play quite a major role later on.
+
+      <p>
+        One consequence of this duality is that if we start with a Dobble system
+        possessing these six properties, we can obtain another such system by swapping
+        the roles of cards and symbols.
+        To illustrate this, let&rsquo;s take my solution to the puzzle above
+        (spoiler alert!), with the cards numbered 1 to 7:
+
+        <center>
+          <p>
+            <button type="button" id="dobble3_numbered_button" onclick="revealDobble3Numbered()">View solution</button>
+
+          <p id="dobble3_numbered_solution"></p>
+        </center>
+
+        <script>
+          function revealDobble3Numbered() {
+            document.getElementById("dobble3_numbered_solution").innerHTML = '<img src="dobble3_numbered.jpg" width=400>';
+            document.getElementById("dobble3_numbered_button").innerHTML = 'Solution:';
+          }
+        </script>
+
+        We can construct another system, <i>dual</i> to this,
+        in which the <i>symbols</i> are the numbers 1,...,7
+        and the <i>cards</i> are labelled with the letters A,...,G.
+        The idea is as follows: since the symbol E appears on card 2 in the old system,
+        we put the symbol 2 on card E in the new system
+        (and similarly for other combinations of letters and numbers).
+        You might enjoy thinking through what this dual system will look like
+        before viewing it below.
+
+        <center>
+          <p>
+            <button type="button" id="dobble3_dual_button" onclick="revealDobble3Dual()">View dual solution</button>
+
+          <p id="dobble3_dual_solution"></p>
+        </center>
+
+        <script>
+          function revealDobble3Dual() {
+            document.getElementById("dobble3_dual_solution").innerHTML = '<img src="dobble3_dual.jpg" width=400>';
+            document.getElementById("dobble3_dual_button").innerHTML = 'Dual solution:';
+          }
+        </script>
+
+        Once again, this new system itself possesses all six of the properties listed above.
+        This is to be expected, because our list of properties is <i>self-dual</i>.
+
+      <p>
+        So it may seem that any solution to our Level 3 Dobble puzzle will lead by duality
+        to a further solution.
+        Actually, in this particular case, the situation is a little disappointing:
+        comparing our original and dual solutions, it&rsquo;s not hard to see that they are &lsquo;the same&rsquo;, in
+        that we can obtain one from the other just by
+        rewriting A,B,C,D,E,F,G to 1,2,3,4,5,6,7 respectively, and <i>vice versa</i>.
+        So we may say that this particular Dobble system is actually self-dual.
+        However, this doesn&lsquo;t always happen:
+        we&rsquo;ll see later that there are Dobble systems of Level 10, for instance,
+        such that taking their dual leads to a genuinely different system.
+
+
+      <h3 id="Complete_Dobble">Complete Dobble systems</h3>
+
+      Building on this idea of card-symbol duality, let&rsquo;s now introduce
+      a useful piece of terminology.
+      As we&rsquo;ve already indicated, if <i>N</i> is any whole number greater than 1,
+      a <b>Level N Dobble system</b> is a set of cards together with a pool of symbols such that:
+
+      <ul>
+        <li> Every card contains exactly <i>N</i> symbols.
+        <li> Any two cards share exactly one symbol.
+      </ul>
+
+      We now declare a Level <i>N</i> Dobble system to be <b>complete</b> if,
+      in addition to these properties, it satisfies the dual of the second property:
+
+      <ul>
+        <li> Any two symbols share exactly one card.
+      </ul>
+
+      For instance, we&rsquo;ve seen in the course of our discussion that our Level 3 system
+      is complete. (So is our Level 2 system, for that matter.)
+
+      <p>
+        Not every Dobble system is complete. For instance, suppose we took my
+        Level 3 system and threw away Card 7: the one containing C,E,F.
+        Then the remaining 6 cards would still form a Level 3 Dobble system
+        according to our definition, but not a complete one, because there
+        would now be no card containing both C and E.
+        So a complete system is one with a card for any pair of (distinct) symbols.
+
+      <blockquote>
+        <p>
+          <b>Puzzle:</b> Suppose we have a complete Level <i>N</i> Dobble system, where
+          <i>N</i> &geq; 2.
+          Staying with the same pool of symbols, would it be possible to add a further card
+          and still have a Level <i>N</i> Dobble system? Explain your answer.
+
+          <center>
+            <p>
+              <button type="button" id="complete_puzzle_button" onclick="revealCompletePuzzleAnswer()">Click here for
+                solution</button>
+          </center>
+
+        <p id="complete_puzzle_answer"></p>
+
+        <script>
+          function revealCompletePuzzleAnswer() {
+            document.getElementById("complete_puzzle_button").innerHTML = 'Solution:';
+            document.getElementById("complete_puzzle_answer").innerHTML = '<b>No!</b> Suppose we were able to add an extra card C, and suppose X and Y are any two distinct symbols present on C. Since the original system was assumed to be complete, there must be some card in the original system &ndash; D, say &ndash; containing both X and Y. But then C and D have <i>two</i> symbols in common, namely X and Y! So the extended system (with C added) is no longer a valid Dobble system.';
+          }
+        </script>
+      </blockquote>
+
+      <p>
+        We&rsquo;ll see later that complete Level <i>N</i> Dobble systems are actually very
+        tightly constrained: there&rsquo;s remarkably little freedom in how they are constructed.
+        For instance, we&rsquo;ll see that <i>any</i> Level <i>N</i> Dobble system
+        must necessarily have the following properties:
+
+      <ul>
+        <li>Every symbol appears on exactly <i>N</i> cards.
+        <li>There are exactly <i>N</i><sup>2</sup> &minus; <i>N</i> + 1 cards in total.
+        <li>There are exactly <i>N</i><sup>2</sup> &minus; <i>N</i> + 1 symbols in total.
+      </ul>
+
+      This gives an indication of where some of our earlier numbers came from.
+      For a complete Level 2 system,
+      the number of cards/symbols has to be 2<sup>2</sup> &minus; 2 + 1 = 3,
+      while for a complete Level 3 system, the number must be
+      3<sup>2</sup> &minus; 3 + 1 = 7.
+
+      <p>
+        The upshot of all this is that <i>any</i> complete Dobble system (of any level)
+        will satisfy a list of six properties like those we listed for Level 3.
+
+        <!--
+<p>
+Another question you might like to ask yourself is this: Is the standard commercial
+Level 8 Dobble system a complete one? We will discover the answer below.
+-->
+
+
+      <h3 id="Levels_4_5">Levels 4 and 5</h3>
+
+      So much for Levels 2 and 3.
+      As we saw, finding a Level 2 Dobble system was very easy,
+      but Level 3 already posed a bit of a challenge.
+      How much harder, then, would it be to come up with
+      a Level 8 system such as the standard Dobble pack?
+
+      <p>
+        It seems clear that for a problem of this complexity,
+        simple trial-and-error will no longer suffice:
+        we will need some more systematic method.
+        We will be describing one such method on the next page &ndash;
+        though as we shall see, this will still leave a lot of questions unanswered.
+        For example, it doesn&lsquo;t tell us whether a complete Level 13 Dobble system
+        would be possible &ndash; and in fact the answer to this is currently unknown.
+
+      <p>
+        Before we come to all this, you might like to see whether you can
+        construct a complete Level 4 system &ndash;
+        or even harder, a complete Level 5 one! &ndash; just by trial-and-error reasoning.
+        (These puzzles are more time-consuming than the Level 3 one,
+        so you might prefer to skip them.)
+
+      <p>
+        For <b>Level 4</b>, the formula above tells us that the number of cards/symbols
+        will have to be 4<sup>2</sup> &minus; 4 + 1 = 13. So let&rsquo;s use
+        the letters A to M as our symbols.
+
+        <center>
+          <h3 id="puzzle-message4">Level 4 Dobble challenge</h2>
+
+            <p>
+              <input type="button" id="restart-btn4" value="Start again" onclick="initialize(4)">
+              <input type="button" id="check-btn4" value="Check answer" onclick="checkAnswer(4)">
+              <input type="button" id="reveal-btn4" value="Reveal solution" onclick="revealSolution(4)">
+            </p>
+
+            <p>
+            <div class="card-container" style="width:500px">
+              <!-- Can't seem to manage the width/height in CSS. Done in Javascript by 'onload' below -->
+              <canvas id="card4-1" onclick="writeCurrSymbol(4,event,1)"></canvas>
+              <canvas id="card4-2" onclick="writeCurrSymbol(4,event,2)"></canvas>
+              <canvas id="card4-3" onclick="writeCurrSymbol(4,event,3)"></canvas>
+              <canvas id="card4-4" onclick="writeCurrSymbol(4,event,4)"></canvas>
+              <canvas id="card4-5" onclick="writeCurrSymbol(4,event,5)"></canvas>
+              <canvas id="card4-6" onclick="writeCurrSymbol(4,event,6)"></canvas>
+              <canvas id="card4-7" onclick="writeCurrSymbol(4,event,7)"></canvas>
+              <canvas id="card4-8" onclick="writeCurrSymbol(4,event,8)"></canvas>
+              <canvas id="card4-9" onclick="writeCurrSymbol(4,event,9)"></canvas>
+              <canvas id="card4-10" onclick="writeCurrSymbol(4,event,10)"></canvas>
+              <canvas id="card4-11" onclick="writeCurrSymbol(4,event,11)"></canvas>
+              <canvas id="card4-12" onclick="writeCurrSymbol(4,event,12)"></canvas>
+              <canvas id="card4-13" onclick="writeCurrSymbol(4,event,13)"></canvas>
+            </div>
+      </p>
+
+      <p>
+      <div class="button-container">
+        <input type="button" id="btn4-1" value="A" onclick="setCurrSymbol(4,'A',1)">
+        <input type="button" id="btn4-2" value="B" onclick="setCurrSymbol(4,'B',2)">
+        <input type="button" id="btn4-3" value="C" onclick="setCurrSymbol(4,'C',3)">
+        <input type="button" id="btn4-4" value="D" onclick="setCurrSymbol(4,'D',4)">
+        <input type="button" id="btn4-5" value="E" onclick="setCurrSymbol(4,'E',5)">
+        <input type="button" id="btn4-6" value="F" onclick="setCurrSymbol(4,'F',6)">
+        <input type="button" id="btn4-7" value="G" onclick="setCurrSymbol(4,'G',7)">
+        <input type="button" id="btn4-8" value="H" onclick="setCurrSymbol(4,'H',8)">
+        <input type="button" id="btn4-9" value="I" onclick="setCurrSymbol(4,'I',9)">
+        <input type="button" id="btn4-10" value="J" onclick="setCurrSymbol(4,'J',10)">
+        <input type="button" id="btn4-11" value="K" onclick="setCurrSymbol(4,'K',11)">
+        <input type="button" id="btn4-12" value="L" onclick="setCurrSymbol(4,'L',12)">
+        <input type="button" id="btn4-13" value="M" onclick="setCurrSymbol(4,'M',13)">
+      </div>
+      </p>
+      </center>
+
+      <p>
+        For <b>Level 5</b>, the number of cards/symbols will have to be
+        5<sup>2</sup> &minus; 5 + 1 = 21, so we&rsquo;ll use the letters A to U.
+        <i>Warning</i>: this puzzle is both time-consuming and difficult,
+        unless you know the secret.
+        If you succeed in doing it without any help&hellip; <i>congratulations</i>!
+
+        <center>
+          <h3 id="puzzle-message5">Level 5 Dobble challenge</h2>
+
+            <p>
+              <input type="button" id="restart-btn5" value="Start again" onclick="initialize(5)">
+              <input type="button" id="check-btn5" value="Check answer" onclick="checkAnswer(5)">
+              <input type="button" id="reveal-btn5" value="Reveal solution" onclick="revealSolution(5)">
+            </p>
+
+            <p>
+            <div class="card-container" style="width:600px">
+              <!-- Can't seem to manage the width/height in CSS. 
+     Done in Javascript by 'window.onload' -->
+              <canvas id="card5-1" onclick="writeCurrSymbol(5,event,1)"></canvas>
+              <canvas id="card5-2" onclick="writeCurrSymbol(5,event,2)"></canvas>
+              <canvas id="card5-3" onclick="writeCurrSymbol(5,event,3)"></canvas>
+              <canvas id="card5-4" onclick="writeCurrSymbol(5,event,4)"></canvas>
+              <canvas id="card5-5" onclick="writeCurrSymbol(5,event,5)"></canvas>
+              <canvas id="card5-6" onclick="writeCurrSymbol(5,event,6)"></canvas>
+              <canvas id="card5-7" onclick="writeCurrSymbol(5,event,7)"></canvas>
+              <canvas id="card5-8" onclick="writeCurrSymbol(5,event,8)"></canvas>
+              <canvas id="card5-9" onclick="writeCurrSymbol(5,event,9)"></canvas>
+              <canvas id="card5-10" onclick="writeCurrSymbol(5,event,10)"></canvas>
+              <canvas id="card5-11" onclick="writeCurrSymbol(5,event,11)"></canvas>
+              <canvas id="card5-12" onclick="writeCurrSymbol(5,event,12)"></canvas>
+              <canvas id="card5-13" onclick="writeCurrSymbol(5,event,13)"></canvas>
+              <canvas id="card5-14" onclick="writeCurrSymbol(5,event,14)"></canvas>
+              <canvas id="card5-15" onclick="writeCurrSymbol(5,event,15)"></canvas>
+              <canvas id="card5-16" onclick="writeCurrSymbol(5,event,16)"></canvas>
+              <canvas id="card5-17" onclick="writeCurrSymbol(5,event,17)"></canvas>
+              <canvas id="card5-18" onclick="writeCurrSymbol(5,event,18)"></canvas>
+              <canvas id="card5-19" onclick="writeCurrSymbol(5,event,19)"></canvas>
+              <canvas id="card5-20" onclick="writeCurrSymbol(5,event,20)"></canvas>
+              <canvas id="card5-21" onclick="writeCurrSymbol(5,event,21)"></canvas>
+            </div>
+      </p>
+
+      <p>
+      <div class="button-container">
+        <input type="button" id="btn5-1" value="A" onclick="setCurrSymbol(5,'A',1)">
+        <input type="button" id="btn5-2" value="B" onclick="setCurrSymbol(5,'B',2)">
+        <input type="button" id="btn5-3" value="C" onclick="setCurrSymbol(5,'C',3)">
+        <input type="button" id="btn5-4" value="D" onclick="setCurrSymbol(5,'D',4)">
+        <input type="button" id="btn5-5" value="E" onclick="setCurrSymbol(5,'E',5)">
+        <input type="button" id="btn5-6" value="F" onclick="setCurrSymbol(5,'F',6)">
+        <input type="button" id="btn5-7" value="G" onclick="setCurrSymbol(5,'G',7)">
+        <input type="button" id="btn5-8" value="H" onclick="setCurrSymbol(5,'H',8)">
+        <input type="button" id="btn5-9" value="I" onclick="setCurrSymbol(5,'I',9)">
+        <input type="button" id="btn5-10" value="J" onclick="setCurrSymbol(5,'J',10)">
+        <input type="button" id="btn5-11" value="K" onclick="setCurrSymbol(5,'K',11)">
+        <input type="button" id="btn5-12" value="L" onclick="setCurrSymbol(5,'L',12)">
+        <input type="button" id="btn5-13" value="M" onclick="setCurrSymbol(5,'M',13)">
+        <input type="button" id="btn5-14" value="N" onclick="setCurrSymbol(5,'N',14)">
+        <input type="button" id="btn5-15" value="O" onclick="setCurrSymbol(5,'O',15)">
+        <input type="button" id="btn5-16" value="P" onclick="setCurrSymbol(5,'P',16)">
+        <input type="button" id="btn5-17" value="Q" onclick="setCurrSymbol(5,'Q',17)">
+        <input type="button" id="btn5-18" value="R" onclick="setCurrSymbol(5,'R',18)">
+        <input type="button" id="btn5-19" value="S" onclick="setCurrSymbol(5,'S',19)">
+        <input type="button" id="btn5-20" value="T" onclick="setCurrSymbol(5,'T',20)">
+        <input type="button" id="btn5-21" value="U" onclick="setCurrSymbol(5,'U',21)">
+      </div>
+      </p>
+      </center>
+
+      <!--
+<p>
+It&rsquo;s also worth noting that both of these are <i>complete</i> systems: for any two symbols, there&rsquo;s exactly one card containing both.
+Finally, it&rsquo;s not too hard to show that these are in essence the <i>only</i> possible complete systems at Levels 4 and 5 respectively: 
+any other complete system at Level 4 or 5 is isomorphic to the one shown above.
+-->
+
+      <p>
+        That completes our introduction to Dobble systems and the problem of
+        constructing them.
+        On the next page, we&rsquo;ll describe a systematic method for building such systems,
+        based on a deep and fascinating connection between
+        <a style="color:Tomato"><b>Dobble</b></a> and
+        <a style="color:Tomato"><b>geometry</b></a>.
+        For more about this, proceed to
+        <a href="mathematics_of_dobble_II.html"><b>Part II</b></a>.
+
+        <hr style="height:10px; background-color:#9879b0">
+
+      <address><a href="mailto:jrl@staffmail.ed.ac.uk">John Longley</a></address>
+</body>
+
+</html>

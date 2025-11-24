@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <meta charset="utf-8" />
+    <title>Desargues' Theorem</title>
+    <link href="desarguesStyle.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+    </style>
+</head>
+
+<body>
+    <div id="banner">
+        <blockquote>
+            <h1>The Mathematics of Dobble</h1>
+        </blockquote>
+    </div>
+    <div class="navbar">
+        <div class="intro">
+            <a class="part1" href="../Existing files/mathematics_of_dobble.html"><b>Part I: Introduction</b></a>
+            <menu class="part1hide">
+                <a href="../Existing files/mathematics_of_dobble.html#dobble_basics">Dobble: the basics</a>
+                <a href="../Existing files/mathematics_of_dobble.html#Levels_2_3">Getting started: Levels 2 and 3</a>
+                <a href="../Existing files/mathematics_of_dobble.html#Card_symbol_duality">Card-symbol duality</a>
+                <a href="../Existing files/mathematics_of_dobble.html#Complete_Dobble">Complete Dobble systems</a>
+                <a href="../Existing files/mathematics_of_dobble.html#Levels_4_5">Levels 4 and 5</a>
+            </menu>
+        </div>
+
+        <div class="dobbleGeometry">
+            <a class="part2" href="../Existing files/mathematics_of_dobble_II.html"><b>Part II: Dobble and
+                    geometry</b></a>
+            <menu class="part2hide">
+                <a href="../Existing files/mathematics_of_dobble_II.html#Basic_connection">The basic connection</a>
+                <a href="../Existing files/mathematics_of_dobble_II.html#Computer_game_geometry">A 7&times;7
+                    &lsquo;computer game&rsquo;
+                    geometry</a>
+                <a href="../Existing files/mathematics_of_dobble_II.html#Dobble_grid_display">Card display: a 7&times;7
+                    Dobble grid</a>
+                <a href="../Existing files/mathematics_of_dobble_II.html#Slope_cards">Completing the set: Slope
+                    cards</a>
+                <a href="../Existing files/mathematics_of_dobble_II.html#Projective_3D">A three-dimensional
+                    perspective</a>
+                <a href="../Existing files/mathematics_of_dobble_II.html#Infinite_Dobble">&lsquo;Infinite
+                    Dobble&rsquo;</a>
+            </menu>
+        </div>
+
+        <div class="cardTrick">
+            <a class="part3" href="../Pappus/pappus_theorem.html"><b>Part III: Some card tricks inspired by
+                    geometry</b></a>
+            <menu class="part3hide">
+                <a href="../Pappus/pappus_theorem.html">Pappus&rsquo;s theorem (card trick 1)</a>
+                <a href="desargues_theorem.html">Desargues&rsquo; theorem (card trick 2)</a>
+                <a href="mathematics_of_dobble_III.html#Orthogonality">Orthogonality (card trick 3)</a>
+                <a href="mathematics_of_dobble_III.html#Altitudes">Altitudes of a triangle (card trick 4)</a>
+            </menu>
+        </div>
+
+        <div class="finite">
+            <a class="part4" href="mathematics_of_dobble_IV.html"><b>Part IV: Finite projective planes</b></a>
+            <menu class="part4hide">
+                <a href="">Dobble systems and FPPs</a>
+                <a href="">Known and unknown Dobble systems</a>
+                <a href="">Symmetries of Dobble systems</a>
+                <a href="">Card display: a Singer cycle</a>
+                <a href="">Subplanes and &lsquo;Happy Families&rsquo;</a>
+            </menu>
+        </div>
+
+        <div class="block">
+            <a class="part5" href="mathematics_of_dobble_V.html"><b>Part V: Block designs and their applications</b></a>
+            <menu class="part5hide">
+                <a href="#Block designs">Block designs</a>
+                <a href="#Experiment_design">Experiment design</a>
+                <a href="#Error_correcting_codes">Error-correcting codes</a>
+            </menu>
+        </div>
+    </div>
+    <hr style="height:10px; background-color:#9879b0">
+    <h2>Desargues' Theorem </h2>
+    <p>Desargues' theorem states that two triangles are <b>in perspective axially </b> if and only if they are <b>in
+            perspective
+            centrally</b>. Corresponding sides of the triangles, when extended, meet at points on a line
+        called the <b>axis of perspectivity</b>.
+        The lines which run through corresponding vertices on the triangles meet at a point called the <b>center of
+            perspectivity</b>. Desargues's theorem states that the truth of the first condition is necessary and
+        sufficient for
+        the truth of the second.</p>
+
+    <img src="Desargues_theorem_alt.png" alt="Desargues' theorem" style="width: 400px;" />
+
+
+    <h3>Play around with Desargues</h3>
+    <h3>Dobble card trick with Desargues' Theorem</h3>
+    <p>Let's try Desargues's Theorem with Level 5 Dobble!</p>
+    <p></p>
+    <p>Happy Desargeus-Dobble playing!</p>
+    <div class="canvas_container">
+        <canvas id="desargeus_canvas" width="650" height="600px"></canvas>
+        <div class="dropzone" id="cop" style="left: 550px; top: 175px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="t1p1" style="left: 284px; top: 101px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="t1p2" style="left: 319px; top: 156px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="t1p3" style="left: 261px; top: 224px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="t2p1" style="left: 66px; top: 41px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="t2p2" style="left: 172px; top: 144px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="t2p3" style="left: 128px; top: 246px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="aop1" style="left: 20px; top: 510px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="aop2" style="left: 208px; top: 508px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+        <div class="dropzone" id="aop3" style="left: 544px; top: 505px;" ondrop="drop(event)"
+            ondragover="allowDrop(event)"></div>
+    </div>
+    <div class="desargues_trick2">
+
+        <div id="card-container" ondragover="allowDrop(event)" ondrop="dropBack(event)">
+            <p><strong>CARDS:</strong></p>
+
+            <img id="card5-1" src="../L5_cards/card5-1.PNG" onclick="selectCard('card5-1')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-2" src="../L5_cards/card5-2.PNG" onclick="selectCard('card5-2')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-3" src="../L5_cards/card5-3.PNG" onclick="selectCard('card5-3')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-4" src="../L5_cards/card5-4.PNG" onclick="selectCard('card5-4')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-5" src="../L5_cards/card5-5.PNG" onclick="selectCard('card5-5')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-6" src="../L5_cards/card5-6.PNG" onclick="selectCard('card5-6')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-7" src="../L5_cards/card5-7.PNG" onclick="selectCard('card5-7')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-8" src="../L5_cards/card5-8.PNG" onclick="selectCard('card5-8')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-9" src="../L5_cards/card5-9.PNG" onclick="selectCard('card5-9')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-10" src="../L5_cards/card5-10.PNG" onclick="selectCard('card5-10')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-11" src="../L5_cards/card5-11.PNG" onclick="selectCard('card5-11')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-12" src="../L5_cards/card5-12.PNG" onclick="selectCard('card5-12')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-13" src="../L5_cards/card5-13.PNG" onclick="selectCard('card5-13')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-14" src="../L5_cards/card5-14.PNG" onclick="selectCard('card5-14')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-15" src="../L5_cards/card5-15.PNG" onclick="selectCard('card5-15')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-16" src="../L5_cards/card5-16.PNG" onclick="selectCard('card5-16')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-17" src="../L5_cards/card5-17.PNG" onclick="selectCard('card5-17')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-18" src="../L5_cards/card5-18.PNG" onclick="selectCard('card5-18')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-19" src="../L5_cards/card5-19.PNG" onclick="selectCard('card5-19')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-20" src="../L5_cards/card5-20.PNG" onclick="selectCard('card5-20')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+            <img id="card5-21" src="../L5_cards/card5-21.PNG" onclick="selectCard('card5-21')"
+                ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+
+        </div>
+        <div id="symbol-container">
+            <p><strong>SYMBOLS:</strong></p>
+            <button id="symbol5-1" style="font-size: 18px;" onclick="selectSymbol('symbol5-1')"> A </button>
+            <button id="symbol5-2" style="font-size: 18px;" onclick="selectSymbol('symbol5-2')"> B </button>
+            <button id="symbol5-3" style="font-size: 18px;" onclick="selectSymbol('symbol5-3')"> C </button>
+            <button id="symbol5-4" style="font-size: 18px;" onclick="selectSymbol('symbol5-4')"> D </button>
+            <button id="symbol5-5" style="font-size: 18px;" onclick="selectSymbol('symbol5-5')"> E </button>
+            <button id="symbol5-6" style="font-size: 18px;" onclick="selectSymbol('symbol5-6')"> F </button>
+            <button id="symbol5-7" style="font-size: 18px;" onclick="selectSymbol('symbol5-7')"> G </button>
+            <button id="symbol5-8" style="font-size: 18px;" onclick="selectSymbol('symbol5-8')"> H </button>
+            <button id="symbol5-9" style="font-size: 18px;" onclick="selectSymbol('symbol5-9')"> I </button>
+            <button id="symbol5-10" style="font-size: 18px;" onclick="selectSymbol('symbol5-10')"> J </button>
+            <button id="symbol5-11" style="font-size: 18px;" onclick="selectSymbol('symbol5-11')"> K </button>
+            <button id="symbol5-12" style="font-size: 18px;" onclick="selectSymbol('symbol5-12')"> L </button>
+            <button id="symbol5-13" style="font-size: 18px;" onclick="selectSymbol('symbol5-13')"> M </button>
+            <button id="symbol5-14" style="font-size: 18px;" onclick="selectSymbol('symbol5-14')"> N </button>
+            <button id="symbol5-15" style="font-size: 18px;" onclick="selectSymbol('symbol5-15')"> O </button>
+            <button id="symbol5-16" style="font-size: 18px;" onclick="selectSymbol('symbol5-16')"> P </button>
+            <button id="symbol5-17" style="font-size: 18px;" onclick="selectSymbol('symbol5-17')"> Q </button>
+            <button id="symbol5-18" style="font-size: 18px;" onclick="selectSymbol('symbol5-18')"> R </button>
+            <button id="symbol5-19" style="font-size: 18px;" onclick="selectSymbol('symbol5-19')"> S </button>
+            <button id="symbol5-20" style="font-size: 18px;" onclick="selectSymbol('symbol5-20')"> T </button>
+            <button id="symbol5-21" style="font-size: 18px;" onclick="selectSymbol('symbol5-21')"> U </button>
+        </div>
+        <p id="test"></p>
+        <script src="desargues.js"></script>
+        <br><br>
+
+</body>
+<hr style="height:5px; background-color:#9879b0">
+
+<footer>
+    <h3>References:</h3>
+    <ol>
+        <li>
+            <p><a href=https://en.wikipedia.org/wiki/Desargues%27s_theorem>Wikipedia - Desargues's theorem</a>
+            </p>
+        </li>
+    </ol>
+</footer>
+
+</html>
