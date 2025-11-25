@@ -30,7 +30,7 @@ footer {
     border: 4px solid #9879b0;
     background-color: #fae351;
     width: 600px;
-    height: 440px;
+    height: 445px;
     font-family: sans-serif;
     padding: 5px;
     border-radius: 10px;
@@ -54,7 +54,7 @@ footer {
     border: 4px solid #9879b0;
     background-color: #fae351;
     width: 600px;
-    height: 140px;
+    height: 145px;
     font-family: sans-serif;
     padding: 5px;
     border-radius: 10px;
@@ -89,7 +89,7 @@ button:hover {
 #pappus_canvas {
     float: left;
     width: auto;
-    height: 608px;
+    height: 615px;
     background-color: #cae89b;
     border: #9879b0 4px solid;
     border-radius: 10px;
