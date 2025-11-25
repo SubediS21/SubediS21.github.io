@@ -174,16 +174,15 @@ function drop(event) {
         existingCard.style.height = "100px";
         existingCard.style.position = "relative";
         const cardContainer = document.getElementById("card-container");
-        //removeFromLine(existingCard);
         cardContainer.appendChild(existingCard);
     }
     const cardClone = draggedCard.cloneNode(true);
     cardClone.id = data + "-clone";
     cardClone.style.border = "";
+    cardClone.style.boxShadow = "";
     cardClone.style.width = "60px";
     cardClone.style.height = "60px";
     cardClone.style.position = "absolute";
-
     dropZone.appendChild(cardClone);
     checkLine();
     //event.target.appendChild(document.getElementById(data));
@@ -198,9 +197,11 @@ function dropBack(event) {
     cardBack.style.width = "100px";
     cardBack.style.height = "100px";
     cardBack.style.position = "relative";
-    cardBack.style.display = "none"
-    cardContainer.appendChild(cardBack);
-
+    if (cardBack.id.endsWith("-clone")) {
+        cardBack.style.display = "none";
+        cardContainer.appendChild(cardBack);
+        return;
+    }
     checkLine();
 }
 
