@@ -2,1099 +2,1146 @@
 <html>
 
 <head>
-<title>The Mathematics of Dobble</title>
-<style>
-.outer-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  background-color: #a0ffff;
-}
+   <title>The Mathematics of Dobble</title>
+   <style>
+      .outer-container {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-wrap: wrap;
+         background-color: #c9eaf4;
+      }
 
-.flex-container {
-  display: flex;
-  width: 280px;
-  min-width: 280px;
-  height: 280px;
-  margin: 30px;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  background-color: Black;
-}
+      .flex-container {
+         display: flex;
+         width: 280px;
+         min-width: 280px;
+         height: 280px;
+         margin: 30px;
+         flex-wrap: wrap;
+         align-content: flex-start;
+         background-color: Black;
+      }
 
-.flex-container > div {
-  background-color: White;
-  width: 36px;
-  height: 36px;
-  margin: 2px;
-  text-align: center;
-  line-height: 35px;
-  font-size: 24px;
-}
+      .flex-container>div {
+         background-color: White;
+         width: 36px;
+         height: 36px;
+         margin: 2px;
+         text-align: center;
+         line-height: 35px;
+         font-size: 24px;
+      }
 
-.flex-container2 {
-  display: flex;
-  width: 130px;
-  min-width: 130px;
-  height: 130px;
-  margin: 30px;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  background-color: #a0ffff;
-}
+      .flex-container2 {
+         display: flex;
+         width: 130px;
+         min-width: 130px;
+         height: 130px;
+         margin: 30px;
+         flex-wrap: wrap;
+         align-content: flex-start;
+         background-color: #c9eaf4;
+      }
 
-.flex-container2 > div {
-  background-color: #a0ffff;
-  width: 36px;
-  height: 36px;
-  margin: 0px;
-  text-align: center;
-  line-height: 35px;
-  font-size: 15px;
-}
+      .flex-container2>div {
+         background-color: #c9eaf4;
+         width: 36px;
+         height: 36px;
+         margin: 0px;
+         text-align: center;
+         line-height: 35px;
+         font-size: 15px;
+      }
 
-.bordered {border-style: solid; border-color: Grey}
-.unbordered {border-style: solid; border-color: #a0ffff;}
-</style>
+      .bordered {
+         border-style: solid;
+         border-color: Grey
+      }
+
+      .unbordered {
+         border-style: solid;
+         border-color: #c9eaf4;
+      }
+
+      body {
+         background-color: #c9eaf4;
+      }
+
+      h2 {
+         font-family: "Luckiest Guy";
+         font-style: normal;
+      }
+   </style>
+   <style>
+      @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+   </style>
 </head>
 
-<body bgcolor="#a0ffff">
-<font size=4pt>
+   <font size=4pt>
 
-<center>
-<blockquote style="border: 10px solid #d93bd3; border-radius: 60px; background-color: #f9ff47; max-width: 500px; justify-content: center">
-<center>
-<h3 style="color:Black">The Mathematics of Dobble</h3>
-<a style="color:Black">John Longley, University of Edinburgh</a>
-<p> 
-Back to <a href="index.html">main page</a>
-</p>
-</center>
-</blockquote>
-</center>
+      <center>
+         <blockquote
+            style="border: 15px solid #9879b0; border-radius: 60px; background-color: #fae351; max-width: 500px; justify-content: center">
+            <center>
+               <h1 style="color:Black; font-family: 'Luckiest Guy'; font-style:normal;">The Mathematics of Dobble</h1>
+               <p>
+               <h4 style="color:Black">John Longley, School of Informatics,<br> University of Edinburgh</h4>
+               <p>
+            </center>
+         </blockquote>
+      </center>
 
-<p>
-<h2 id="Dobble_and_Geometry">Part II: Dobble and geometry</h2>
-</p>
+      <p>
+      <h2 id="Dobble_and_Geometry">Part II: Dobble and geometry</h2>
+      </p>
 
-<p>
-<ul>
-<li> <a href="#Basic_connection">The basic connection</a>
-<li> <a href="#Computer_game_geometry">A 7&times;7 &lsquo;computer game&rsquo; geometry</a>
-<li> <a href="#Dobble_grid_display">Card display: a 7&times;7 Dobble grid</a>
-<li> <a href="#Slope_cards">Completing the set: Slope cards</a>
-<li> <a href="#Projective_3D">A three-dimensional perspective</a>
-<!--
+      <p>
+      <ul>
+         <li> <a href="#Basic_connection">The basic connection</a>
+         <li> <a href="#Computer_game_geometry">A 7&times;7 &lsquo;computer game&rsquo; geometry</a>
+         <li> <a href="#Dobble_grid_display">Card display: a 7&times;7 Dobble grid</a>
+         <li> <a href="#Slope_cards">Completing the set: Slope cards</a>
+         <li> <a href="#Projective_3D">A three-dimensional perspective</a>
+            <!--
 <li> <a href="#Pappus_theorem">Pappus&rsquo;s theorem (Card trick 1)</a>
 <li> <a href="#Desargues_theorem">Desargues&rsquo; theorem (Card trick 2)</a>
 <li> <a href="#Orthogonality">An orthogonality structure (Card trick 3)</a>
 <li> <a href="#Altitudes">Altitudes of a triangle (Card trick 4)</a>
 -->
-<li> <a href="#Infinite_Dobble">&lsquo;Infinite Dobble&rsquo;</a>
-</ul>
-
-
-<font size=4pt>
-<p>
-<h3 id="Basic_connection">The basic connection</h3>
-
-Having got the general feel of the Dobble problem in Part I, 
-we&rsquo;ll now take the story to another level,
-and explain how Dobble is closely related to another area of mathematics 
-that might at first  seem to have nothing to do with it: 
-the world of <i>geometry</i>.
-
-<p>
-Let&rsquo;s start by thinking about the most familiar kind of geometry: 
-the world of points and lines in a flat two-dimensional plane that extends 
-infinitely in all directions.
-(This kind of geometry is often associated with the Greek mathematician <b>Euclid</b>.)
-For us, a <i>line</i> will mean a straight line extending infinitely in both directions.
-Perhaps the most fundamental fact about this kind of geometry is the following:
-
-<ul>
-<li> Any two <a style="color:Blue"><b>points</b></a> have exactly one 
-<a style="color:Blue"><b>line</b></a> in common.
-</ul>
-
-<p>
-In other words, given any two distinct points, there is one, and only one, 
-straight line that passes through them both.
-
-<center>
-<img src="line_between_points.jpg" width=350>
-</center>
-
-<p>
-Does this remind you of something? 
-There&rsquo;s a close resemblance here to the fundamental rule of Dobble: 
-
-<ul>
-<li> Any two <a style="color:Blue"><b>cards</b></a> have exactly one 
-<a style="color:Blue"><b>symbol</b></a> in common.
-</ul>
-
-<p>
-This suggests that we can perhaps make some meaningful connection between 
-Dobble and geometry based on the following correspondences:
-
-<center>
-<p>
-<a style="color:Blue"><b>cards</b></a> &lrarr; 
-<a style="color:Blue"><b>points</b></a> &emsp;&emsp;&emsp;&emsp;
-<!-- Also exist &ensp; and &nbsp; -->
-<a style="color:Blue"><b>symbols</b></a> &lrarr; 
-<a style="color:Blue"><b>lines</b></a>
-</center>
-
-<p>
-This is the idea we&rsquo;re going to explore.
-
-<p>
-To see how far we can push this, let&rsquo;s now think about the <i>dual</i> of the above property.
-In Dobble terms, this would be the property that defines <i>complete</i> Dobble systems:
-
-<ul>
-<li> Any two <a style="color:Blue"><b>symbols</b></a> have exactly one 
-<a style="color:Blue"><b>card</b></a> in common.
-</ul>
-
-<p>
-What happens if we try carrying this over to a geometrical statement?
-
-<ul>
-<li>
-Any two <a style="color:Blue"><b>lines</b></a> have exactly one 
-<a style="color:Blue"><b>point</b></a> in common.
-</ul>
-
-<p>
-Is this true in the world of plane geometry? 
-In most cases, yes: two straight lines will intersect in one, and only one, point. 
-However, there is an exceptional case:
-if the two lines are <i>parallel</i>, they won&rsquo;t have any point in common at all.
-
-<center>
-<img src="point_between_lines.jpg" width=230>
-<img src="parallel_lines.jpg" width=230>
-</center>
-
-<p>
-So if the world of points and lines in plane geometry is in some way like a Dobble system,
-then it&rsquo;s like a Dobble system that&rsquo;s not quite complete, because it isn&rsquo;t <i>quite</i> true
-that any two lines have exactly one point in common.
-But it&rsquo;s <i>nearly</i> true &ndash; so perhaps there&rsquo;s some chance
-of tweaking something to make it true?
-Perhaps there&rsquo;s some slightly different kind of geometry in which 
-any two lines have a point in common?  
-We&rsquo;ll see that there is indeed such a thing: 
-a brand of geometry known as <b>projective geometry</b>.
-
-<p>
-What might we hope to gain from forging a connection between Dobble and geometry?
-Two things, maybe:
-
-<ul>
-<li> Perhaps some appropriate kind of geometry can lead us to a systematic way 
-to construct (complete) Dobble systems &ndash; for example, one of Level 8.
-<li> Perhaps our knowledge of geometry can then reveal some interesting new facts 
-about Dobble &ndash; things we didn&rsquo;t know before.
-</ul> 
-
-Of course, ordinary plane geometry is quite different from Dobble in several ways.
-In the world of plane geometry there are <i>infinitely many</i> points and 
-infinitely many straight lines &ndash; whereas in Dobble we obviously have only
-<i>finitely many</i> cards and finitely many symbols.
-So if we&rsquo;re hoping for a <i>very</i> close connection with Dobble, 
-we&rsquo;d better look for some slightly weird kind of geometry in which 
-there are only finitely many &lsquo;points&rsquo; and &lsquo;lines&rsquo; altogether.
-
-<p>
-Here&rsquo;s one example of a simple geometrical world that&rsquo;s 
-fairly easy to depict. 
-This is an example known as the <b>Fano plane</b>:
-it&rsquo;s a world in which there are just 7 points and 7 lines altogether. 
-
-<center>
-<img src="fano_plane.jpg" width=250>
-</center>
-
-<p>
-The seven &lsquo;points&rsquo; are represented by the seven grey blobs.
-You&rsquo;ll see that these blobs are connected in the diagram by six straight lines.
-These represent six of the &lsquo;lines&rsquo; within this geometrical world, 
-while the circle in the middle is given the honorary status of the 
-seventh &lsquo;line&rsquo;.
-
-<p>
-It might seem that we&rsquo;re cheating by branding this circle as a &lsquo;line&rsquo;.
-But the way to think of it is that the diagram above is only a <i>picture</i>  
-of a structure that exists mathematically &lsquo;in its own right&rsquo; &ndash; 
-and within this structure, the seventh &lsquo;line&rsquo; is an ordinary line like any other.
-When we try to depict this structure in ordinary two-dimensional space,
-it&rsquo;s inevitable that a bit of &lsquo;distortion&rsquo; creeps in &ndash;
-just as some sort of distortion creeps in whenever we try to
-map the whole of the Earth&rsquo;s surface on a flat sheet of paper.
-
-<p>
-A second kind of imperfection in the diagram is that the circle appears to cross three of the
-lines in other points that we&rsquo;re not counting as &lsquo;points&rsquo; of the space.
-Again, these crossings are just artefacts of our depiction and should be ignored.
-
-<p>
-Take a few moments to satisfy yourself that this new geometry perfectly satisfies
-both the properties mentioned earlier:
-
-<ul>
-<li> Any two <a style="color:Blue"><b>points</b></a> have exactly one 
-<a style="color:Blue"><b>line</b></a> in common.
-<li> Any two <a style="color:Blue"><b>lines</b></a> have exactly one 
-<a style="color:Blue"><b>point</b></a> in common.
-</ul>
-
-<p>
-What happens if we now try to &lsquo;translate&rsquo; this geometrical world into a Dobble system?
-We want lines to correspond to symbols, and points to cards.
-You&rsquo;ll see that I&rsquo;ve labelled the lines with the letters A,B,C,D,E,F,G, and we&rsquo;ll use these
-as our symbols. (The circle is labelled G.)
-So now let&rsquo;s imagine that each of the seven points is a little Dobble card, and let&rsquo;s fill
-each card with the symbols for the lines that pass through that point. 
-For instance, the point in the centre is where the three lines labelled A, B and C 
-all meet, so we fill that card with these three symbols. 
-Here&rsquo;s what we end up with:
-
-<center>
-<img src="fano_plane_cards.jpg" width=300>
-</center>
-
-Lo and behold: you will see that this is none other than the complete 
-Level 3 Dobble system we saw in Part I!
-So the Fano plane offers us a new &lsquo;geometrical&rsquo; way of 
-thinking about this system.
-
-<p>
-This illustrates an important point about the way mathematical theories often work.
-When we develop a theory, we&rsquo;re likely to use certain key terms &ndash; for instance, in geometry we speak of &lsquo;points&rsquo; and &lsquo;lines&rsquo;.
-However, the actual development of the theory needn&rsquo;t be especially tied 
-to any particular <i>meanings</i> we associate with these terms. 
-We&rsquo;re free to change the meanings we have in mind &ndash; 
-or the choice of words we use &ndash;
-as long as the key properties on which the theory is based are still satisfied.
-The great mathematician <b>David Hilbert</b>, when speaking of geometry, 
-is said to have joked that in place of points, lines and planes 
-it must always be possible to speak of tables, chairs and beer-mugs.
-I think Hilbert would have <i>loved</i> Dobble &ndash; 
-not only because he did a lot of important work in the sorts of geometry
-we&rsquo;re looking at here, 
-but also because it provides a perfect example of what he was talking about: 
-a theory originally developed to talk about points and lines 
-can also be applied to cards and symbols.
-
-<p>
-It might seem puzzling that we&rsquo;re associating points with cards 
-and lines with symbols, rather than the other way round. 
-After all, it&rsquo;s natural to think of a line as <i>containing</i>
-certain points, and a card as <i>containing</i> certain symbols &ndash;
-so haven&rsquo;t we got it back-to-front by associating cards with points rather 
-than lines?
-Ultimately, we&rsquo;re free to make whichever choice we prefer. 
-And although the choice I&rsquo;ve made might seem confusing at first, 
-we&rsquo;ll see that it&rsquo;s the better choice in the long run.
-
-
-<h3 id="Computer_game_geometry">A 7&times;7 &lsquo;computer game&rsquo; geometry</h3>
-
-We&rsquo;ll now work towards developing a kind of geometry that corresponds to ordinary (Level 8) Dobble. 
-Unfortunately, it&rsquo;s not possible to display this geometry in a simple diagram
-as we could in the case of the Fano plane above, 
-so we&rsquo;ll need to approach it rather differently.
-
-<p>
-To begin with, we&rsquo;ll introduce a simple geometrical world such as you might 
-find in a computer game. 
-This world is basically just a 7&times;7 grid of squares, 
-and the only &lsquo;points&rsquo; in the space &ndash; 
-or positions that a game character can occupy &ndash;
-are these 49 individual squares. 
-(Why 7? Well, 7 is one less than 8, and we&rsquo;re heading for a Level 8 Dobble system here. All will be revealed in due course!)
-
-<p>
-To get the idea of this world, click on any one of the squares below to position the
-character &ndash; in this case, a LADYBIRD &ndash; then use the four arrow buttons to
-move it around. 
-(Clicking the central button places a spot in the ladybird&rsquo;s current square,
-allowing you to trace out patterns. Double-clicking this central button clears all spots.)
-
-<center>
-<div class="outer-container">
-
-<div id="main-grid" class="flex-container">
-</div>
-
-<div class="flex-container2">
-  <div class="unbordered"></div>
-  <div class="bordered" onclick="shiftPosBy(6,0)"><b>&uarr;</b></div>
-  <div class="unbordered"></div>
-  <div class="bordered" onclick="shiftPosBy(0,6)"><b>&larr;</b></div>
-  <div class="unbordered" onclick="leaveMark()" ondblclick="clearAll()">&bull;</div>
-  <div class="bordered" onclick="shiftPosBy(0,1)"><b>&rarr;</b></div>
-  <div class="unbordered"></div>
-  <div class="bordered" onclick="shiftPosBy(1,0)"><b>&darr;</b></div>
-  <div class="unbordered"></div>
-</div>
-</div>
-
-<p>
-<input type="button" size="40" value="Use key controls (I,J,K,L,M)" onkeypress="keyResponse(event)">
-
-</center>
-
-<script>
-
-// initialization: populate main grid with cells
-var mainGrid = document.getElementById("main-grid") ;
-for (X=0 ; X<7 ; X++) {
-   for (Y=0 ; Y<7 ; Y++) {
-      var nextCell = document.createElement("div") ;
-      nextCell.id = "cell" + X + Y ;
-      nextCell.setAttribute("onclick","setPos(" + X + "," + Y + ")") ;
-      mainGrid.appendChild(nextCell) ;
-   }
-}
-
-var placed = false ;       // has ladybird yet been placed anywhere?
-var leavingMark = false ;  // are we due to leave a bullet mark on the current cell?
-var currX = 0 ; 
-var currY = 0 ;
-
-function currCell() {
-   return document.getElementById("cell" + currX + currY) ;
-}
-
-function placeLadybird() {
-   currCell().innerHTML = '<img src="ladybird.jpg" width="80%">' ;
-}
-
-function writeToCell(str) {
-   currCell().innerHTML = str ;
-}
-
-function setCellColor(c) {
-   currCell().style.color = c ;
-}   
-
-function setPos(newX,newY) {
-   if (placed) {
-      writeToCell (leavingMark ? '&bull;' : '') ;
-   }
-   currX = newX ; 
-   currY = newY ;
-   placeLadybird() ;
-   placed = true ;
-   leavingMark = false ;
-}
-
-function shiftPosBy(dX,dY) {
-   if (placed) {
-      var newX = (currX + dX) % 7 ;
-      var newY = (currY + dY) % 7 ;
-      setPos(newX,newY) ;
-   }
-}
-
-function leaveMark() {
-   if (placed) {
-      leavingMark = true ;
-      setCellColor("Purple") ;
-      writeToCell('&bull;') ;
-      setTimeout(placeLadybird, 300) ;
-   }
-}
-
-function clearAll() {
-   for (X=0 ; X<7 ; X++) {
-      for (Y=0 ; Y<7 ; Y++) {
-         document.getElementById("cell" + X + Y).innerHTML = '' ;
-      }
-   }
-   leavingMark = false ;
-   placeLadybird() ;
-} 
-
-function keyResponse(event) {
-  var x = event.which || event.keyCode;  // cross-browser solution, apparently
-  switch (x) {
-     case 107: // return
-       leaveMark(); break;
-     case 106: // left
-       shiftPosBy(0,6); break;
-     case 105: // up
-       shiftPosBy(6,0); break;
-     case 108: // right
-       shiftPosBy(0,1); break;
-     case 109: // down
-       shiftPosBy(1,0); break;
-  }
-}
-
-</script>
-
-<p>
-You&rsquo;ll notice that if you try to move the ladybird off the right hand edge 
-of the grid, it reappears on the left-hand side in the same row.
-So it&rsquo;s as though the right and left edges have been wrapped around and 
-glued together at the back.
-This isn&rsquo;t too different from how a map of the world: a traveller 
-whose position went off the right hand edge of the map would 
-&lsquo;reappear&rsquo; on the left.
-There are also computer games such as <b>Snake</b> whose world has this feature.
-
-<p>
-The same applies to vertical movement: if you try to move the ladybird off the bottom of the grid, it will reappear at the top. 
-So it&rsquo;s as if the bottom and top edges have also been glued together. 
-At this point, the analogy with the map of the world breaks down.
-However, you can visualize this double wrap-around process like this: starting with a square sheet of rubber, first bend it round to form a cylinder,
-then stretch and bend the cylinder so that the two ends join up, 
-forming a <i>torus</i> or doughnut shape.
-
-<p> 
-So much for the <i>points</i> of this space and how they&rsquo;re arranged.
-But what do we mean by a <i>line</i> in this space?
-We are going to take the following point of view: a line is a set of points that can be traced out by choosing some starting point, choosing a direction to move in, 
-then repeatedly moving in that direction.
-
-<p>
-We can illustrate this using the grid above. 
-To make an example of a line, choose any starting square and place the ladybird there,
-then decide on one of the four arrows as your direction.
-Then repeatedly perform the following: put a spot in the current square, then move one step in your chosen direction. 
-After seven steps, you will find that you have returned to your starting point, 
-and you will have traced out a &lsquo;line&rsquo; in the process &ndash; either a horizontal or a vertical one.
-
-<p>
-Are there other kinds of &lsquo;lines&rsquo; besides these?
-What if we choose a starting point and then move in a <i>diagonal</i> direction 
-&ndash; for instance, upward and to the right? 
-You can see what happens by redoing the above experiment, 
-alternately placing a spot and clicking <i>two</i> arrow keys in order to 
-perform a diagonal step.
-
-<p>
-Try this from various starting squares.
-You&rsquo;ll see that wherever you start, you will return after seven steps to the same point. 
-In some cases, the route you trace out will be one of the diagonals of the square,
-but in most cases it will look more like two segments of line.
-Even in the latter case, though, we&rsquo;ll think of the route as just a <i>single</i> line 
-in this world&rsquo;s geometry, because it&rsquo;s obtained by choosing a starting point and then
-repeatedly performing steps in the same direction.
-(Imagine the ladybird moving around on the surface of our torus. 
-From the ladybird&rsquo;s point of view, all steps look the same &ndash; 
-she won&rsquo;t notice anything unusual when she crosses
-over an edge of the original square, any more than our round-the-world traveller would notice anything unusual when passing off the edge of the map.)
-
-<p>
-We&rsquo;ve now seen that there are four lines through any chosen starting point: one horizontal, one vertical, and two diagonal. (Clearly, each of these can be traced out in either of two directions, e.g. left/right, up/down.)
-For instance, if our starting point is the central square of the grid,
-these four lines may be shown in different colours as follows:
-
-<p><center>
-<img src="seven_square_four_lines.jpg" width=300>
-</center></p>
-
-<p>Are these <i>all</i> of the lines through our chosen point?
-From the point of view of geometry, they&rsquo;d better not be! 
-We want it to be true that for any two points there&rsquo;s a line containing both, whereas the above picture shows that there are plenty of points that aren&rsquo;t joined to the central point by any line (so far).
-Of these points, those closest to the centre are the eight points that can be reached
-from the centre square by a <i>knight&rsquo;s move</i> in chess: 
-two squares horizontally and one vertically, or the other way round.
-
-<p><center>
-<img src="seven_square_knights.jpg" width=300>
-</center></p>
-
-<p>So what happens if we also add these <i>knight&rsquo;s moves</i> 
-as permissible ways to trace out a line?
-
-<p>Go back to the grid above, and choose some &lsquo;knight&rsquo;s move direction&rsquo; 
-to move in (for instance, two squares up and one to the right). You can move the ladybird 
-by such a knight&rsquo;s move using three arrow clicks. Starting from any square you like, 
-move repeatedly in your chosen direction, tracing out your route by leaving spots. 
-(Take note of the effect of wrap-around as you do so!) Once again, you will return in 
-seven steps to your starting point.
-
-<p>This time, the route you have traced out will appear just as a pattern of dots,
-and won&rsquo;t look at all like a &lsquo;line&rsquo; in the ordinary sense.
-Nevertheless, we are going to count such routes as &lsquo;lines&rsquo; in the sense of 
-this special geometry, since &ndash; once again &ndash; they&rsquo;re obtained 
-by picking a starting point and repeatedly moving in the same direction.
-
-<p>
-The following version of our grid will make it easier for you to trace out lines in this space.
-Each of the move types we&rsquo;ve mentioned can now be performed by clicking a single button 
-on the navigation pad, and the ladybird will automatically leave a trail of spots in its wake. 
-Clicking on the central square of this pad will cycle through a choice of ten spot colours
-(including white, which effectively means &lsquo;no spot&rsquo;).
-Again, double-clicking the central square will clear all spots.
-
-<center>
-<div class="outer-container">
-
-<div id="main-gridB" class="flex-container">
-</div>
-
-<div class="flex-container2" style="min-width:210px ; width:210px ; height:210px ; margin:10px">
-  <div class="unbordered"></div>
-  <div class="bordered" onclick="shiftPosByB(5,6)"><b>&#x265E;</b></div> <!-- black knight -->
-  <div class="unbordered"></div>
-  <div class="bordered" onclick="shiftPosByB(5,1)"><b>&#x265E;</b></div>
-  <div class="unbordered"></div>
-
-  <div class="bordered" onclick="shiftPosByB(6,5)"><b>&#x265E;</b></div>
-  <div class="unbordered" onclick="shiftPosByB(6,6)"><b>&#x2196;</b></div>
-  <div class="bordered" onclick="shiftPosByB(6,0)"><b>&uarr;</b></div>
-  <div class="unbordered" onclick="shiftPosByB(6,1)"><b>&#x2197;</b></div>
-  <div class="bordered" onclick="shiftPosByB(6,2)"><b>&#x265E;</b></div>
-
-  <div class="unbordered"></div>
-  <div class="bordered" onclick="shiftPosByB(0,6)"><b>&larr;</b></div>
-  <div class="unbordered" 
-       id="color-dot" 
-       onclick="advanceColorB()" 
-       ondblclick="clearAllB()" 
-       style="font-size:30px ; background-color:White">
-       &bull;
-  </div>
-  <div class="bordered" onclick="shiftPosByB(0,1)"><b>&rarr;</b></div>
-  <div class="unbordered"></div>
-
-  <div class="bordered" onclick="shiftPosByB(1,5)"><b>&#x265E;</b></div>
-  <div class="unbordered" onclick="shiftPosByB(1,6)"><b>&#x2199;</b></div>
-  <div class="bordered" onclick="shiftPosByB(1,0)"><b>&darr;</b></div>
-  <div class="unbordered" onclick="shiftPosByB(1,1)"><b>&#x2198;</b></div>
-  <div class="bordered" onclick="shiftPosByB(1,2)"><b>&#x265E;</b></div>
-
-  <div class="unbordered"></div>
-  <div class="bordered" onclick="shiftPosByB(2,6)"><b>&#x265E;</b></div> <!-- black knight -->
-  <div class="unbordered"></div>
-  <div class="bordered" onclick="shiftPosByB(2,1)"><b>&#x265E;</b></div>
-  <div class="unbordered"></div>
-</div>
-</div>
-
-</center>
-
-<script>
-
-// initialization: populate main grid with cells
-var mainGridB = document.getElementById("main-gridB") ;
-var colorDot = document.getElementById("color-dot") ;
-
-for (X=0 ; X<7 ; X++) {
-   for (Y=0 ; Y<7 ; Y++) {
-      var nextCell = document.createElement("div") ;
-      nextCell.id = "cellB" + X + Y ;
-      nextCell.setAttribute("onclick","setPosB(" + X + "," + Y + ")") ;
-      mainGridB.appendChild(nextCell) ;
-   }
-}
-
-var placedB = false ; // has ladybird yet been placed anywhere?
-
-var currXB = 0 ; 
-var currYB = 0 ;
-
-var colors = ["Black", "Red", "Blue", "Green", "Yellow", "Brown", "Purple", "Orange", "Pink", "White"] ;
-
-var colorIndex = 9 ; // to be immediately advanced to 0
-advanceColorB() ;
-
-function currCellB() {
-   return document.getElementById("cellB" + currXB + currYB) ;
-}
-
-function placeLadybirdB() {
-   currCellB().innerHTML = '<img src="ladybird.jpg" width="80%">' ;
-}
-
-function writeToCellB(str) {
-   currCellB().innerHTML = str ;
-}
-
-function setCellColorB(c) {
-   currCellB().style.color = c ;
-}   
-
-function setPosB(newX,newY) {
-   if (placedB) {
-      setCellColorB (colors[colorIndex]) ;
-      writeToCellB ('&bull;') ;
-   }
-   currXB = newX ; 
-   currYB = newY ;
-   placeLadybirdB() ;
-   placedB = true ;
-}
-
-function shiftPosByB(dX,dY) {
-   if (placedB) {
-      var newX = (currXB + dX) % 7 ;
-      var newY = (currYB + dY) % 7 ;
-      setPosB(newX,newY) ;
-   }
-}
-
-function advanceColorB() {
-   colorIndex = (colorIndex + 1) % 10 ;
-   colorDot.style.color = colors[colorIndex] ;
-}
-
-function clearAllB() {
-   for (X=0 ; X<7 ; X++) {
-      for (Y=0 ; Y<7 ; Y++) {
-         document.getElementById("cellB" + X + Y).innerHTML = '' ;
-      }
-   }
-   colorIndex = (colorIndex + 8) % 10 ;  // hack: undoes effect of two single clicks!
-   colorDot.style.color = colors[colorIndex] ;
-   if (placedB) {
-      placeLadybirdB() ;
-   }
-} 
-
-</script>
-
-<p>
-Here&rsquo;s a little exercise that takes less than a minute to do.
-Select any &lsquo;starting square&rsquo; you like, and place the ladybird there.
-Then pick any spot colour you like, and choose a direction to move in,
-represented by one of the arrow or knight buttons.
-Pressing this button 7 times will trace out the corresponding line
-and return you to the starting square.
-(Note that <i>all</i> the lines we&rsquo;ve discussed have exactly 7 points.)
-Now pick a different spot colour and repeat the process, tracing out a line
-in a different direction. Repeat this until you have traced out all 8
-lines through the starting square in 8 different colours.
-(We shall say that these 8 lines have 8 different <i>slopes</i>,
-where each slope is represented by two opposite <i>directions</i>.
-Since we only need to trace out each line once, you will only need to use 
-half of the 16 available direction buttons to do this.)
-
-<p>
-You will notice that in the course of doing this, every square except the
-starting square is visited <i>once and only once</i>. 
-That is, excluding the starting square, every square will get coloured,
-and its colour will not be overwritten with another colour later on.
-This tells us that for each of these squares, there is <i>one and only one line</i> 
-that contains both it and the starting square.
-And because all of this is true <i>whatever</i> starting square we pick, 
-this means that <i>any two points have one and only one line in common</i> &ndash;
-precisely the property we are wanting for our geometrical system.
-
-<p>
-<i>Why</i> does this work? You can see by playing with the grid above that it <i>does</i> work
-&ndash; but is this just &lsquo;coincidence&rsquo;, or is there some good mathematical reason for it?
-Indeed there is a good reason, and it has to do with the fact that 7 is a <i>prime number</i>.
-If you tried the same thing with a 6 &times; 6 grid, for example, things wouldn&rsquo;t work out
-so nicely. You might like to think about this for yourself, or else read more here about
-<a href="dobble_prime_numbers.html">the role of prime numbers in Dobble geometry</a>.
-
-<blockquote>
-<p><b>Quiz question 1:</b> The space we&rsquo;ve described so far has 
-49 points. How many <i>lines</i> does it have altogether?</p>
-
-<center><p>
-<button type="button" id="quiz1_button" onclick="revealQuiz1Answer()">Click here for answer</button>
-</p></center>
-
-<p id="quiz1_answer"></p>
-
-<script>
-function revealQuiz1Answer() {
-  document.getElementById("quiz1_button").innerHTML = 'Answer:';
-  document.getElementById("quiz1_answer").innerHTML = "<b>56.</b> As we&rsquo;ve seen, there are 8 possible line slopes. And for each of these, there are 7 &lsquo;parallel&rsquo; lines, arising from different choices of starting square. (This is easy to see in the case of the horizontal and vertical lines, and not too hard to see for the diagonal lines. Satisfy yourself that it&rsquo;s also true for the knight&rsquo;s move lines, perhaps by playing with the above grids.) So that&rsquo;s 8 &times; 7 = 56 lines in total.";
-}
-</script>
-</blockquote>
-
-
-<blockquote>
-<p>
-<b>Quiz question 2:</b> It would seem that other line slopes are possible besides the 8 we&rsquo;ve mentioned. For instance, we might consider a &lsquo;super-knight&rsquo; move that went 3 steps down and 2 to the right. What happens if we try to trace out a line by repeatedly making a move of this kind?
-
-<center>
-<button type="button" id="quiz2_button" onclick="revealQuiz2Answer()">Click here for answer</button>
-</center>
-
-<p id="quiz2_answer"></p>
-
-<script>
-function revealQuiz2Answer() {
-  document.getElementById("quiz2_button").innerHTML = 'Answer:';
-  document.getElementById("quiz2_answer").innerHTML = "Performing this super-knight move 7 times will return you to your starting point, but the set of points traced out will be <i>identical</i> to the set of points traced by one of the ordinary knight moves: just visited in a different order. You can see this by trying it out on the first of the grids above. <p>Since we are taking a line to be just a certain <i>set</i> of points &ndash; independent of the order in which they are traced out &ndash; we consider this to be <i>just the same line</i> as the one obtained via a knight&rsquo;s move. So allowing the super-knight move wouldn&rsquo;t add any new lines beyond those we already know about. The same will apply to any other novel kind of direction you might introduce. (This idea that the same line can be generated in many different &lsquo;orders&rsquo; is a rather curious feature not shared by ordinary plane geometry.)";
-}
-</script>
-</blockquote>
-
-<p>
-<b>To summarize:</b> We&rsquo;ve succeeded in constructing a geometrical world involving 49 points and a certain collection of lines between them. We've seen that our geometry satisfies two key properties:
-
-<ul>
-<li>For any two points, there is one and only line common to both of them.
-(This is perhaps the most basic property we expect from any reasonable geometry.)
-<li>Every point is the meeting-place for exactly 8 distinct lines.
-</ul>
-
-<h3 id="Dobble_grid_display">Card display: a 7&times;7 Dobble grid</h3>
-
-<p>
-Do the above two properties remind you of anything?
-We have proposed the idea of forging a connection between geometry and Dobble by translating
-<i>points</i> as <i>cards</i>, and <i>lines</i> as <i>symbols</i>.
-If we now apply this translation to the two properties above, we get this:
-
-<ul>
-<li>For any two cards, there is one and only symbol common to both.
-<li>Every card is the meeting-place for exactly 8 symbols.
-</ul>
-
-<p>
-Which are precisely the properties that define a Level 8 Dobble system!
-
-<p>
-Earlier, we noted that a Level 8 Dobble system (of reasonable size) would 
-probably be very hard to construct by pure trial-and-error. 
-But we can now see how we can do this in a systematic way.
-We&rsquo;ve already succeeded in constructing a geometrical world that satisfies 
-the relevant properties. 
-So all we need to do now is to &lsquo;translate&rsquo; this world into
-a Dobble system.
-Admittedly this won&rsquo;t yet be the full set as it will only have 49 cards, 
-but that&rsquo;s already pretty good going.
-
-<p>
-Let's spell out how this works. 
-Here&rsquo;s how we can transform our geometry into a Dobble system:
-
-<ol>
-<li> Start with 49 cards, initially all blank, arranged in a 7&times;7 grid.
-<li> Choose some set of 56 symbols (perhaps from among the standard Dobble symbols),
-and associate each of the 56 lines in our geometrical space with a different symbol.
-We can think of the symbol as a kind of &lsquo;name&rsquo; or &lsquo;label&rsquo; 
-for the corresponding line.
-<li> For each of the 56 lines in turn, add a copy of the symbol that names the line to 
-each of the 7 cards on the line. 
-For instance, if we happen to have associated the DOG symbol to the central 
-vertical line of the grid, we add the DOG to each of these 7 cards. 
-And if we've associated the PADLOCK to one of the knight&rsquo;s move lines, we add the
-PADLOCK to the 7 cards on this line.
-<li> By the time we&rsquo;ve finished, we will have added exactly 8 symbols 
-to each card, since there are exactly 8 lines through any given point. 
-What's more, any two cards will have one and only one symbol in common &ndash; 
-namely the symbol that labels the unique line that contains these two points. 
-So we&rsquo;re done!
-</ol>
-
-This shows us how we could systematically construct a Level 8 Dobble set of 49 cards, 
-if we didn&rsquo;t already have one. 
-So an obvious question to ask now whether the standard Dobble pack (or part of it)
-has the particular form we&rsquo;ve just described. 
-Indeed it does, and this can be seen by laying out 49 of the cards in a 7&times;7 grid 
-in a certain way:
-
-<p>
-<center>
-<img src="Dobble_grid1.jpg" width=75%>
-</center>
-
-<p>
-By zooming in on this picture, you will see that (for example) 
-all the cards on the central vertical line contain the yellow DOG, 
-all those on the central horizontal line contain the green DINOSAUR &hellip;
-and so on for all of the other lines of our geometry. 
-So this grid has exactly the form we&rsquo;d obtain by following the recipe above.
-
-<p>
-This will be brought to life much more vividly if you take the time to lay out the above grid yourself, following the instructions below. 
-You will need a standard Dobble pack and a flat horizontal surface of at least 60cm&times;60cm.
-This might take about 15 minutes the first time you do it, 
-but it&rsquo;s well worth it for the wealth of patterns that such a grid possesses. 
-
-<p>
-First go through the pack and set aside the 6 cards containing the SNOWMAN
-(more about him later!). These cards will not feature in our grid.
-
-<p>
-To arrange the remaining 49 cards in a 7&times;7 grid, we can exploit the fact that
-each row and column of the grid is a <i>line</i> in the sense of our geometry,
-and as such is associated with some symbol which appears on every card in that row or column.
-Specifically, the rows (in top-to-bottom order) are labelled with the symbols:
-
-<p>
-<center> ICE-CUBE, DAISY, GINGERBREAD-MAN, DINOSAUR, CACTUS, MAPLE-LEAF, QUESTION-MARK </center>
-
-<p>
-And the columns (in left-to-right order) are labelled with:
-
-<p>
-<center> EXCLAMATION-MARK, LADYBIRD, HAMMER, DOG, BONES, LIGHT-BULB, EYE </center>
-
-<p>
-Or more pictorially:
-
-<p><center>
-<img src="grid_coordinates.jpg" width=370>
-</center></p>
-
-
-<p>
-Now, because each of our 49 cards will belong in 
-exactly one row and exactly one column,
-we can use these row and column symbols as a <i>coordinate system</i> 
-that tells us where to place any given card. 
-For instance, if a card contains both the DAISY and the HAMMER,
-we know it must belong in the second row and the third column.
-
-<p>
-It may be easiest to start by finding the seven cards containing the ICE-CUBE, and arranging them as the top row of the grid, ordered according to the column symbol 
-they contain.
-Next, find the other six cards containing the EXCLAMATION-MARK, 
-and arrange them as the left column, ordered according to the row symbol they contain. (The top-left card will of course contain both ICE-CUBE and EXCLAMATION-MARK.) 
-Having done this, it will then be clear where to put each of the remaining 36 cards.
-
-<p>
-Now step back and admire your handiwork.
-<!-- (If you haven&rsquo;t created this display, 
+         <li> <a href="#Infinite_Dobble">&lsquo;Infinite Dobble&rsquo;</a>
+      </ul>
+
+
+      <font size=4pt>
+         <p>
+         <h3 id="Basic_connection">The basic connection</h3>
+
+         Having got the general feel of the Dobble problem in Part I,
+         we&rsquo;ll now take the story to another level,
+         and explain how Dobble is closely related to another area of mathematics
+         that might at first seem to have nothing to do with it:
+         the world of <i>geometry</i>.
+
+         <p>
+            Let&rsquo;s start by thinking about the most familiar kind of geometry:
+            the world of points and lines in a flat two-dimensional plane that extends
+            infinitely in all directions.
+            (This kind of geometry is often associated with the Greek mathematician <b>Euclid</b>.)
+            For us, a <i>line</i> will mean a straight line extending infinitely in both directions.
+            Perhaps the most fundamental fact about this kind of geometry is the following:
+
+         <ul>
+            <li> Any two <a style="color:Blue"><b>points</b></a> have exactly one
+               <a style="color:Blue"><b>line</b></a> in common.
+         </ul>
+
+         <p>
+            In other words, given any two distinct points, there is one, and only one,
+            straight line that passes through them both.
+
+            <center>
+               <img src="../dobble2_imgs/line_between_points.jpg" width=350>
+            </center>
+
+         <p>
+            Does this remind you of something?
+            There&rsquo;s a close resemblance here to the fundamental rule of Dobble:
+
+         <ul>
+            <li> Any two <a style="color:Blue"><b>cards</b></a> have exactly one
+               <a style="color:Blue"><b>symbol</b></a> in common.
+         </ul>
+
+         <p>
+            This suggests that we can perhaps make some meaningful connection between
+            Dobble and geometry based on the following correspondences:
+
+            <center>
+               <p>
+                  <a style="color:Blue"><b>cards</b></a> &lrarr;
+                  <a style="color:Blue"><b>points</b></a> &emsp;&emsp;&emsp;&emsp;
+                  <!-- Also exist &ensp; and &nbsp; -->
+                  <a style="color:Blue"><b>symbols</b></a> &lrarr;
+                  <a style="color:Blue"><b>lines</b></a>
+            </center>
+
+         <p>
+            This is the idea we&rsquo;re going to explore.
+
+         <p>
+            To see how far we can push this, let&rsquo;s now think about the <i>dual</i> of the above property.
+            In Dobble terms, this would be the property that defines <i>complete</i> Dobble systems:
+
+         <ul>
+            <li> Any two <a style="color:Blue"><b>symbols</b></a> have exactly one
+               <a style="color:Blue"><b>card</b></a> in common.
+         </ul>
+
+         <p>
+            What happens if we try carrying this over to a geometrical statement?
+
+         <ul>
+            <li>
+               Any two <a style="color:Blue"><b>lines</b></a> have exactly one
+               <a style="color:Blue"><b>point</b></a> in common.
+         </ul>
+
+         <p>
+            Is this true in the world of plane geometry?
+            In most cases, yes: two straight lines will intersect in one, and only one, point.
+            However, there is an exceptional case:
+            if the two lines are <i>parallel</i>, they won&rsquo;t have any point in common at all.
+
+            <center>
+               <img src="../dobble2_imgs/point_between_lines.jpg" width=230>
+               <img src="../dobble2_imgs/parallel_lines.jpg" width=230>
+            </center>
+
+         <p>
+            So if the world of points and lines in plane geometry is in some way like a Dobble system,
+            then it&rsquo;s like a Dobble system that&rsquo;s not quite complete, because it isn&rsquo;t <i>quite</i>
+            true
+            that any two lines have exactly one point in common.
+            But it&rsquo;s <i>nearly</i> true &ndash; so perhaps there&rsquo;s some chance
+            of tweaking something to make it true?
+            Perhaps there&rsquo;s some slightly different kind of geometry in which
+            any two lines have a point in common?
+            We&rsquo;ll see that there is indeed such a thing:
+            a brand of geometry known as <b>projective geometry</b>.
+
+         <p>
+            What might we hope to gain from forging a connection between Dobble and geometry?
+            Two things, maybe:
+
+         <ul>
+            <li> Perhaps some appropriate kind of geometry can lead us to a systematic way
+               to construct (complete) Dobble systems &ndash; for example, one of Level 8.
+            <li> Perhaps our knowledge of geometry can then reveal some interesting new facts
+               about Dobble &ndash; things we didn&rsquo;t know before.
+         </ul>
+
+         Of course, ordinary plane geometry is quite different from Dobble in several ways.
+         In the world of plane geometry there are <i>infinitely many</i> points and
+         infinitely many straight lines &ndash; whereas in Dobble we obviously have only
+         <i>finitely many</i> cards and finitely many symbols.
+         So if we&rsquo;re hoping for a <i>very</i> close connection with Dobble,
+         we&rsquo;d better look for some slightly weird kind of geometry in which
+         there are only finitely many &lsquo;points&rsquo; and &lsquo;lines&rsquo; altogether.
+
+         <p>
+            Here&rsquo;s one example of a simple geometrical world that&rsquo;s
+            fairly easy to depict.
+            This is an example known as the <b>Fano plane</b>:
+            it&rsquo;s a world in which there are just 7 points and 7 lines altogether.
+
+            <center>
+               <img src="../dobble2_imgs/fano_plane.jpg" width=250>
+            </center>
+
+         <p>
+            The seven &lsquo;points&rsquo; are represented by the seven grey blobs.
+            You&rsquo;ll see that these blobs are connected in the diagram by six straight lines.
+            These represent six of the &lsquo;lines&rsquo; within this geometrical world,
+            while the circle in the middle is given the honorary status of the
+            seventh &lsquo;line&rsquo;.
+
+         <p>
+            It might seem that we&rsquo;re cheating by branding this circle as a &lsquo;line&rsquo;.
+            But the way to think of it is that the diagram above is only a <i>picture</i>
+            of a structure that exists mathematically &lsquo;in its own right&rsquo; &ndash;
+            and within this structure, the seventh &lsquo;line&rsquo; is an ordinary line like any other.
+            When we try to depict this structure in ordinary two-dimensional space,
+            it&rsquo;s inevitable that a bit of &lsquo;distortion&rsquo; creeps in &ndash;
+            just as some sort of distortion creeps in whenever we try to
+            map the whole of the Earth&rsquo;s surface on a flat sheet of paper.
+
+         <p>
+            A second kind of imperfection in the diagram is that the circle appears to cross three of the
+            lines in other points that we&rsquo;re not counting as &lsquo;points&rsquo; of the space.
+            Again, these crossings are just artefacts of our depiction and should be ignored.
+
+         <p>
+            Take a few moments to satisfy yourself that this new geometry perfectly satisfies
+            both the properties mentioned earlier:
+
+         <ul>
+            <li> Any two <a style="color:Blue"><b>points</b></a> have exactly one
+               <a style="color:Blue"><b>line</b></a> in common.
+            <li> Any two <a style="color:Blue"><b>lines</b></a> have exactly one
+               <a style="color:Blue"><b>point</b></a> in common.
+         </ul>
+
+         <p>
+            What happens if we now try to &lsquo;translate&rsquo; this geometrical world into a Dobble system?
+            We want lines to correspond to symbols, and points to cards.
+            You&rsquo;ll see that I&rsquo;ve labelled the lines with the letters A,B,C,D,E,F,G, and we&rsquo;ll use
+            these
+            as our symbols. (The circle is labelled G.)
+            So now let&rsquo;s imagine that each of the seven points is a little Dobble card, and let&rsquo;s fill
+            each card with the symbols for the lines that pass through that point.
+            For instance, the point in the centre is where the three lines labelled A, B and C
+            all meet, so we fill that card with these three symbols.
+            Here&rsquo;s what we end up with:
+
+            <center>
+               <img src="../dobble2_imgs/fano_plane_cards.jpg" width=300>
+            </center>
+
+            Lo and behold: you will see that this is none other than the complete
+            Level 3 Dobble system we saw in Part I!
+            So the Fano plane offers us a new &lsquo;geometrical&rsquo; way of
+            thinking about this system.
+
+         <p>
+            This illustrates an important point about the way mathematical theories often work.
+            When we develop a theory, we&rsquo;re likely to use certain key terms &ndash; for instance, in geometry we
+            speak of &lsquo;points&rsquo; and &lsquo;lines&rsquo;.
+            However, the actual development of the theory needn&rsquo;t be especially tied
+            to any particular <i>meanings</i> we associate with these terms.
+            We&rsquo;re free to change the meanings we have in mind &ndash;
+            or the choice of words we use &ndash;
+            as long as the key properties on which the theory is based are still satisfied.
+            The great mathematician <b>David Hilbert</b>, when speaking of geometry,
+            is said to have joked that in place of points, lines and planes
+            it must always be possible to speak of tables, chairs and beer-mugs.
+            I think Hilbert would have <i>loved</i> Dobble &ndash;
+            not only because he did a lot of important work in the sorts of geometry
+            we&rsquo;re looking at here,
+            but also because it provides a perfect example of what he was talking about:
+            a theory originally developed to talk about points and lines
+            can also be applied to cards and symbols.
+
+         <p>
+            It might seem puzzling that we&rsquo;re associating points with cards
+            and lines with symbols, rather than the other way round.
+            After all, it&rsquo;s natural to think of a line as <i>containing</i>
+            certain points, and a card as <i>containing</i> certain symbols &ndash;
+            so haven&rsquo;t we got it back-to-front by associating cards with points rather
+            than lines?
+            Ultimately, we&rsquo;re free to make whichever choice we prefer.
+            And although the choice I&rsquo;ve made might seem confusing at first,
+            we&rsquo;ll see that it&rsquo;s the better choice in the long run.
+
+
+         <h3 id="Computer_game_geometry">A 7&times;7 &lsquo;computer game&rsquo; geometry</h3>
+
+         We&rsquo;ll now work towards developing a kind of geometry that corresponds to ordinary (Level 8) Dobble.
+         Unfortunately, it&rsquo;s not possible to display this geometry in a simple diagram
+         as we could in the case of the Fano plane above,
+         so we&rsquo;ll need to approach it rather differently.
+
+         <p>
+            To begin with, we&rsquo;ll introduce a simple geometrical world such as you might
+            find in a computer game.
+            This world is basically just a 7&times;7 grid of squares,
+            and the only &lsquo;points&rsquo; in the space &ndash;
+            or positions that a game character can occupy &ndash;
+            are these 49 individual squares.
+            (Why 7? Well, 7 is one less than 8, and we&rsquo;re heading for a Level 8 Dobble system here. All will be
+            revealed in due course!)
+
+         <p>
+            To get the idea of this world, click on any one of the squares below to position the
+            character &ndash; in this case, a LADYBIRD &ndash; then use the four arrow buttons to
+            move it around.
+            (Clicking the central button places a spot in the ladybird&rsquo;s current square,
+            allowing you to trace out patterns. Double-clicking this central button clears all spots.)
+
+            <center>
+               <div class="outer-container">
+
+                  <div id="main-grid" class="flex-container">
+                  </div>
+
+                  <div class="flex-container2">
+                     <div class="unbordered"></div>
+                     <div class="bordered" onclick="shiftPosBy(6,0)"><b>&uarr;</b></div>
+                     <div class="unbordered"></div>
+                     <div class="bordered" onclick="shiftPosBy(0,6)"><b>&larr;</b></div>
+                     <div class="unbordered" onclick="leaveMark()" ondblclick="clearAll()">&bull;</div>
+                     <div class="bordered" onclick="shiftPosBy(0,1)"><b>&rarr;</b></div>
+                     <div class="unbordered"></div>
+                     <div class="bordered" onclick="shiftPosBy(1,0)"><b>&darr;</b></div>
+                     <div class="unbordered"></div>
+                  </div>
+               </div>
+
+               <p>
+                  <input type="button" size="40" value="Use key controls (I,J,K,L,M)" onkeypress="keyResponse(event)">
+
+            </center>
+
+            <script>
+
+               // initialization: populate main grid with cells
+               var mainGrid = document.getElementById("main-grid");
+               for (X = 0; X < 7; X++) {
+                  for (Y = 0; Y < 7; Y++) {
+                     var nextCell = document.createElement("div");
+                     nextCell.id = "cell" + X + Y;
+                     nextCell.setAttribute("onclick", "setPos(" + X + "," + Y + ")");
+                     mainGrid.appendChild(nextCell);
+                  }
+               }
+
+               var placed = false;       // has ladybird yet been placed anywhere?
+               var leavingMark = false;  // are we due to leave a bullet mark on the current cell?
+               var currX = 0;
+               var currY = 0;
+
+               function currCell() {
+                  return document.getElementById("cell" + currX + currY);
+               }
+
+               function placeLadybird() {
+                  currCell().innerHTML = '<img src="../dobble2_imgs/ladybird.jpg" width="80%">';
+               }
+
+               function writeToCell(str) {
+                  currCell().innerHTML = str;
+               }
+
+               function setCellColor(c) {
+                  currCell().style.color = c;
+               }
+
+               function setPos(newX, newY) {
+                  if (placed) {
+                     writeToCell(leavingMark ? '&bull;' : '');
+                  }
+                  currX = newX;
+                  currY = newY;
+                  placeLadybird();
+                  placed = true;
+                  leavingMark = false;
+               }
+
+               function shiftPosBy(dX, dY) {
+                  if (placed) {
+                     var newX = (currX + dX) % 7;
+                     var newY = (currY + dY) % 7;
+                     setPos(newX, newY);
+                  }
+               }
+
+               function leaveMark() {
+                  if (placed) {
+                     leavingMark = true;
+                     setCellColor("Purple");
+                     writeToCell('&bull;');
+                     setTimeout(placeLadybird, 300);
+                  }
+               }
+
+               function clearAll() {
+                  for (X = 0; X < 7; X++) {
+                     for (Y = 0; Y < 7; Y++) {
+                        document.getElementById("cell" + X + Y).innerHTML = '';
+                     }
+                  }
+                  leavingMark = false;
+                  placeLadybird();
+               }
+
+               function keyResponse(event) {
+                  var x = event.which || event.keyCode;  // cross-browser solution, apparently
+                  switch (x) {
+                     case 107: // return
+                        leaveMark(); break;
+                     case 106: // left
+                        shiftPosBy(0, 6); break;
+                     case 105: // up
+                        shiftPosBy(6, 0); break;
+                     case 108: // right
+                        shiftPosBy(0, 1); break;
+                     case 109: // down
+                        shiftPosBy(1, 0); break;
+                  }
+               }
+
+            </script>
+
+         <p>
+            You&rsquo;ll notice that if you try to move the ladybird off the right hand edge
+            of the grid, it reappears on the left-hand side in the same row.
+            So it&rsquo;s as though the right and left edges have been wrapped around and
+            glued together at the back.
+            This isn&rsquo;t too different from how a map of the world: a traveller
+            whose position went off the right hand edge of the map would
+            &lsquo;reappear&rsquo; on the left.
+            There are also computer games such as <b>Snake</b> whose world has this feature.
+
+         <p>
+            The same applies to vertical movement: if you try to move the ladybird off the bottom of the grid, it will
+            reappear at the top.
+            So it&rsquo;s as if the bottom and top edges have also been glued together.
+            At this point, the analogy with the map of the world breaks down.
+            However, you can visualize this double wrap-around process like this: starting with a square sheet of
+            rubber, first bend it round to form a cylinder,
+            then stretch and bend the cylinder so that the two ends join up,
+            forming a <i>torus</i> or doughnut shape.
+
+         <p>
+            So much for the <i>points</i> of this space and how they&rsquo;re arranged.
+            But what do we mean by a <i>line</i> in this space?
+            We are going to take the following point of view: a line is a set of points that can be traced out by
+            choosing some starting point, choosing a direction to move in,
+            then repeatedly moving in that direction.
+
+         <p>
+            We can illustrate this using the grid above.
+            To make an example of a line, choose any starting square and place the ladybird there,
+            then decide on one of the four arrows as your direction.
+            Then repeatedly perform the following: put a spot in the current square, then move one step in your chosen
+            direction.
+            After seven steps, you will find that you have returned to your starting point,
+            and you will have traced out a &lsquo;line&rsquo; in the process &ndash; either a horizontal or a vertical
+            one.
+
+         <p>
+            Are there other kinds of &lsquo;lines&rsquo; besides these?
+            What if we choose a starting point and then move in a <i>diagonal</i> direction
+            &ndash; for instance, upward and to the right?
+            You can see what happens by redoing the above experiment,
+            alternately placing a spot and clicking <i>two</i> arrow keys in order to
+            perform a diagonal step.
+
+         <p>
+            Try this from various starting squares.
+            You&rsquo;ll see that wherever you start, you will return after seven steps to the same point.
+            In some cases, the route you trace out will be one of the diagonals of the square,
+            but in most cases it will look more like two segments of line.
+            Even in the latter case, though, we&rsquo;ll think of the route as just a <i>single</i> line
+            in this world&rsquo;s geometry, because it&rsquo;s obtained by choosing a starting point and then
+            repeatedly performing steps in the same direction.
+            (Imagine the ladybird moving around on the surface of our torus.
+            From the ladybird&rsquo;s point of view, all steps look the same &ndash;
+            she won&rsquo;t notice anything unusual when she crosses
+            over an edge of the original square, any more than our round-the-world traveller would notice anything
+            unusual when passing off the edge of the map.)
+
+         <p>
+            We&rsquo;ve now seen that there are four lines through any chosen starting point: one horizontal, one
+            vertical, and two diagonal. (Clearly, each of these can be traced out in either of two directions, e.g.
+            left/right, up/down.)
+            For instance, if our starting point is the central square of the grid,
+            these four lines may be shown in different colours as follows:
+
+         <p>
+            <center>
+               <img src="../dobble2_imgs/seven_square_four_lines.jpg" width=300>
+            </center>
+         </p>
+
+         <p>Are these <i>all</i> of the lines through our chosen point?
+            From the point of view of geometry, they&rsquo;d better not be!
+            We want it to be true that for any two points there&rsquo;s a line containing both, whereas the above
+            picture shows that there are plenty of points that aren&rsquo;t joined to the central point by any line (so
+            far).
+            Of these points, those closest to the centre are the eight points that can be reached
+            from the centre square by a <i>knight&rsquo;s move</i> in chess:
+            two squares horizontally and one vertically, or the other way round.
+
+         <p>
+            <center>
+               <img src="../dobble2_imgs/seven_square_knights.jpg" width=300>
+            </center>
+         </p>
+
+         <p>So what happens if we also add these <i>knight&rsquo;s moves</i>
+            as permissible ways to trace out a line?
+
+         <p>Go back to the grid above, and choose some &lsquo;knight&rsquo;s move direction&rsquo;
+            to move in (for instance, two squares up and one to the right). You can move the ladybird
+            by such a knight&rsquo;s move using three arrow clicks. Starting from any square you like,
+            move repeatedly in your chosen direction, tracing out your route by leaving spots.
+            (Take note of the effect of wrap-around as you do so!) Once again, you will return in
+            seven steps to your starting point.
+
+         <p>This time, the route you have traced out will appear just as a pattern of dots,
+            and won&rsquo;t look at all like a &lsquo;line&rsquo; in the ordinary sense.
+            Nevertheless, we are going to count such routes as &lsquo;lines&rsquo; in the sense of
+            this special geometry, since &ndash; once again &ndash; they&rsquo;re obtained
+            by picking a starting point and repeatedly moving in the same direction.
+
+         <p>
+            The following version of our grid will make it easier for you to trace out lines in this space.
+            Each of the move types we&rsquo;ve mentioned can now be performed by clicking a single button
+            on the navigation pad, and the ladybird will automatically leave a trail of spots in its wake.
+            Clicking on the central square of this pad will cycle through a choice of ten spot colours
+            (including white, which effectively means &lsquo;no spot&rsquo;).
+            Again, double-clicking the central square will clear all spots.
+
+            <center>
+               <div class="outer-container">
+
+                  <div id="main-gridB" class="flex-container">
+                  </div>
+
+                  <div class="flex-container2" style="min-width:210px ; width:210px ; height:210px ; margin:10px">
+                     <div class="unbordered"></div>
+                     <div class="bordered" onclick="shiftPosByB(5,6)"><b>&#x265E;</b></div> <!-- black knight -->
+                     <div class="unbordered"></div>
+                     <div class="bordered" onclick="shiftPosByB(5,1)"><b>&#x265E;</b></div>
+                     <div class="unbordered"></div>
+
+                     <div class="bordered" onclick="shiftPosByB(6,5)"><b>&#x265E;</b></div>
+                     <div class="unbordered" onclick="shiftPosByB(6,6)"><b>&#x2196;</b></div>
+                     <div class="bordered" onclick="shiftPosByB(6,0)"><b>&uarr;</b></div>
+                     <div class="unbordered" onclick="shiftPosByB(6,1)"><b>&#x2197;</b></div>
+                     <div class="bordered" onclick="shiftPosByB(6,2)"><b>&#x265E;</b></div>
+
+                     <div class="unbordered"></div>
+                     <div class="bordered" onclick="shiftPosByB(0,6)"><b>&larr;</b></div>
+                     <div class="unbordered" id="color-dot" onclick="advanceColorB()" ondblclick="clearAllB()"
+                        style="font-size:30px ; background-color:White">
+                        &bull;
+                     </div>
+                     <div class="bordered" onclick="shiftPosByB(0,1)"><b>&rarr;</b></div>
+                     <div class="unbordered"></div>
+
+                     <div class="bordered" onclick="shiftPosByB(1,5)"><b>&#x265E;</b></div>
+                     <div class="unbordered" onclick="shiftPosByB(1,6)"><b>&#x2199;</b></div>
+                     <div class="bordered" onclick="shiftPosByB(1,0)"><b>&darr;</b></div>
+                     <div class="unbordered" onclick="shiftPosByB(1,1)"><b>&#x2198;</b></div>
+                     <div class="bordered" onclick="shiftPosByB(1,2)"><b>&#x265E;</b></div>
+
+                     <div class="unbordered"></div>
+                     <div class="bordered" onclick="shiftPosByB(2,6)"><b>&#x265E;</b></div> <!-- black knight -->
+                     <div class="unbordered"></div>
+                     <div class="bordered" onclick="shiftPosByB(2,1)"><b>&#x265E;</b></div>
+                     <div class="unbordered"></div>
+                  </div>
+               </div>
+
+            </center>
+
+            <script>
+
+               // initialization: populate main grid with cells
+               var mainGridB = document.getElementById("main-gridB");
+               var colorDot = document.getElementById("color-dot");
+
+               for (X = 0; X < 7; X++) {
+                  for (Y = 0; Y < 7; Y++) {
+                     var nextCell = document.createElement("div");
+                     nextCell.id = "cellB" + X + Y;
+                     nextCell.setAttribute("onclick", "setPosB(" + X + "," + Y + ")");
+                     mainGridB.appendChild(nextCell);
+                  }
+               }
+
+               var placedB = false; // has ladybird yet been placed anywhere?
+
+               var currXB = 0;
+               var currYB = 0;
+
+               var colors = ["Black", "Red", "Blue", "Green", "Yellow", "Brown", "Purple", "Orange", "Pink", "White"];
+
+               var colorIndex = 9; // to be immediately advanced to 0
+               advanceColorB();
+
+               function currCellB() {
+                  return document.getElementById("cellB" + currXB + currYB);
+               }
+
+               function placeLadybirdB() {
+                  currCellB().innerHTML = '<img src="../dobble2_imgs/ladybird.jpg" width="80%">';
+               }
+
+               function writeToCellB(str) {
+                  currCellB().innerHTML = str;
+               }
+
+               function setCellColorB(c) {
+                  currCellB().style.color = c;
+               }
+
+               function setPosB(newX, newY) {
+                  if (placedB) {
+                     setCellColorB(colors[colorIndex]);
+                     writeToCellB('&bull;');
+                  }
+                  currXB = newX;
+                  currYB = newY;
+                  placeLadybirdB();
+                  placedB = true;
+               }
+
+               function shiftPosByB(dX, dY) {
+                  if (placedB) {
+                     var newX = (currXB + dX) % 7;
+                     var newY = (currYB + dY) % 7;
+                     setPosB(newX, newY);
+                  }
+               }
+
+               function advanceColorB() {
+                  colorIndex = (colorIndex + 1) % 10;
+                  colorDot.style.color = colors[colorIndex];
+               }
+
+               function clearAllB() {
+                  for (X = 0; X < 7; X++) {
+                     for (Y = 0; Y < 7; Y++) {
+                        document.getElementById("cellB" + X + Y).innerHTML = '';
+                     }
+                  }
+                  colorIndex = (colorIndex + 8) % 10;  // hack: undoes effect of two single clicks!
+                  colorDot.style.color = colors[colorIndex];
+                  if (placedB) {
+                     placeLadybirdB();
+                  }
+               }
+
+            </script>
+
+         <p>
+            Here&rsquo;s a little exercise that takes less than a minute to do.
+            Select any &lsquo;starting square&rsquo; you like, and place the ladybird there.
+            Then pick any spot colour you like, and choose a direction to move in,
+            represented by one of the arrow or knight buttons.
+            Pressing this button 7 times will trace out the corresponding line
+            and return you to the starting square.
+            (Note that <i>all</i> the lines we&rsquo;ve discussed have exactly 7 points.)
+            Now pick a different spot colour and repeat the process, tracing out a line
+            in a different direction. Repeat this until you have traced out all 8
+            lines through the starting square in 8 different colours.
+            (We shall say that these 8 lines have 8 different <i>slopes</i>,
+            where each slope is represented by two opposite <i>directions</i>.
+            Since we only need to trace out each line once, you will only need to use
+            half of the 16 available direction buttons to do this.)
+
+         <p>
+            You will notice that in the course of doing this, every square except the
+            starting square is visited <i>once and only once</i>.
+            That is, excluding the starting square, every square will get coloured,
+            and its colour will not be overwritten with another colour later on.
+            This tells us that for each of these squares, there is <i>one and only one line</i>
+            that contains both it and the starting square.
+            And because all of this is true <i>whatever</i> starting square we pick,
+            this means that <i>any two points have one and only one line in common</i> &ndash;
+            precisely the property we are wanting for our geometrical system.
+
+         <p>
+            <i>Why</i> does this work? You can see by playing with the grid above that it <i>does</i> work
+            &ndash; but is this just &lsquo;coincidence&rsquo;, or is there some good mathematical reason for it?
+            Indeed there is a good reason, and it has to do with the fact that 7 is a <i>prime number</i>.
+            If you tried the same thing with a 6 &times; 6 grid, for example, things wouldn&rsquo;t work out
+            so nicely. You might like to think about this for yourself, or else read more here about
+            <a href="dobble_prime_numbers.html">the role of prime numbers in Dobble geometry</a>.
+
+         <blockquote>
+            <p><b>Quiz question 1:</b> The space we&rsquo;ve described so far has
+               49 points. How many <i>lines</i> does it have altogether?</p>
+
+            <center>
+               <p>
+                  <button type="button" id="quiz1_button" onclick="revealQuiz1Answer()">Click here for answer</button>
+               </p>
+            </center>
+
+            <p id="quiz1_answer"></p>
+
+            <script>
+               function revealQuiz1Answer() {
+                  document.getElementById("quiz1_button").innerHTML = 'Answer:';
+                  document.getElementById("quiz1_answer").innerHTML = "<b>56.</b> As we&rsquo;ve seen, there are 8 possible line slopes. And for each of these, there are 7 &lsquo;parallel&rsquo; lines, arising from different choices of starting square. (This is easy to see in the case of the horizontal and vertical lines, and not too hard to see for the diagonal lines. Satisfy yourself that it&rsquo;s also true for the knight&rsquo;s move lines, perhaps by playing with the above grids.) So that&rsquo;s 8 &times; 7 = 56 lines in total.";
+               }
+            </script>
+         </blockquote>
+
+
+         <blockquote>
+            <p>
+               <b>Quiz question 2:</b> It would seem that other line slopes are possible besides the 8 we&rsquo;ve
+               mentioned. For instance, we might consider a &lsquo;super-knight&rsquo; move that went 3 steps down and 2
+               to the right. What happens if we try to trace out a line by repeatedly making a move of this kind?
+
+               <center>
+                  <button type="button" id="quiz2_button" onclick="revealQuiz2Answer()">Click here for answer</button>
+               </center>
+
+            <p id="quiz2_answer"></p>
+
+            <script>
+               function revealQuiz2Answer() {
+                  document.getElementById("quiz2_button").innerHTML = 'Answer:';
+                  document.getElementById("quiz2_answer").innerHTML = "Performing this super-knight move 7 times will return you to your starting point, but the set of points traced out will be <i>identical</i> to the set of points traced by one of the ordinary knight moves: just visited in a different order. You can see this by trying it out on the first of the grids above. <p>Since we are taking a line to be just a certain <i>set</i> of points &ndash; independent of the order in which they are traced out &ndash; we consider this to be <i>just the same line</i> as the one obtained via a knight&rsquo;s move. So allowing the super-knight move wouldn&rsquo;t add any new lines beyond those we already know about. The same will apply to any other novel kind of direction you might introduce. (This idea that the same line can be generated in many different &lsquo;orders&rsquo; is a rather curious feature not shared by ordinary plane geometry.)";
+               }
+            </script>
+         </blockquote>
+
+         <p>
+            <b>To summarize:</b> We&rsquo;ve succeeded in constructing a geometrical world involving 49 points and a
+            certain collection of lines between them. We've seen that our geometry satisfies two key properties:
+
+         <ul>
+            <li>For any two points, there is one and only line common to both of them.
+               (This is perhaps the most basic property we expect from any reasonable geometry.)
+            <li>Every point is the meeting-place for exactly 8 distinct lines.
+         </ul>
+
+         <h3 id="Dobble_grid_display">Card display: a 7&times;7 Dobble grid</h3>
+
+         <p>
+            Do the above two properties remind you of anything?
+            We have proposed the idea of forging a connection between geometry and Dobble by translating
+            <i>points</i> as <i>cards</i>, and <i>lines</i> as <i>symbols</i>.
+            If we now apply this translation to the two properties above, we get this:
+
+         <ul>
+            <li>For any two cards, there is one and only symbol common to both.
+            <li>Every card is the meeting-place for exactly 8 symbols.
+         </ul>
+
+         <p>
+            Which are precisely the properties that define a Level 8 Dobble system!
+
+         <p>
+            Earlier, we noted that a Level 8 Dobble system (of reasonable size) would
+            probably be very hard to construct by pure trial-and-error.
+            But we can now see how we can do this in a systematic way.
+            We&rsquo;ve already succeeded in constructing a geometrical world that satisfies
+            the relevant properties.
+            So all we need to do now is to &lsquo;translate&rsquo; this world into
+            a Dobble system.
+            Admittedly this won&rsquo;t yet be the full set as it will only have 49 cards,
+            but that&rsquo;s already pretty good going.
+
+         <p>
+            Let's spell out how this works.
+            Here&rsquo;s how we can transform our geometry into a Dobble system:
+
+         <ol>
+            <li> Start with 49 cards, initially all blank, arranged in a 7&times;7 grid.
+            <li> Choose some set of 56 symbols (perhaps from among the standard Dobble symbols),
+               and associate each of the 56 lines in our geometrical space with a different symbol.
+               We can think of the symbol as a kind of &lsquo;name&rsquo; or &lsquo;label&rsquo;
+               for the corresponding line.
+            <li> For each of the 56 lines in turn, add a copy of the symbol that names the line to
+               each of the 7 cards on the line.
+               For instance, if we happen to have associated the DOG symbol to the central
+               vertical line of the grid, we add the DOG to each of these 7 cards.
+               And if we've associated the PADLOCK to one of the knight&rsquo;s move lines, we add the
+               PADLOCK to the 7 cards on this line.
+            <li> By the time we&rsquo;ve finished, we will have added exactly 8 symbols
+               to each card, since there are exactly 8 lines through any given point.
+               What's more, any two cards will have one and only one symbol in common &ndash;
+               namely the symbol that labels the unique line that contains these two points.
+               So we&rsquo;re done!
+         </ol>
+
+         This shows us how we could systematically construct a Level 8 Dobble set of 49 cards,
+         if we didn&rsquo;t already have one.
+         So an obvious question to ask now whether the standard Dobble pack (or part of it)
+         has the particular form we&rsquo;ve just described.
+         Indeed it does, and this can be seen by laying out 49 of the cards in a 7&times;7 grid
+         in a certain way:
+
+         <p>
+            <center>
+               <img src="../dobble2_imgs/Dobble_grid1.jpg" width=75%>
+            </center>
+
+         <p>
+            By zooming in on this picture, you will see that (for example)
+            all the cards on the central vertical line contain the yellow DOG,
+            all those on the central horizontal line contain the green DINOSAUR &hellip;
+            and so on for all of the other lines of our geometry.
+            So this grid has exactly the form we&rsquo;d obtain by following the recipe above.
+
+         <p>
+            This will be brought to life much more vividly if you take the time to lay out the above grid yourself,
+            following the instructions below.
+            You will need a standard Dobble pack and a flat horizontal surface of at least 60cm&times;60cm.
+            This might take about 15 minutes the first time you do it,
+            but it&rsquo;s well worth it for the wealth of patterns that such a grid possesses.
+
+         <p>
+            First go through the pack and set aside the 6 cards containing the SNOWMAN
+            (more about him later!). These cards will not feature in our grid.
+
+         <p>
+            To arrange the remaining 49 cards in a 7&times;7 grid, we can exploit the fact that
+            each row and column of the grid is a <i>line</i> in the sense of our geometry,
+            and as such is associated with some symbol which appears on every card in that row or column.
+            Specifically, the rows (in top-to-bottom order) are labelled with the symbols:
+
+         <p>
+            <center> ICE-CUBE, DAISY, GINGERBREAD-MAN, DINOSAUR, CACTUS, MAPLE-LEAF, QUESTION-MARK </center>
+
+         <p>
+            And the columns (in left-to-right order) are labelled with:
+
+         <p>
+            <center> EXCLAMATION-MARK, LADYBIRD, HAMMER, DOG, BONES, LIGHT-BULB, EYE </center>
+
+         <p>
+            Or more pictorially:
+
+         <p>
+            <center>
+               <img src="../dobble2_imgs/grid_coordinates.jpg" width=370>
+            </center>
+         </p>
+
+
+         <p>
+            Now, because each of our 49 cards will belong in
+            exactly one row and exactly one column,
+            we can use these row and column symbols as a <i>coordinate system</i>
+            that tells us where to place any given card.
+            For instance, if a card contains both the DAISY and the HAMMER,
+            we know it must belong in the second row and the third column.
+
+         <p>
+            It may be easiest to start by finding the seven cards containing the ICE-CUBE, and arranging them as the top
+            row of the grid, ordered according to the column symbol
+            they contain.
+            Next, find the other six cards containing the EXCLAMATION-MARK,
+            and arrange them as the left column, ordered according to the row symbol they contain. (The top-left card
+            will of course contain both ICE-CUBE and EXCLAMATION-MARK.)
+            Having done this, it will then be clear where to put each of the remaining 36 cards.
+
+         <p>
+            Now step back and admire your handiwork.
+            <!-- (If you haven&rsquo;t created this display, 
 you&rsquo;ll need to squint at the above photograph instead.) -->
-Try to pick out a few of the lines that we&rsquo;ve been discussing, 
-with horizontal, vertical, diagonal and knight&rsquo;s move slopes.
-In each case, you&rsquo;ll see that there is one particular symbol 
-that&rsquo;s common to all 7 cards on this line.
-Or conversely, you might try picking some symbol and locating all the cards that
-contain it &ndash; you will see that they all fall nicely into one of our 56 lines.
+            Try to pick out a few of the lines that we&rsquo;ve been discussing,
+            with horizontal, vertical, diagonal and knight&rsquo;s move slopes.
+            In each case, you&rsquo;ll see that there is one particular symbol
+            that&rsquo;s common to all 7 cards on this line.
+            Or conversely, you might try picking some symbol and locating all the cards that
+            contain it &ndash; you will see that they all fall nicely into one of our 56 lines.
 
-<p>
-With a bit of practice, you&rsquo;ll be able to re-create this magical arrangement within about 5 minutes &ndash; especially if you take the time to memorize the sequences of row and column symbols listed above. 
-Re-creating this display rapidly from memory will astonish your friends 
-who don&rsquo;t know the secret!
+         <p>
+            With a bit of practice, you&rsquo;ll be able to re-create this magical arrangement within about 5 minutes
+            &ndash; especially if you take the time to memorize the sequences of row and column symbols listed above.
+            Re-creating this display rapidly from memory will astonish your friends
+            who don&rsquo;t know the secret!
 
-<p>
-Obviously this arrangement of cards is quite special, and very far from &lsquo;random&rsquo;
-&ndash; but is it the <i>only</i> possible arrangement with this property?
-In fact, no: it turns out that with a standard Dobble pack, 
-there are 98,784 possible grids of this kind! 
-Some can be obtained via relatively simple modifications of the grid 
-we&rsquo;ve presented, but others require a little more invention.
-You might enjoy experimenting to see what other grids you can come up with.
-
-
-<h3 id="Slope_cards">Completing the set: Slope cards</h3>
-
-<p>
-What we&rsquo;ve constructed so far is already a pretty respectable 
-Level 8 Dobble system.
-But as you may gather from the fact that there are still some cards left over, 
-it&rsquo;s not yet a <i>complete</i> Dobble system.
-That is to say, it&rsquo;s not yet the case that <i>any</i> two symbols have 
-a card in common.
-
-<p>
-Try choosing any two symbols you like, and locating the corresponding lines 
-in the grid.
-Most of the time, you will find that these lines will intersect in 
-one and only one card, which will contain both of your symbols. 
-Indeed, this will <i>always</i> happen provided your two lines have different slopes.
-(This again is one of the
-<a href="dobble_prime_numbers.html">good things that happen because 7 is a prime number</a>.)
-But if your two lines happen to be <i>parallel</i>, 
-then &ndash; just as in ordinary plane geometry &ndash; these lines will never meet.
-For instance:
-
-<ul>
-<li> The ICE-CUBE and CACTUS lines are both horizontal, and so are parallel.
-<li> The PENCIL and CLOCK lines have the same diagonal slope, and so are parallel.
-<li> The PADLOCK and APPLE lines have the same knight&rsquo;s move slope, 
-and so (for our purposes) are parallel.
-</ul>
-
-<p>
-Might it be possible to extend our geometry with some extra points so as 
-to ensure that such parallel pairs of lines <i>do</i> meet? 
-If we can do this, that might also give us a way of squeezing a few extra cards 
-into our Dobble set, perhaps even making it up to a complete set.
-
-<p>
-Look again at the symbols labelling the 7 <i>horizontal</i> rows as listed above:
-ICE-CUBE, DAISY, GINGERBREAD-MAN, DINOSAUR, CACTUS, MAPLE-LEAF, QUESTION-MARK.
-These correspond to a set of 7 parallel lines, so no two of these symbols ever appear
-together on the same card.
-So why don&rsquo;t we try adding a new card that contains all 7 of these symbols?
-That will ensure, geometrically, that any two <i>horizontal</i> parallel lines 
-now meet in one and only one point &ndash; and in Dobble terms, 
-that any two of the above symbols now have a card in common.
-
-<p>
-You may sometimes hear people say (in a loose manner of speaking) that 
-&lsquo;parallel lines meet at infinity&rsquo;.
-So a possible way to think of this new card is that it corresponds to a hypothetical new point infinitely far off in a horizontal direction, 
-where these parallel lines meet.
-Actually, there&rsquo;s a difficulty with this idea, 
-because you&rsquo;ll immediately want to know whether I mean
-infinitely far to the left or the right. Of course, it can be either &ndash; or both! 
-So if we want to think in terms of a &lsquo;point at infinity&rsquo;, 
-we must qualify this with the idea that there is again some kind of wrap-around 
-at work: going infinitely far to the left is the same as going infinitely
-far to the right.
-
-<p>
-We can do a similar thing for any of the other 7 line slopes.
-For instance, look at the 7 diagonal lines that run &lsquo;top left to bottom right&rsquo;.
-The associated symbols are PENCIL, LIPS, BIRD, CLOCK, ZEBRA, SNOWFLAKE, DRAGON.
-At the moment, there&rsquo;s no card containing two of these symbols.
-So let&rsquo;s add a new card that contains these 7 symbols, and that will plug this gap.
-
-<p>
-So we&rsquo;re proposing that we add 8 fresh points/cards to our system &ndash; 
-one for each of the 8 line directions. 
-As we&rsquo;ve noted, it&rsquo;s possible to think of these as &lsquo;points at infinity&rsquo;,
-but here we shall usually refer to these 8 new cards as <i>direction cards</i>, 
-in contrast to the 49 <i>grid cards</i> that we have already.
-Once we&rsquo;ve added all of these direction cards, it will then indeed be the case that
-<i>any</i> two of the 56 lines in our grid meet in one, and only one, point &ndash;
-and therefore that any two of our 56 symbols have exactly one card in common.
-
-<p>
-What&rsquo;s more, it will automatically true that if you pick any grid card and any slope card,
-they will have just one symbol in common, in accordance with the basic Dobble rule.
-This is because we can always construct a line with the relevant slope using the grid card as our
-starting-point. So everything seems to be fitting together well.
-
-<p>
-We now very nearly have a complete Level 8 Dobble system. 
-However, there remain two small problems:
-
-<ul>
-<li> Our slope cards so far have just 7 symbols each, whereas we want all our cards to have 8 symbols.
-<li> To satisfy the basic Dobble rule, any two <i>slope cards</i> will need to have a symbol in common. 
-At the moment, they don&rsquo;t.
-</ul>
-
-<p>
-You might now be able to see where we&rsquo;re heading: 
-we can solve both of these problems in a single stroke!
-Let&rsquo;s take some new symbol that doesn&rsquo;t already feature in our grid &ndash; if we want to use
-actual Dobble symbols, this will have to be the SNOWMAN &ndash; 
-and let&rsquo;s add it to each of our slope cards as the eighth symbol. 
-This will mean that any two slope cards now have a symbol in common.
-(Geometrically, we can think of this as adding one special new &lsquo;line&rsquo; to the system &ndash; 
-the so-called <i>line at infinity</i>. 
-Admittedly, it&rsquo;s not particularly easy to visualize this in ordinary spatial terms.)
-
-<p>
-There is one final thing to check.
-Is it now true that our Dobble system is complete &ndash; 
-that any two symbols have a common card? 
-As we&rsquo;ve seen, the slope cards ensure that this is indeed true for 
-any two of our original 56 symbols. 
-But what if one of the two symbols is the newly added SNOWMAN?
-We want to be sure that each of the other symbols appears alongside the SNOWMAN 
-on exactly one card.
-But since the slope cards together contain each of these 56 symbols 
-once and only once, this is indeed the case.
-
-<p>
-So there we have it: a method of constructing a <i>complete</i> Level 8 
-Dobble system with 57 cards and 57 symbols.
-Here is what we get if we extend our grid with slope cards in this way.
-You will see that I&rsquo;ve arranged the 8 slope cards in a half-circle 
-around a central white spot: the radial line from this spot out to a slope card 
-indicates the slope with which this card is associated.
-(We only need a half-circle rather than a full circle, as we 
-only need to represent each slope by a single direction.)
-
-<p>
-<center>
-<img src="Dobble_grid_augmented.jpg" width=75%>
-</center>
-
-<p>
-In geometrical terms, what we&rsquo;ve arrived at is a structure with 57 points 
-and 57 lines, where any two points share just one line and any two lines share 
-just one point.
-This process of ensuring the latter property by throwing some extra 
-&lsquo;points at infinity&rsquo;
-(plus a single &lsquo;line at infinity&rsquo;) is characteristic of what is known as
-<i>projective geometry</i>, and the particular geometrical space we&rsquo;ve just constructed is known to mathematicians as the 
-<i>finite projective plane of order 7</i>,
-a rich and beautiful structure possessing a very high degree of symmetry.
-
-<p>
-But now we return to a point we raised in Part I.
-The standard commercial Dobble set contains only 55 cards, 
-and so is two cards short of the mathematically complete set! 
-In particular, only 6 out of 8 of the above slope cards are actually present: 
-those for the horizontal and vertical slopes are missing.
-Here are my own reconstructions of these two extra cards, 
-which I used to create the above display.
-
-<p>
-<center>
-<img src="two_extra_cards.jpg" width=400>
-</center>
-
-<p>
-I don&rsquo;t know why the makers of Dobble chose not to include these two cards,
-but to anyone with a mathematical turn of mind this will seem a real shame,
-as it spoils the beauty and symmetry of the set. 
-For instance, in the mathematically complete set, every symbol appears on 8 cards; whereas in the commercial set, there are 14 symbols that only appear on 7 cards, 
-and one (the SNOWMAN) that only appears on 6 cards.
-Also, as we shall see, there are a number of interesting tricks and demonstrations 
-that can be performed if these two cards are added, but which may fail 
-if they are omitted.
-
-<p>
-For this reason &ndash; or just for the sheer satisfaction of owning a 
-mathematically complete set &ndash; you might like to print off this 
-<a href="two_extra_cards_printout.pdf">pdf file</a> 
-which will enable you to add the missing cards to your pack.
-All the standard Dobble games can be played as normal with these two extra 
-cards thrown in.
-
-<p>
-Let&rsquo;s now summarize what we&rsquo;ve done. 
-The construction of our geometry consisted of two stages.
-First, we considered a simple geometry with just 49 points arranged in 
-a 7&times;7 grid: this is an example of what&rsquo;s known as an 
-<i>affine geometry</i>.
-Then we extended this geometry with a few additional points (and one additional line)
-so as to ensure that even &lsquo;parallel&rsquo; lines had a meeting-point:
-this resulted in a so-called <i>projective geometry</i>.
-
-<p>
-These two steps are largely independent of one another. 
-For instance, we can start from the ordinary &lsquo;Euclidean&rsquo; plane 
-in place of our 7&times;7 geometry, and still perform the second step to obtain 
-a &lsquo;projective&rsquo; geometry.
-That is to say, we can start from the familiar plane with its 
-infinitely many points and lines,
-then add a new &lsquo;point at infinity&rsquo; for every possible line slope 
-within this plane.
-(Of course, there will now be infinitely many line slopes rather than just 8, 
-so this will mean adding infinitely many new points.) 
-Finally, we add a single new &lsquo;line at infinity&rsquo; 
-containing all of these new points. 
-The resulting space is known as the <i>real projective plane</i>.
-
-<p>
-Thinking about geometries that can be built starting from &lsquo;ordinary&rsquo; 
-space can be very helpful, since here our familiar experience of ordinary space
-can help us to understand what&rsquo;s going on.
-Our next section provides a good illustration of this.
+         <p>
+            Obviously this arrangement of cards is quite special, and very far from &lsquo;random&rsquo;
+            &ndash; but is it the <i>only</i> possible arrangement with this property?
+            In fact, no: it turns out that with a standard Dobble pack,
+            there are 98,784 possible grids of this kind!
+            Some can be obtained via relatively simple modifications of the grid
+            we&rsquo;ve presented, but others require a little more invention.
+            You might enjoy experimenting to see what other grids you can come up with.
 
 
-<h3 id="Projective_3D">A three-dimensional perspective</h3>
+         <h3 id="Slope_cards">Completing the set: Slope cards</h3>
 
-<!--
+         <p>
+            What we&rsquo;ve constructed so far is already a pretty respectable
+            Level 8 Dobble system.
+            But as you may gather from the fact that there are still some cards left over,
+            it&rsquo;s not yet a <i>complete</i> Dobble system.
+            That is to say, it&rsquo;s not yet the case that <i>any</i> two symbols have
+            a card in common.
+
+         <p>
+            Try choosing any two symbols you like, and locating the corresponding lines
+            in the grid.
+            Most of the time, you will find that these lines will intersect in
+            one and only one card, which will contain both of your symbols.
+            Indeed, this will <i>always</i> happen provided your two lines have different slopes.
+            (This again is one of the
+            <a href="dobble_prime_numbers.html">good things that happen because 7 is a prime number</a>.)
+            But if your two lines happen to be <i>parallel</i>,
+            then &ndash; just as in ordinary plane geometry &ndash; these lines will never meet.
+            For instance:
+
+         <ul>
+            <li> The ICE-CUBE and CACTUS lines are both horizontal, and so are parallel.
+            <li> The PENCIL and CLOCK lines have the same diagonal slope, and so are parallel.
+            <li> The PADLOCK and APPLE lines have the same knight&rsquo;s move slope,
+               and so (for our purposes) are parallel.
+         </ul>
+
+         <p>
+            Might it be possible to extend our geometry with some extra points so as
+            to ensure that such parallel pairs of lines <i>do</i> meet?
+            If we can do this, that might also give us a way of squeezing a few extra cards
+            into our Dobble set, perhaps even making it up to a complete set.
+
+         <p>
+            Look again at the symbols labelling the 7 <i>horizontal</i> rows as listed above:
+            ICE-CUBE, DAISY, GINGERBREAD-MAN, DINOSAUR, CACTUS, MAPLE-LEAF, QUESTION-MARK.
+            These correspond to a set of 7 parallel lines, so no two of these symbols ever appear
+            together on the same card.
+            So why don&rsquo;t we try adding a new card that contains all 7 of these symbols?
+            That will ensure, geometrically, that any two <i>horizontal</i> parallel lines
+            now meet in one and only one point &ndash; and in Dobble terms,
+            that any two of the above symbols now have a card in common.
+
+         <p>
+            You may sometimes hear people say (in a loose manner of speaking) that
+            &lsquo;parallel lines meet at infinity&rsquo;.
+            So a possible way to think of this new card is that it corresponds to a hypothetical new point infinitely
+            far off in a horizontal direction,
+            where these parallel lines meet.
+            Actually, there&rsquo;s a difficulty with this idea,
+            because you&rsquo;ll immediately want to know whether I mean
+            infinitely far to the left or the right. Of course, it can be either &ndash; or both!
+            So if we want to think in terms of a &lsquo;point at infinity&rsquo;,
+            we must qualify this with the idea that there is again some kind of wrap-around
+            at work: going infinitely far to the left is the same as going infinitely
+            far to the right.
+
+         <p>
+            We can do a similar thing for any of the other 7 line slopes.
+            For instance, look at the 7 diagonal lines that run &lsquo;top left to bottom right&rsquo;.
+            The associated symbols are PENCIL, LIPS, BIRD, CLOCK, ZEBRA, SNOWFLAKE, DRAGON.
+            At the moment, there&rsquo;s no card containing two of these symbols.
+            So let&rsquo;s add a new card that contains these 7 symbols, and that will plug this gap.
+
+         <p>
+            So we&rsquo;re proposing that we add 8 fresh points/cards to our system &ndash;
+            one for each of the 8 line directions.
+            As we&rsquo;ve noted, it&rsquo;s possible to think of these as &lsquo;points at infinity&rsquo;,
+            but here we shall usually refer to these 8 new cards as <i>direction cards</i>,
+            in contrast to the 49 <i>grid cards</i> that we have already.
+            Once we&rsquo;ve added all of these direction cards, it will then indeed be the case that
+            <i>any</i> two of the 56 lines in our grid meet in one, and only one, point &ndash;
+            and therefore that any two of our 56 symbols have exactly one card in common.
+
+         <p>
+            What&rsquo;s more, it will automatically true that if you pick any grid card and any slope card,
+            they will have just one symbol in common, in accordance with the basic Dobble rule.
+            This is because we can always construct a line with the relevant slope using the grid card as our
+            starting-point. So everything seems to be fitting together well.
+
+         <p>
+            We now very nearly have a complete Level 8 Dobble system.
+            However, there remain two small problems:
+
+         <ul>
+            <li> Our slope cards so far have just 7 symbols each, whereas we want all our cards to have 8 symbols.
+            <li> To satisfy the basic Dobble rule, any two <i>slope cards</i> will need to have a symbol in common.
+               At the moment, they don&rsquo;t.
+         </ul>
+
+         <p>
+            You might now be able to see where we&rsquo;re heading:
+            we can solve both of these problems in a single stroke!
+            Let&rsquo;s take some new symbol that doesn&rsquo;t already feature in our grid &ndash; if we want to use
+            actual Dobble symbols, this will have to be the SNOWMAN &ndash;
+            and let&rsquo;s add it to each of our slope cards as the eighth symbol.
+            This will mean that any two slope cards now have a symbol in common.
+            (Geometrically, we can think of this as adding one special new &lsquo;line&rsquo; to the system &ndash;
+            the so-called <i>line at infinity</i>.
+            Admittedly, it&rsquo;s not particularly easy to visualize this in ordinary spatial terms.)
+
+         <p>
+            There is one final thing to check.
+            Is it now true that our Dobble system is complete &ndash;
+            that any two symbols have a common card?
+            As we&rsquo;ve seen, the slope cards ensure that this is indeed true for
+            any two of our original 56 symbols.
+            But what if one of the two symbols is the newly added SNOWMAN?
+            We want to be sure that each of the other symbols appears alongside the SNOWMAN
+            on exactly one card.
+            But since the slope cards together contain each of these 56 symbols
+            once and only once, this is indeed the case.
+
+         <p>
+            So there we have it: a method of constructing a <i>complete</i> Level 8
+            Dobble system with 57 cards and 57 symbols.
+            Here is what we get if we extend our grid with slope cards in this way.
+            You will see that I&rsquo;ve arranged the 8 slope cards in a half-circle
+            around a central white spot: the radial line from this spot out to a slope card
+            indicates the slope with which this card is associated.
+            (We only need a half-circle rather than a full circle, as we
+            only need to represent each slope by a single direction.)
+
+         <p>
+            <center>
+               <img src="../dobble2_imgs/Dobble_grid_augmented.jpg" width=75%>
+            </center>
+
+         <p>
+            In geometrical terms, what we&rsquo;ve arrived at is a structure with 57 points
+            and 57 lines, where any two points share just one line and any two lines share
+            just one point.
+            This process of ensuring the latter property by throwing some extra
+            &lsquo;points at infinity&rsquo;
+            (plus a single &lsquo;line at infinity&rsquo;) is characteristic of what is known as
+            <i>projective geometry</i>, and the particular geometrical space we&rsquo;ve just constructed is known to
+            mathematicians as the
+            <i>finite projective plane of order 7</i>,
+            a rich and beautiful structure possessing a very high degree of symmetry.
+
+         <p>
+            But now we return to a point we raised in Part I.
+            The standard commercial Dobble set contains only 55 cards,
+            and so is two cards short of the mathematically complete set!
+            In particular, only 6 out of 8 of the above slope cards are actually present:
+            those for the horizontal and vertical slopes are missing.
+            Here are my own reconstructions of these two extra cards,
+            which I used to create the above display.
+
+         <p>
+            <center>
+               <img src="../dobble2_imgs/two_extra_cards.jpg" width=400>
+            </center>
+
+         <p>
+            I don&rsquo;t know why the makers of Dobble chose not to include these two cards,
+            but to anyone with a mathematical turn of mind this will seem a real shame,
+            as it spoils the beauty and symmetry of the set.
+            For instance, in the mathematically complete set, every symbol appears on 8 cards; whereas in the commercial
+            set, there are 14 symbols that only appear on 7 cards,
+            and one (the SNOWMAN) that only appears on 6 cards.
+            Also, as we shall see, there are a number of interesting tricks and demonstrations
+            that can be performed if these two cards are added, but which may fail
+            if they are omitted.
+
+         <p>
+            For this reason &ndash; or just for the sheer satisfaction of owning a
+            mathematically complete set &ndash; you might like to print off this
+            <a href="two_extra_cards_printout.pdf">pdf file</a>
+            which will enable you to add the missing cards to your pack.
+            All the standard Dobble games can be played as normal with these two extra
+            cards thrown in.
+
+         <p>
+            Let&rsquo;s now summarize what we&rsquo;ve done.
+            The construction of our geometry consisted of two stages.
+            First, we considered a simple geometry with just 49 points arranged in
+            a 7&times;7 grid: this is an example of what&rsquo;s known as an
+            <i>affine geometry</i>.
+            Then we extended this geometry with a few additional points (and one additional line)
+            so as to ensure that even &lsquo;parallel&rsquo; lines had a meeting-point:
+            this resulted in a so-called <i>projective geometry</i>.
+
+         <p>
+            These two steps are largely independent of one another.
+            For instance, we can start from the ordinary &lsquo;Euclidean&rsquo; plane
+            in place of our 7&times;7 geometry, and still perform the second step to obtain
+            a &lsquo;projective&rsquo; geometry.
+            That is to say, we can start from the familiar plane with its
+            infinitely many points and lines,
+            then add a new &lsquo;point at infinity&rsquo; for every possible line slope
+            within this plane.
+            (Of course, there will now be infinitely many line slopes rather than just 8,
+            so this will mean adding infinitely many new points.)
+            Finally, we add a single new &lsquo;line at infinity&rsquo;
+            containing all of these new points.
+            The resulting space is known as the <i>real projective plane</i>.
+
+         <p>
+            Thinking about geometries that can be built starting from &lsquo;ordinary&rsquo;
+            space can be very helpful, since here our familiar experience of ordinary space
+            can help us to understand what&rsquo;s going on.
+            Our next section provides a good illustration of this.
+
+
+         <h3 id="Projective_3D">A three-dimensional perspective</h3>
+
+         <!--
 <p>The way we have arrived at our &lsquo;projective space&rsquo; is by starting with 
 a <i>two-dimensional</i> space and then extending it with some additional points 
 and a line.
@@ -1110,234 +1157,238 @@ but it leads ultimately to a more natural and satisfying picture that
 reveals the full beauty of the situation.
 -->
 
-<p>
-[TEXT TO BE ADDED.]
+         <p>
+            [TEXT TO BE ADDED.]
 
-<p>
-The following interactive demo illustrates the connection between 
-<i>points</i> in 2D space and <i>lines through the origin</i> in 3D space &ndash;
-and also between <i>lines</i> in 2D space and <i>planes through the origin</i>
-in 3D space. 
+         <p>
+            The following interactive demo illustrates the connection between
+            <i>points</i> in 2D space and <i>lines through the origin</i> in 3D space &ndash;
+            and also between <i>lines</i> in 2D space and <i>planes through the origin</i>
+            in 3D space.
 
-<p>
-A bit of three-dimensional imagination is needed to make sense of this demo.
-Think of the black dot (the <i>origin</i>) as a fixed point hovering somewhere 
-in 3D space, and think of the quadrilateral figure as a square painted onto
-a glass wall on our left. The glass wall is infinite in all directions, and the faint vertical line indicates where it vanishes into the distance.
+         <p>
+            A bit of three-dimensional imagination is needed to make sense of this demo.
+            Think of the black dot (the <i>origin</i>) as a fixed point hovering somewhere
+            in 3D space, and think of the quadrilateral figure as a square painted onto
+            a glass wall on our left. The glass wall is infinite in all directions, and the faint vertical line
+            indicates where it vanishes into the distance.
 
-<!-- Real projective plane applet -->
+            <!-- Real projective plane applet -->
 
-<center>
-<div id="projection-canvas-div" style="position:relative;height:320px;min-height:320px;width:510px;min-width:510px">
-  <canvas id="projection-lower-canvas"
-         style="color:red;height:300px;left:0;position:absolute;top:0;width:500px;z-index:0;">
-  </canvas>
-  <canvas id="projection-mid-canvas"
-         style="color:red;height:300px;left:0;position:absolute;top:0;width:500px;z-index:1;">
-  </canvas>
-  <canvas id="projection-higher-canvas"
-         style="color:blue;height:300px;left:0;position:absolute;top:0;width:500px;z-index:2;"
-         onmousemove="showRay(event)"
-         onclick="switchMode(event)">
-  </canvas>
-</div>
-</center>
+            <center>
+               <div id="projection-canvas-div"
+                  style="position:relative;height:320px;min-height:320px;width:510px;min-width:510px">
+                  <canvas id="projection-lower-canvas"
+                     style="color:red;height:300px;left:0;position:absolute;top:0;width:500px;z-index:0;">
+                  </canvas>
+                  <canvas id="projection-mid-canvas"
+                     style="color:red;height:300px;left:0;position:absolute;top:0;width:500px;z-index:1;">
+                  </canvas>
+                  <canvas id="projection-higher-canvas"
+                     style="color:blue;height:300px;left:0;position:absolute;top:0;width:500px;z-index:2;"
+                     onmousemove="showRay(event)" onclick="switchMode(event)">
+                  </canvas>
+               </div>
+            </center>
 
-<script src="realproj.js">
-</script>
+            <script src="realproj.js">
+            </script>
 
-<p>
-To start the demo, move your mouse pointer into the square and start to roll it around. This will show the correspondence between points on the wall and lines through the origin. Once this has kicked in, you may move your pointer outside the square, 
-but must remain on the glass wall.
+         <p>
+            To start the demo, move your mouse pointer into the square and start to roll it around. This will show the
+            correspondence between points on the wall and lines through the origin. Once this has kicked in, you may
+            move your pointer outside the square,
+            but must remain on the glass wall.
 
-<p>
-Clicking on a point will &lsquo;fix&rsquo; the current point/line.
-You may then move around the plane again with your mouse. As you do so, you will see
-the line on the wall (in red) determined by the fixed point and your current point. The demo also shows (parts of) the plane through the origin that intersects
-the wall in precisely this red line.
+         <p>
+            Clicking on a point will &lsquo;fix&rsquo; the current point/line.
+            You may then move around the plane again with your mouse. As you do so, you will see
+            the line on the wall (in red) determined by the fixed point and your current point. The demo also shows
+            (parts of) the plane through the origin that intersects
+            the wall in precisely this red line.
 
-<p>
-Clicking a second time will return to the original mode.
+         <p>
+            Clicking a second time will return to the original mode.
 
-<p>
-Clearly, every point [resp. line] on the wall corresponds to a line [resp. plane] through the origin. 
-But the converse isn&rsquo;t true: the <i>vertical</i> plane through 
-the origin, and any line through the origin in this plane, 
-won&rsquo;t intersect the wall at all. 
-The idea is that these extra lines and plane correspond exactly to what
-one needs to add to the ordinary plane to obtain the projective plane.
+         <p>
+            Clearly, every point [resp. line] on the wall corresponds to a line [resp. plane] through the origin.
+            But the converse isn&rsquo;t true: the <i>vertical</i> plane through
+            the origin, and any line through the origin in this plane,
+            won&rsquo;t intersect the wall at all.
+            The idea is that these extra lines and plane correspond exactly to what
+            one needs to add to the ordinary plane to obtain the projective plane.
 
-<p>
-So we now have a much cleaner way of explaining what the projective plane is
-(taking advantage of our freedom to re-interpret the words &lsquo;point&rsquo;
-and &lsquo;line&rsquo; as we wish):
+         <p>
+            So we now have a much cleaner way of explaining what the projective plane is
+            (taking advantage of our freedom to re-interpret the words &lsquo;point&rsquo;
+            and &lsquo;line&rsquo; as we wish):
 
-<ul>
-<li> &lsquo;Points&rsquo; in the projective plane are simply lines through the 
-origin in 3D space.
-<li> &lsquo;Lines&rsquo; in the projective plane are simply planes through the
-origin in 3D space.
-</ul>
+         <ul>
+            <li> &lsquo;Points&rsquo; in the projective plane are simply lines through the
+               origin in 3D space.
+            <li> &lsquo;Lines&rsquo; in the projective plane are simply planes through the
+               origin in 3D space.
+         </ul>
 
-It&rsquo;s then not hard to see that the following properties hold 
-(with no exceptions!):
+         It&rsquo;s then not hard to see that the following properties hold
+         (with no exceptions!):
 
-<ul>
-<li> For any two &lsquo;points&rsquo;, there's exactly one &lsquo;line&rsquo;
-containing both.
-<li> For any two &lsquo;lines&rsquo;, there's exactly one &lsquo;point&rsquo;
-contained in both.
-</ul>
+         <ul>
+            <li> For any two &lsquo;points&rsquo;, there's exactly one &lsquo;line&rsquo;
+               containing both.
+            <li> For any two &lsquo;lines&rsquo;, there's exactly one &lsquo;point&rsquo;
+               contained in both.
+         </ul>
 
-<p>
-[ALSO TO BE ADDED: The analogous thing for the &lsquo;order 7&rsquo; case.
-The ideas can be illustrated using a 7&times;7&times;7 cube.
-The following will give an idea of where we're heading, 
-although it&rsquo;s not interactive yet.]
-
-
-<!-- 7x7x7 cube thing -->
-
-<center>
-<div id="cube-canvas-div" style="position:relative;height:360px;min-height:360px;width:360px;min-width:360px"> 
-  <canvas id="cube-lower-canvas"
-         style="color:red;height:350px;left:0;position:absolute;top:0;width:350px;z-index:0;">
-  </canvas>
-  <canvas id="cube-mid-canvas"
-         style="color:red;height:350px;left:0;position:absolute;top:0;width:350px;z-index:1;">
-  </canvas>
-  <canvas id="cube-higher-canvas"
-         style="color:blue;height:350px;left:0;position:absolute;top:0;width:350px;z-index:2;">
-  </canvas>
-</div>
-</center>
-
-<script>
-// some initialization
-
-// X,Y are 2D canvas coordinates
-// x,y,z are 3D coordinates in [0,7], origin is near top left corner
-
-cubeOrigX = 20 ;
-cubeOrigY = 90 ;
-xyDist = 30 ;
-zDistX = 15 ;
-zDistY = -10 ;
-
-var cubeLower = document.getElementById("cube-lower-canvas") ;
-var cubeMid = document.getElementById("cube-mid-canvas") ;
-var cubeHigher = document.getElementById("cube-higher-canvas") ;
-cubeLower.setAttribute("width","350px") ;
-cubeLower.setAttribute("height","350px") ;
-cubeMid.setAttribute("width","350px") ;
-cubeMid.setAttribute("height","350px") ;
-cubeHigher.setAttribute("width","350px") ;
-cubeHigher.setAttribute("height","350px") ;
-var lo = cubeLower.getContext("2d") ;
-var mid = cubeMid.getContext("2d") ;
-var hi = cubeHigher.getContext("2d") ;
-
-var vanX = 620, vanY = -140 ;
-var gamma = 0.032 ;
-
-function weightedAverage(a,b,r) {
-  return (a*r) + (b*(1-r)) ;
-  }
-
-// 'true perspective' version:
-function position(x,y,z) {
-  var zrho = 1/(1+(gamma*z)) ;  // took a while to get right!
-  return [weightedAverage (cubeOrigX+(x*xyDist), vanX, zrho),
-          weightedAverage (cubeOrigY+(y*xyDist), vanY, zrho)] ;
-}
-
-function drawCubeLine(context,x1,y1,z1,x2,y2,z2) {
-  context.beginPath() ;
-  var p1 = position(x1,y1,z1) ;
-  var p2 = position(x2,y2,z2) ;
-  context.moveTo(p1[0],p1[1]) ;
-  context.lineTo(p2[0],p2[1]) ;
-  context.stroke() ;
-}
-
-function drawCube() {
-  // Hidden outer edges, on lower canvas
-  lo.lineWidth = 5 ;
-  lo.strokeStyle = "#BBDDDD" ;
-  drawCubeLine(lo,0,7,7,7,7,7) ;
-  drawCubeLine(lo,0,7,7,0,0,7) ;
-  drawCubeLine(lo,0,7,7,0,7,0) ;
-  // Visible outer edges, on higher canvas
-  hi.lineWidth = 5 ;
-  hi.strokeStyle = "#999999" ;
-  drawCubeLine(hi,0,0,0,7,0,0) ;
-  drawCubeLine(hi,0,0,0,0,7,0) ;
-  drawCubeLine(hi,7,0,0,7,7,0) ;
-  drawCubeLine(hi,0,7,0,7,7,0) ;
-  drawCubeLine(hi,0,0,0,0,0,7) ;
-  drawCubeLine(hi,7,0,0,7,0,7) ;
-  drawCubeLine(hi,7,7,0,7,7,7) ;
-  drawCubeLine(hi,0,0,7,7,0,7) ;
-  drawCubeLine(hi,7,0,7,7,7,7) ;
-  // Thin lines
-  hi.lineWidth = 1 ;
-  for (i=1; i<=6; i++) {
-    drawCubeLine(hi,i,0,0,i,7,0) ;
-    drawCubeLine(hi,0,i,0,7,i,0) ;
-    drawCubeLine(hi,i,0,0,i,0,7) ;
-    drawCubeLine(hi,0,0,i,7,0,i) ;
-    drawCubeLine(hi,7,i,0,7,i,7) ;
-    drawCubeLine(hi,7,0,i,7,7,i) ;
-  }
-}
-
-function addSphere(x,y,z) {  // integers in [0,6]
-  var center = position(x+0.5,y+0.5,z*1.16) ;
-  var X = center[0] ;
-  var Y = center[1] ;
-  //var radius = 6 ;
-  var radius = 11; if (z>4) {radius = 10 ;}
-  var colorGrad = mid.createLinearGradient(X, Y, X+(0.67*radius), Y-radius);
-  colorGrad.addColorStop(0, "#FF0000") ;   
-  // FF0000 (red) good for radius 10-11.
-  // And 0000BB (deep blue) ok for radius 6
-  colorGrad.addColorStop(1, "#FFFFFF") ;
-  mid.fillStyle = colorGrad ;
-  mid.beginPath();
-  mid.arc(X,Y,radius,0,2*Math.PI);
-  mid.fill();
-}
-
-drawCube() ;
-
-for (i=6; i>=0; i--) {
-  addSphere(6-i,3,i) ;
-}
-
-addSphere(6,0,0) ;
-addSphere(6,0,6) ;
-addSphere(6,6,0) ;
-addSphere(6,6,6) ;
-addSphere(0,0,0) ;
-addSphere(0,0,6) ;
-addSphere(0,6,0) ;
-addSphere(0,6,6) ;
-
-</script>
+         <p>
+            [ALSO TO BE ADDED: The analogous thing for the &lsquo;order 7&rsquo; case.
+            The ideas can be illustrated using a 7&times;7&times;7 cube.
+            The following will give an idea of where we're heading,
+            although it&rsquo;s not interactive yet.]
 
 
+            <!-- 7x7x7 cube thing -->
+
+            <center>
+               <div id="cube-canvas-div"
+                  style="position:relative;height:360px;min-height:360px;width:360px;min-width:360px">
+                  <canvas id="cube-lower-canvas"
+                     style="color:red;height:350px;left:0;position:absolute;top:0;width:350px;z-index:0;">
+                  </canvas>
+                  <canvas id="cube-mid-canvas"
+                     style="color:red;height:350px;left:0;position:absolute;top:0;width:350px;z-index:1;">
+                  </canvas>
+                  <canvas id="cube-higher-canvas"
+                     style="color:blue;height:350px;left:0;position:absolute;top:0;width:350px;z-index:2;">
+                  </canvas>
+               </div>
+            </center>
+
+            <script>
+               // some initialization
+
+               // X,Y are 2D canvas coordinates
+               // x,y,z are 3D coordinates in [0,7], origin is near top left corner
+
+               cubeOrigX = 20;
+               cubeOrigY = 90;
+               xyDist = 30;
+               zDistX = 15;
+               zDistY = -10;
+
+               var cubeLower = document.getElementById("cube-lower-canvas");
+               var cubeMid = document.getElementById("cube-mid-canvas");
+               var cubeHigher = document.getElementById("cube-higher-canvas");
+               cubeLower.setAttribute("width", "350px");
+               cubeLower.setAttribute("height", "350px");
+               cubeMid.setAttribute("width", "350px");
+               cubeMid.setAttribute("height", "350px");
+               cubeHigher.setAttribute("width", "350px");
+               cubeHigher.setAttribute("height", "350px");
+               var lo = cubeLower.getContext("2d");
+               var mid = cubeMid.getContext("2d");
+               var hi = cubeHigher.getContext("2d");
+
+               var vanX = 620, vanY = -140;
+               var gamma = 0.032;
+
+               function weightedAverage(a, b, r) {
+                  return (a * r) + (b * (1 - r));
+               }
+
+               // 'true perspective' version:
+               function position(x, y, z) {
+                  var zrho = 1 / (1 + (gamma * z));  // took a while to get right!
+                  return [weightedAverage(cubeOrigX + (x * xyDist), vanX, zrho),
+                  weightedAverage(cubeOrigY + (y * xyDist), vanY, zrho)];
+               }
+
+               function drawCubeLine(context, x1, y1, z1, x2, y2, z2) {
+                  context.beginPath();
+                  var p1 = position(x1, y1, z1);
+                  var p2 = position(x2, y2, z2);
+                  context.moveTo(p1[0], p1[1]);
+                  context.lineTo(p2[0], p2[1]);
+                  context.stroke();
+               }
+
+               function drawCube() {
+                  // Hidden outer edges, on lower canvas
+                  lo.lineWidth = 5;
+                  lo.strokeStyle = "#BBDDDD";
+                  drawCubeLine(lo, 0, 7, 7, 7, 7, 7);
+                  drawCubeLine(lo, 0, 7, 7, 0, 0, 7);
+                  drawCubeLine(lo, 0, 7, 7, 0, 7, 0);
+                  // Visible outer edges, on higher canvas
+                  hi.lineWidth = 5;
+                  hi.strokeStyle = "#999999";
+                  drawCubeLine(hi, 0, 0, 0, 7, 0, 0);
+                  drawCubeLine(hi, 0, 0, 0, 0, 7, 0);
+                  drawCubeLine(hi, 7, 0, 0, 7, 7, 0);
+                  drawCubeLine(hi, 0, 7, 0, 7, 7, 0);
+                  drawCubeLine(hi, 0, 0, 0, 0, 0, 7);
+                  drawCubeLine(hi, 7, 0, 0, 7, 0, 7);
+                  drawCubeLine(hi, 7, 7, 0, 7, 7, 7);
+                  drawCubeLine(hi, 0, 0, 7, 7, 0, 7);
+                  drawCubeLine(hi, 7, 0, 7, 7, 7, 7);
+                  // Thin lines
+                  hi.lineWidth = 1;
+                  for (i = 1; i <= 6; i++) {
+                     drawCubeLine(hi, i, 0, 0, i, 7, 0);
+                     drawCubeLine(hi, 0, i, 0, 7, i, 0);
+                     drawCubeLine(hi, i, 0, 0, i, 0, 7);
+                     drawCubeLine(hi, 0, 0, i, 7, 0, i);
+                     drawCubeLine(hi, 7, i, 0, 7, i, 7);
+                     drawCubeLine(hi, 7, 0, i, 7, 7, i);
+                  }
+               }
+
+               function addSphere(x, y, z) {  // integers in [0,6]
+                  var center = position(x + 0.5, y + 0.5, z * 1.16);
+                  var X = center[0];
+                  var Y = center[1];
+                  //var radius = 6 ;
+                  var radius = 11; if (z > 4) { radius = 10; }
+                  var colorGrad = mid.createLinearGradient(X, Y, X + (0.67 * radius), Y - radius);
+                  colorGrad.addColorStop(0, "#FF0000");
+                  // FF0000 (red) good for radius 10-11.
+                  // And 0000BB (deep blue) ok for radius 6
+                  colorGrad.addColorStop(1, "#FFFFFF");
+                  mid.fillStyle = colorGrad;
+                  mid.beginPath();
+                  mid.arc(X, Y, radius, 0, 2 * Math.PI);
+                  mid.fill();
+               }
+
+               drawCube();
+
+               for (i = 6; i >= 0; i--) {
+                  addSphere(6 - i, 3, i);
+               }
+
+               addSphere(6, 0, 0);
+               addSphere(6, 0, 6);
+               addSphere(6, 6, 0);
+               addSphere(6, 6, 6);
+               addSphere(0, 0, 0);
+               addSphere(0, 0, 6);
+               addSphere(0, 6, 0);
+               addSphere(0, 6, 6);
+
+            </script>
 
 
 
 
-<h3 id="Infinite_Dobble">&lsquo;Infinite Dobble&rsquo;</h3>
 
-[TO BE ADDED]
 
-<hr style="height:10px; background-color:#d93bd3">
+         <h3 id="Infinite_Dobble">&lsquo;Infinite Dobble&rsquo;</h3>
 
-<address><a href="mailto:jrl@staffmail.ed.ac.uk">John Longley</a></address>
+         [TO BE ADDED]
+
+         <hr style="height:10px; background-color:#9879b0">
+
+         <address><a href="mailto:jrl@staffmail.ed.ac.uk">John Longley</a></address>
 </body>
+
 </html>
-
-

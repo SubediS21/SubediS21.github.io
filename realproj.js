@@ -56,7 +56,7 @@ function drawBackdrop() {
   midCtxt.lineTo(planeX2+9,planeY22+(9*grd2)) ;
   midCtxt.stroke() ;
   // faint line marking vanishing of plane at infinity
-  midCtxt.strokeStyle = "#90efef";
+  midCtxt.strokeStyle = "#9879b0";
   midCtxt.beginPath() ;
   midCtxt.moveTo(origX,0) ;
   midCtxt.lineTo(origX,origY-10) ;
