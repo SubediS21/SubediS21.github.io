@@ -225,7 +225,18 @@ function setLineLabel(lineId, text, color) {
 
 function checkLine() {
     const groups = {
-        top: ["triangle1"]
+        triangle1: ["t1p1", "t1p2", "t1p3"],
+        triangle2: ["t2p1", "t2p2", "t2p3"],
+        cop1: ["cop", "t1p1", "t2p1"],
+        cop2: ["cop", "t1p2", "t2p2"],
+        cop3: ["cop", "t1p3", "t2p3"],
+        aop: ["aop1", "aop2", "aop3"],
+        int1line1: ["aop1", "t2p2", "t2p3"],
+        int1line2: ["aop1", "t1p2", "t1p3"],
+        int2line1: ["aop2", "t2p1", "t2p3"],
+        int2line2: ["aop2", "t1p1", "t1p3"],
+        int3line1: ["aop3", "t2p1", "t2p2"],
+        int3line2: ["aop3", "t1p1", "t1p2"]
     };
 
     statusZone = document.getElementById("dStatus");
@@ -246,16 +257,48 @@ function checkLine() {
             return;
         }
         else if (commonAll.length > 0) {
-            if (true) {
+            if (line === "triangle1" || line === "triangle2") {
                 setLineLabel(line, commonAll[0], "orange");
                 setLineLabel("dStatus", "", "black");
+            }
+            else if (line === "cop1" || line === "cop2" || line === "cop3") {
+                setLineLabel(line, commonAll[0], "blue");
+                setLineLabel("dStatus", "", "black");
+            }
+            else if (line === "aop") {
+                setLineLabel(line, commonAll[0], "#c40707ff");
+                setLineLabel("dStatus", "", "black");
+            }
+            else if (line === "int1line1" || line === "int1line2") {
+                setLineLabel(line, commonAll[0], "green");
+                setLineLabel("dStatus", "", "black");
+            }
+            else if (line === "int2line1" || line === "int2line2") {
+                setLineLabel(line, commonAll[0], "purple");
+                setLineLabel("dStatus", "", "black");
+            }
+            else if (line === "int3line1" || line === "int3line2") {
+                setLineLabel(line, commonAll[0], "hotpink");
+                setLineLabel("dStatus", "", "hotpink");
             }
             else {
                 setLineLabel(line, commonAll[0], "#9625ecff");
                 setLineLabel("dStatus", "", "black");
             }
             //completed
-            if (document.getElementById("top").textContent !== "") {
+            if (document.getElementById("triangle1").textContent !== "" &&
+                document.getElementById("triangle2").textContent !== "" &&
+                document.getElementById("cop1").textContent !== "" &&
+                document.getElementById("cop2").textContent !== "" &&
+                document.getElementById("cop3").textContent !== "" &&
+                document.getElementById("aop").textContent !== "" &&
+                document.getElementById("int1line1").textContent !== "" &&
+                document.getElementById("int1line2").textContent !== "" &&
+                document.getElementById("int2line1").textContent !== "" &&
+                document.getElementById("int2line2").textContent !== "" &&
+                document.getElementById("int3line1").textContent !== "" &&
+                document.getElementById("int3line2").textContent !== ""
+            ){
                 setLineLabel("dStatus", "Well done! You have completed Desargues-Dobble!", "blue");
             }
         }
@@ -272,8 +315,8 @@ window.onload = function () {
 
     //draw desargeus diagram
     //triangle1 x  + 75
-    ctx_des.strokeStyle = "#7994b0ff";
-    ctx_des.fillStyle = "#7994b0ff";
+    ctx_des.strokeStyle = "gold";
+    ctx_des.fillStyle = "gold";
     ctx_des.setLineDash([]);
     ctx_des.beginPath();
     ctx_des.moveTo((234 + 75), 126);
@@ -283,8 +326,8 @@ window.onload = function () {
     ctx_des.fill();
     ctx_des.stroke();
     //triangle2 x  + 75
-    ctx_des.strokeStyle = "#b079a8ff";
-    ctx_des.fillStyle = "#b079a8ff";
+    ctx_des.strokeStyle = "gold";
+    ctx_des.fillStyle = "gold";
     ctx_des.beginPath();
     ctx_des.moveTo((16 + 75), 66);
     ctx_des.lineTo((122 + 75), 169);
@@ -292,44 +335,48 @@ window.onload = function () {
     ctx_des.closePath();
     ctx_des.fill();
     ctx_des.stroke();
+
     //connect with axis of perspectivity
-    ctx_des.strokeStyle = "#526254ff";
     ctx_des.beginPath();
+    ctx_des.strokeStyle = "green";
     //first1
     ctx_des.moveTo((192 + 75), 0);
     ctx_des.lineTo((122 + 75), 169);
     ctx_des.lineTo((78 + 75), 271);
     ctx_des.lineTo((-30 + 75), 535);
     ctx_des.lineTo((-60 + 75), 600);
-
     //first2
     ctx_des.moveTo((423 + 75), 0);
     ctx_des.lineTo((269 + 75), 181);
     ctx_des.lineTo((211 + 75), 249);
     ctx_des.lineTo((-30 + 75), 535);
     ctx_des.lineTo((-89 + 75), 600);
+    ctx_des.stroke();
 
+    ctx_des.beginPath();
+    ctx_des.strokeStyle = "purple";
     //mid1
     ctx_des.moveTo((-4 + 75), 0);
     ctx_des.lineTo((16 + 75), 66);
     ctx_des.lineTo((78 + 75), 271);
     ctx_des.lineTo((158 + 75), 533);
     ctx_des.lineTo((179 + 75), 600);
-
     //mid2
     ctx_des.moveTo((257 + 75), 0);
     ctx_des.lineTo((234 + 75), 126);
     ctx_des.lineTo((211 + 75), 249);
     ctx_des.lineTo((158 + 75), 533);
     ctx_des.lineTo((146 + 75), 600);
+    ctx_des.stroke();
 
+    ctx_des.beginPath();
+    ctx_des.strokeStyle = "hotpink";
     //last1
     ctx_des.moveTo((-52 + 75), 0);
     ctx_des.lineTo((16 + 75), 66);
     ctx_des.lineTo((122 + 75), 169);
     ctx_des.lineTo((494 + 75), 530);
     ctx_des.lineTo((566 + 75), 600);
-
     //last2
     ctx_des.moveTo((151 + 75), 0);
     ctx_des.lineTo((234 + 75), 126);
@@ -337,29 +384,10 @@ window.onload = function () {
     ctx_des.lineTo((494 + 75), 530);
     ctx_des.lineTo((539 + 75), 600);
     ctx_des.stroke();
-    //centre of perspectivity and triangle points
-    ctx_des.strokeStyle = "darkblue";
-    ctx_des.fillStyle = "darkblue";
-    ctx_des.beginPath();
-    ctx_des.setLineDash([]);
-    ctx_des.arc((500 + 75), 200, 25, 0, 2 * Math.PI);
-    ctx_des.moveTo((16 + 75), 66);
-    ctx_des.arc((16 + 75), 66, 25, 0, 2 * Math.PI);
-    ctx_des.moveTo((234 + 75), 126)
-    ctx_des.arc((234 + 75), 126, 25, 0, 2 * Math.PI);
-    ctx_des.moveTo((122 + 75), 169);
-    ctx_des.arc((122 + 75), 169, 25, 0, 2 * Math.PI);
-    ctx_des.moveTo((269 + 75), 181);
-    ctx_des.arc((269 + 75), 181, 25, 0, 2 * Math.PI);
-    ctx_des.moveTo((78 + 75), 271);
-    ctx_des.arc((78 + 75), 271, 25, 0, 2 * Math.PI);
-    ctx_des.moveTo((211 + 75), 249);
-    ctx_des.arc((211 + 75), 249, 25, 0, 2 * Math.PI);
-    ctx_des.fill();
-    ctx_des.stroke();
+
     //lines from centre of perspectivity
     //1
-    ctx_des.strokeStyle = "darkblue";
+    ctx_des.strokeStyle = "blue";
     ctx_des.setLineDash([10, 5]);
     ctx_des.beginPath();
     ctx_des.moveTo((0), 41)
@@ -382,9 +410,31 @@ window.onload = function () {
     ctx_des.lineTo((500 + 75), 200);
     ctx_des.lineTo((600 + 75), 183);
     ctx_des.stroke();
+
+    //centre of perspectivity and triangle points
+    ctx_des.strokeStyle = "black";
+    ctx_des.fillStyle = "black";
+    ctx_des.beginPath();
+    ctx_des.setLineDash([]);
+    ctx_des.arc((500 + 75), 200, 25, 0, 2 * Math.PI);
+    ctx_des.moveTo((16 + 75), 66);
+    ctx_des.arc((16 + 75), 66, 25, 0, 2 * Math.PI);
+    ctx_des.moveTo((234 + 75), 126)
+    ctx_des.arc((234 + 75), 126, 25, 0, 2 * Math.PI);
+    ctx_des.moveTo((122 + 75), 169);
+    ctx_des.arc((122 + 75), 169, 25, 0, 2 * Math.PI);
+    ctx_des.moveTo((269 + 75), 181);
+    ctx_des.arc((269 + 75), 181, 25, 0, 2 * Math.PI);
+    ctx_des.moveTo((78 + 75), 271);
+    ctx_des.arc((78 + 75), 271, 25, 0, 2 * Math.PI);
+    ctx_des.moveTo((211 + 75), 249);
+    ctx_des.arc((211 + 75), 249, 25, 0, 2 * Math.PI);
+    ctx_des.fill();
+    ctx_des.stroke();
+
     //axis of perspectivity
-    ctx_des.strokeStyle = "darkred";
-    ctx_des.fillStyle = "darkred";
+    ctx_des.strokeStyle = "#c40707ff";
+    ctx_des.fillStyle = "#c40707ff";
     ctx_des.setLineDash([]);
     ctx_des.beginPath();
     ctx_des.moveTo((0), 536);
