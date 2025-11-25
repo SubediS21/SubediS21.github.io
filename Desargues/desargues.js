@@ -204,6 +204,63 @@ function dropBack(event) {
     }
     checkLine();
 }
+function getZoneSymbols(zoneId) {
+    const zone = document.getElementById(zoneId);
+    if (!zone) return null;
+    const img = zone.querySelector("img");
+    if (!img) return null;
+    const parts = img.id.split("-");
+    const idx = parseInt(parts[1], 10) - 1;
+    if (isNaN(idx) || !currentCardContents[idx]) return null;
+    return currentCardContents[idx];
+}
+
+function setLineLabel(lineId, text, color) {
+    const lbl = document.getElementById(lineId);
+    if (!lbl) return;
+    lbl.textContent = text;
+    lbl.style.color = color;
+    lbl.style.fontWeight = "bold";
+}
+
+function checkLine() {
+    const groups = {
+        top: ["triangle1"]
+    };
+
+    statusZone = document.getElementById("dStatus");
+    Object.keys(groups).forEach(line => {
+        const zoneIds = groups[line];
+        const symbols = zoneIds.map(getZoneSymbols);
+
+        if (!symbols[0] || !symbols[1]) {
+            setLineLabel(line, "", "#9879b0");
+            return;
+        }
+
+        const inter12 = symbols[0].filter(s => symbols[1].includes(s));
+        const commonAll = inter12.filter(s => symbols[2].includes(s));
+        if (commonAll.length === 0) {
+            //setLineLabel("dStatus", "!!! ERROR: NO COMMON SYMBOL on the line", "red");
+            setLineLabel(line, "", "red");
+            return;
+        }
+        else if (commonAll.length > 0) {
+            if (true) {
+                setLineLabel(line, commonAll[0], "orange");
+                setLineLabel("dStatus", "", "black");
+            }
+            else {
+                setLineLabel(line, commonAll[0], "#9625ecff");
+                setLineLabel("dStatus", "", "black");
+            }
+            //completed
+            if (document.getElementById("top").textContent !== "") {
+                setLineLabel("dStatus", "Well done! You have completed Desargues-Dobble!", "blue");
+            }
+        }
+    });
+}
 
 window.onload = function () {
     const canvas_des = document.getElementById("desargeus_canvas");
