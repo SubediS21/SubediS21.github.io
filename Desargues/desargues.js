@@ -225,8 +225,8 @@ function setLineLabel(lineId, text, color) {
 
 function checkLine() {
     const groups = {
-        triangle1: ["t1p1", "t1p2", "t1p3"],
-        triangle2: ["t2p1", "t2p2", "t2p3"],
+        /*triangle1: ["t1p1", "t1p2", "t1p3"],
+        triangle2: ["t2p1", "t2p2", "t2p3"],*/
         cop1: ["cop", "t1p1", "t2p1"],
         cop2: ["cop", "t1p2", "t2p2"],
         cop3: ["cop", "t1p3", "t2p3"],
@@ -257,11 +257,11 @@ function checkLine() {
             return;
         }
         else if (commonAll.length > 0) {
-            if (line === "triangle1" || line === "triangle2") {
+            /*if (line === "triangle1" || line === "triangle2") {
                 setLineLabel(line, commonAll[0], "orange");
                 setLineLabel("dStatus", "", "black");
             }
-            else if (line === "cop1" || line === "cop2" || line === "cop3") {
+            else*/ if (line === "cop1" || line === "cop2" || line === "cop3") {
                 setLineLabel(line, commonAll[0], "blue");
                 setLineLabel("dStatus", "", "black");
             }
@@ -286,8 +286,8 @@ function checkLine() {
                 setLineLabel("dStatus", "", "black");
             }
             //completed
-            if (document.getElementById("triangle1").textContent !== "" &&
-                document.getElementById("triangle2").textContent !== "" &&
+            if (/*document.getElementById("triangle1").textContent !== "" &&
+                document.getElementById("triangle2").textContent !== "" &&*/
                 document.getElementById("cop1").textContent !== "" &&
                 document.getElementById("cop2").textContent !== "" &&
                 document.getElementById("cop3").textContent !== "" &&
@@ -298,7 +298,7 @@ function checkLine() {
                 document.getElementById("int2line2").textContent !== "" &&
                 document.getElementById("int3line1").textContent !== "" &&
                 document.getElementById("int3line2").textContent !== ""
-            ){
+            ) {
                 setLineLabel("dStatus", "Well done! You have completed Desargues-Dobble!", "blue");
             }
         }
