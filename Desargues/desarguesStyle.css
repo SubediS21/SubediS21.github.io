@@ -17,13 +17,11 @@ body {
 }
 
 .navbar {
-    list-style-type: none;
     overflow: hidden;
-    height: 75px;
 }
 
 .navbar div {
-    float:inline-start;
+    float: left;
 }
 
 .part1,
@@ -31,11 +29,13 @@ body {
 .part3,
 .part4,
 .part5 {
+    float: left;
     background-color: #fae351;
     color: #000000;
     padding: 15px;
     font-size: 16px;
-    border: 2px solid #9879b0;
+    border: 2.5px solid #9879b0;
+    min-height: 20px;
 }
 
 .part1hide,
@@ -44,10 +44,11 @@ body {
 .part4hide,
 .part5hide {
     background-color: #fae351;
+    border: 2px solid #9879b0;
     display: none;
     position: absolute;
-    padding: 5px;
-    margin: 5px;
+    padding: 0px;
+    margin-top: 52px;
     min-width: 160px;
     z-index: 1;
 }

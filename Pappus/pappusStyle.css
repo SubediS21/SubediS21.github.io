@@ -16,6 +16,128 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
+.navbar {
+    overflow: hidden;
+}
+
+.navbar div {
+    float: left;
+}
+
+.part1,
+.part2,
+.part3,
+.part4,
+.part5 {
+    float: left;
+    background-color: #fae351;
+    color: #000000;
+    padding: 15px;
+    font-size: 16px;
+    border: 2.5px solid #9879b0;
+    min-height: 20px;
+}
+
+.part1hide,
+.part2hide,
+.part3hide,
+.part4hide,
+.part5hide {
+    background-color: #fae351;
+    border: 2px solid #9879b0;
+    display: none;
+    position: absolute;
+    padding: 0px;
+    margin-top: 52px;
+    min-width: 160px;
+    z-index: 1;
+}
+
+/*1*/
+.part1hide a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.part1hide a:hover {
+    background-color: #b8a83c;
+}
+.intro:hover .part1hide {
+    display: block;
+}
+
+.intro:hover .part1 {
+    background-color: #9879b0;
+}
+
+/*2*/
+.part2hide a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.part2hide a:hover {
+    background-color: #b8a83c;
+}
+.dobbleGeometry:hover .part2hide {
+    display: block;
+}
+
+.dobbleGeometry:hover .part2 {
+    background-color: #9879b0;
+}
+
+/*3*/
+.part3hide a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.part3hide a:hover {
+    background-color: #b8a83c;
+}
+.cardTrick:hover .part3hide {
+    display: block;
+}
+
+.cardTrick:hover .part3 {
+    background-color: #9879b0;
+}
+
+/*4*/
+.part4hide a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.part4hide a:hover {
+    background-color: #b8a83c;
+}
+.finite:hover .part4hide {
+    display: block;
+}
+
+.finite:hover .part4 {
+    background-color: #9879b0;
+}
+
+/*5*/
+.part5hide a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.part5hide a:hover {
+    background-color: #b8a83c;
+}
+.block:hover .part5hide {
+    display: block;
+}
+
+.block:hover .part5 {
+    background-color: #9879b0;
+}
+
 footer {
     width: 97%;
     background-color: #fae351;

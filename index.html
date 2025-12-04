@@ -4,6 +4,138 @@
 <head>
   <title>The Mathematics of Dobble</title>
   <style>
+    .navbar {
+      overflow: hidden;
+    }
+
+    .navbar div {
+      float: left;
+    }
+
+    .part1,
+    .part2,
+    .part3,
+    .part4,
+    .part5 {
+      float: left;
+      background-color: #fae351;
+      color: #000000;
+      padding: 15px;
+      font-size: 16px;
+      border: 2.5px solid #9879b0;
+      min-height: 20px;
+    }
+
+    .part1hide,
+    .part2hide,
+    .part3hide,
+    .part4hide,
+    .part5hide {
+      background-color: #fae351;
+      border: 2px solid #9879b0;
+      display: none;
+      position: absolute;
+      padding: 0px;
+      margin-top: 52px;
+      min-width: 160px;
+      z-index: 1;
+    }
+
+    /*1*/
+    .part1hide a {
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .part1hide a:hover {
+      background-color: #b8a83c;
+    }
+
+    .intro:hover .part1hide {
+      display: block;
+    }
+
+    .intro:hover .part1 {
+      background-color: #9879b0;
+    }
+
+    /*2*/
+    .part2hide a {
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .part2hide a:hover {
+      background-color: #b8a83c;
+    }
+
+    .dobbleGeometry:hover .part2hide {
+      display: block;
+    }
+
+    .dobbleGeometry:hover .part2 {
+      background-color: #9879b0;
+    }
+
+    /*3*/
+    .part3hide a {
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .part3hide a:hover {
+      background-color: #b8a83c;
+    }
+
+    .cardTrick:hover .part3hide {
+      display: block;
+    }
+
+    .cardTrick:hover .part3 {
+      background-color: #9879b0;
+    }
+
+    /*4*/
+    .part4hide a {
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .part4hide a:hover {
+      background-color: #b8a83c;
+    }
+
+    .finite:hover .part4hide {
+      display: block;
+    }
+
+    .finite:hover .part4 {
+      background-color: #9879b0;
+    }
+
+    /*5*/
+    .part5hide a {
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .part5hide a:hover {
+      background-color: #b8a83c;
+    }
+
+    .block:hover .part5hide {
+      display: block;
+    }
+
+    .block:hover .part5 {
+      background-color: #9879b0;
+    }
+
     .card-container {
       display: flex;
       width: 400px;
@@ -43,7 +175,7 @@
       background-color: #c9eaf4;
     }
 
-    h2{
+    h2 {
       font-family: "Luckiest Guy";
       font-style: normal;
     }
@@ -105,59 +237,71 @@
         you&rsquo;ll need to be using a browser with Javascript enabled.
         For good results, Google Chrome is recommended.
 
-        <!-- <p>
-The page is organized as follows: -->
+        <hr style="height:10px; background-color:#9879b0">
+        <h3>Navigation to pages: </h3>
 
-        <!-- Section index -->
+      <div class="navbar">
+        <div class="intro">
+          <a class="part1" href="../index.html"><b>Part I: Introduction</b></a>
+          <menu class="part1hide">
+            <a href="../index.html#dobble_basics">Dobble: the basics</a>
+            <a href="../index.html#Levels_2_3">Getting started: Levels 2 and 3</a>
+            <a href="../index.html#Card_symbol_duality">Card-symbol duality</a>
+            <a href="../index.html#Complete_Dobble">Complete Dobble systems</a>
+            <a href="../index.html#Levels_4_5">Levels 4 and 5</a>
+          </menu>
+        </div>
 
-      <p>
-        <a href="#Introduction"><b>Part I: Introduction</b></a> (this page)
-      <ul>
-        <li> <a href="#Dobble_basics">Dobble: the basics</a>
-        <li> <a href="#Levels_2_3">Getting started: Levels 2 and 3</a>
-        <li> <a href="#Card_symbol_duality">Card-symbol duality</a>
-        <li> <a href="#Complete_Dobble">Complete Dobble systems</a>
-        <li> <a href="#Levels_4_5">Levels 4 and 5</a>
-      </ul>
+        <div class="dobbleGeometry">
+          <a class="part2" href="../mathematics_of_dobble_II.html"><b>Part II: Dobble and
+              geometry</b></a>
+          <menu class="part2hide">
+            <a href="../mathematics_of_dobble_II.html#Basic_connection">The basic connection</a>
+            <a href="../mathematics_of_dobble_II.html#Computer_game_geometry">A 7&times;7
+              &lsquo;computer game&rsquo;
+              geometry</a>
+            <a href="../mathematics_of_dobble_II.html#Dobble_grid_display">Card display: a 7&times;7
+              Dobble grid</a>
+            <a href="../mathematics_of_dobble_II.html#Slope_cards">Completing the set: Slope
+              cards</a>
+            <a href="../mathematics_of_dobble_II.html#Projective_3D">A three-dimensional
+              perspective</a>
+            <a href="../mathematics_of_dobble_II.html#Infinite_Dobble">&lsquo;Infinite
+              Dobble&rsquo;</a>
+          </menu>
+        </div>
 
-      <p>
-        <a href="mathematics_of_dobble_II.html"><b>Part II: Dobble and geometry</b></a>
-      <ul>
-        <li> <a href="mathematics_of_dobble_II.html#Basic_connection">The basic connection</a>
-        <li> <a href="mathematics_of_dobble_II.html#Computer_game_geometry">A 7&times;7 &lsquo;computer game&rsquo;
-            geometry</a>
-        <li> <a href="mathematics_of_dobble_II.html#Dobble_grid_display">Card display: a 7&times;7 Dobble grid</a>
-        <li> <a href="mathematics_of_dobble_II.html#Slope_cards">Completing the set: Slope cards</a>
-        <li> <a href="mathematics_of_dobble_II.html#Projective_3D">A three-dimensional perspective</a>
-        <li> <a href="mathematics_of_dobble_II.html#Infinite_Dobble">&lsquo;Infinite Dobble&rsquo;</a>
-      </ul>
+        <div class="cardTrick">
+          <a class="part3" href="../Pappus/pappus_theorem.html"><b>Part III: Some card tricks inspired by
+              geometry</b></a>
+          <menu class="part3hide">
+            <a href="../Pappus/pappus_theorem.html">Pappus&rsquo;s theorem (card trick 1)</a>
+            <a href="../Desargues/desargues_theorem.html">Desargues&rsquo; theorem (card trick 2)</a>
+            <a href="mathematics_of_dobble_III.html#Orthogonality">Orthogonality (card trick 3)</a>
+            <a href="mathematics_of_dobble_III.html#Altitudes">Altitudes of a triangle (card trick 4)</a>
+          </menu>
+        </div>
 
-      <p>
-        <a href="mathematics_of_dobble_III.html"><b>Part III: Some card tricks inspired by geometry</b></a>
-      <ul>
-        <li> <a href="../Pappus/pappus_theorem.html">Pappus&rsquo;s theorem (card trick 1)</a>
-        <li> <a href="../Desargues/desargues_theorem.html">Desargues&rsquo; theorem (card trick 2)</a>
-        <li> <a href="mathematics_of_dobble_III.html#Orthogonality">Orthogonality (card trick 3)</a>
-        <li> <a href="mathematics_of_dobble_III.html#Altitudes">Altitudes of a triangle (card trick 4)</a>
-      </ul>
+        <div class="finite">
+          <a class="part4" href="mathematics_of_dobble_IV.html"><b>Part IV: Finite projective planes</b></a>
+          <menu class="part4hide">
+            <a href="">Dobble systems and FPPs</a>
+            <a href="">Known and unknown Dobble systems</a>
+            <a href="">Symmetries of Dobble systems</a>
+            <a href="">Card display: a Singer cycle</a>
+            <a href="">Subplanes and &lsquo;Happy Families&rsquo;</a>
+          </menu>
+        </div>
 
-      <p>
-        <a href="mathematics_of_dobble_IV.html"><b>Part IV: Finite projective planes</b></a>
-      <ul>
-        <li> <a href="">Dobble systems and FPPs</a>
-        <li> <a href="">Known and unknown Dobble systems</a>
-        <li> <a href="">Symmetries of Dobble systems</a>
-        <li> <a href="">Card display: a Singer cycle</a>
-        <li> <a href="">Subplanes and &lsquo;Happy Families&rsquo;</a>
-      </ul>
-
-      <p>
-        <a href="mathematics_of_dobble_V.html"><b>Part V: Block designs and their applications</b></a>
-      <ul>
-        <li> <a href="#Block designs">Block designs</a>
-        <li> <a href="#Experiment_design">Experiment design</a>
-        <li> <a href="#Error_correcting_codes">Error-correcting codes</a>
-      </ul>
+        <div class="block">
+          <a class="part5" href="mathematics_of_dobble_V.html"><b>Part V: Block designs and their applications</b></a>
+          <menu class="part5hide">
+            <a href="#Block designs">Block designs</a>
+            <a href="#Experiment_design">Experiment design</a>
+            <a href="#Error_correcting_codes">Error-correcting codes</a>
+          </menu>
+        </div>
+      </div>
 
       <p>
         <a href="#Related_Links"><b>References and related links</b></a>
