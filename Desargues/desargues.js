@@ -308,9 +308,6 @@ function checkLine() {
 window.onload = function () {
     const canvas_des = document.getElementById("desargeus_canvas");
     const ctx_des = canvas_des.getContext("2d");
-
-    var des_width = canvas_des.width;
-    var des_height = canvas_des.height;
     ctx_des.lineWidth = 2.5;
 
     //draw desargeus diagram
@@ -319,9 +316,9 @@ window.onload = function () {
     ctx_des.fillStyle = "gold";
     ctx_des.setLineDash([]);
     ctx_des.beginPath();
-    ctx_des.moveTo((234 + 75), 126);
-    ctx_des.lineTo((269 + 75), 181);
-    ctx_des.lineTo((211 + 75), 249);
+    ctx_des.moveTo(259, 86);
+    ctx_des.lineTo(294, 148);
+    ctx_des.lineTo(260, 197);
     ctx_des.closePath();
     ctx_des.fill();
     ctx_des.stroke();
@@ -329,9 +326,9 @@ window.onload = function () {
     ctx_des.strokeStyle = "gold";
     ctx_des.fillStyle = "gold";
     ctx_des.beginPath();
-    ctx_des.moveTo((16 + 75), 66);
-    ctx_des.lineTo((122 + 75), 169);
-    ctx_des.lineTo((78 + 75), 271);
+    ctx_des.moveTo(67, 41);
+    ctx_des.lineTo(170, 156);
+    ctx_des.lineTo(145, 230);
     ctx_des.closePath();
     ctx_des.fill();
     ctx_des.stroke();
@@ -340,75 +337,48 @@ window.onload = function () {
     ctx_des.beginPath();
     ctx_des.strokeStyle = "green";
     //first1
-    ctx_des.moveTo((192 + 75), 0);
-    ctx_des.lineTo((122 + 75), 169);
-    ctx_des.lineTo((78 + 75), 271);
-    ctx_des.lineTo((-30 + 75), 535);
-    ctx_des.lineTo((-60 + 75), 600);
+    ctx_des.moveTo(221, 0);
+    ctx_des.lineTo(23, 600);
     //first2
-    ctx_des.moveTo((423 + 75), 0);
-    ctx_des.lineTo((269 + 75), 181);
-    ctx_des.lineTo((211 + 75), 249);
-    ctx_des.lineTo((-30 + 75), 535);
-    ctx_des.lineTo((-89 + 75), 600);
+    ctx_des.moveTo(398, 0);
+    ctx_des.lineTo(0, 568);
     ctx_des.stroke();
 
     ctx_des.beginPath();
     ctx_des.strokeStyle = "purple";
     //mid1
-    ctx_des.moveTo((-4 + 75), 0);
-    ctx_des.lineTo((16 + 75), 66);
-    ctx_des.lineTo((78 + 75), 271);
-    ctx_des.lineTo((158 + 75), 533);
-    ctx_des.lineTo((179 + 75), 600);
+    ctx_des.moveTo(48, 0);
+    ctx_des.lineTo(299, 600);
     //mid2
-    ctx_des.moveTo((257 + 75), 0);
-    ctx_des.lineTo((234 + 75), 126);
-    ctx_des.lineTo((211 + 75), 249);
-    ctx_des.lineTo((158 + 75), 533);
-    ctx_des.lineTo((146 + 75), 600);
+    ctx_des.moveTo(258, 0);
+    ctx_des.lineTo(263, 600);
     ctx_des.stroke();
 
     ctx_des.beginPath();
     ctx_des.strokeStyle = "hotpink";
     //last1
-    ctx_des.moveTo((-52 + 75), 0);
-    ctx_des.lineTo((16 + 75), 66);
-    ctx_des.lineTo((122 + 75), 169);
-    ctx_des.lineTo((494 + 75), 530);
-    ctx_des.lineTo((566 + 75), 600);
+    ctx_des.moveTo(31, 0);
+    ctx_des.lineTo(568, 600);
     //last2
-    ctx_des.moveTo((151 + 75), 0);
-    ctx_des.lineTo((234 + 75), 126);
-    ctx_des.lineTo((269 + 75), 181);
-    ctx_des.lineTo((494 + 75), 530);
-    ctx_des.lineTo((539 + 75), 600);
+    ctx_des.moveTo(208, 0);
+    ctx_des.lineTo(554, 600);
     ctx_des.stroke();
 
     //lines from centre of perspectivity
     //1
     ctx_des.strokeStyle = "blue";
-    ctx_des.setLineDash([10, 5]);
+    ctx_des.setLineDash([7, 5]);
     ctx_des.beginPath();
-    ctx_des.moveTo((0), 41)
-    ctx_des.lineTo((16 + 75), 66);
-    ctx_des.lineTo((234 + 75), 126);
-    ctx_des.lineTo((500 + 75), 200);
-    ctx_des.lineTo((600 + 75), 228);
+    ctx_des.moveTo(0, 25);
+    ctx_des.lineTo(600, 166);
     ctx_des.stroke();
     //2
-    ctx_des.moveTo((0), 153)
-    ctx_des.lineTo((122 + 75), 169);
-    ctx_des.lineTo((269 + 75), 181);
-    ctx_des.lineTo((500 + 75), 200);
-    ctx_des.lineTo((600 + 75), 208);
+    ctx_des.moveTo(0, 167);
+    ctx_des.lineTo(600, 128);
     ctx_des.stroke();
     //3
-    ctx_des.moveTo((0), 297);
-    ctx_des.lineTo((78 + 75), 271);
-    ctx_des.lineTo((211 + 75), 249);
-    ctx_des.lineTo((500 + 75), 200);
-    ctx_des.lineTo((600 + 75), 183);
+    ctx_des.moveTo(0, 271);
+    ctx_des.lineTo(600, 99);
     ctx_des.stroke();
 
     //centre of perspectivity and triangle points
@@ -416,35 +386,39 @@ window.onload = function () {
     ctx_des.fillStyle = "black";
     ctx_des.beginPath();
     ctx_des.setLineDash([]);
-    ctx_des.arc((500 + 75), 200, 25, 0, 2 * Math.PI);
-    ctx_des.moveTo((16 + 75), 66);
-    ctx_des.arc((16 + 75), 66, 25, 0, 2 * Math.PI);
-    ctx_des.moveTo((234 + 75), 126)
-    ctx_des.arc((234 + 75), 126, 25, 0, 2 * Math.PI);
-    ctx_des.moveTo((122 + 75), 169);
-    ctx_des.arc((122 + 75), 169, 25, 0, 2 * Math.PI);
-    ctx_des.moveTo((269 + 75), 181);
-    ctx_des.arc((269 + 75), 181, 25, 0, 2 * Math.PI);
-    ctx_des.moveTo((78 + 75), 271);
-    ctx_des.arc((78 + 75), 271, 25, 0, 2 * Math.PI);
-    ctx_des.moveTo((211 + 75), 249);
-    ctx_des.arc((211 + 75), 249, 25, 0, 2 * Math.PI);
+    ctx_des.arc(473, 136, 25, 0, 2 * Math.PI);
+    ctx_des.moveTo(259, 86);
+    ctx_des.arc(259, 86, 25, 0, 2 * Math.PI);
+    ctx_des.moveTo(294, 148);
+    ctx_des.arc(294, 148, 25, 0, 2 * Math.PI);
+    ctx_des.moveTo(260, 197);
+    ctx_des.arc(260, 197, 25, 0, 2 * Math.PI);
+    ctx_des.moveTo(67, 41);
+    ctx_des.arc(67, 41, 25, 0, 2 * Math.PI);
+    ctx_des.moveTo(170, 156);
+    ctx_des.arc(170, 156, 25, 0, 2 * Math.PI);
+    ctx_des.moveTo(145, 230);
+    ctx_des.arc(145, 230, 25, 0, 2 * Math.PI);
     ctx_des.fill();
     ctx_des.stroke();
 
     //axis of perspectivity
+    //line
     ctx_des.strokeStyle = "#c40707ff";
-    ctx_des.fillStyle = "#c40707ff";
     ctx_des.setLineDash([]);
     ctx_des.beginPath();
-    ctx_des.moveTo((0), 536);
-    ctx_des.lineTo((-30 + 75), 535);
-    ctx_des.arc((-30 + 75), 535, 25, 0, 2 * Math.PI);
-    ctx_des.lineTo((158 + 75), 533);
-    ctx_des.arc((158 + 75), 533, 25, 0, 2 * Math.PI);
-    ctx_des.lineTo((494 + 75), 530);
-    ctx_des.arc((494 + 75), 530, 25, 0, 2 * Math.PI);
-    ctx_des.lineTo((600 + 75), 529)
+    ctx_des.moveTo((0), 466);
+    ctx_des.lineTo(600, 566);
+    ctx_des.stroke();
+    //points
+    ctx_des.beginPath();
+    ctx_des.fillStyle = "#c40707ff"
+    ctx_des.moveTo(64, 477);
+    ctx_des.arc(64, 477, 25, 0, 2 * Math.PI);
+    ctx_des.moveTo(262, 510);
+    ctx_des.arc(262, 510, 25, 0, 2 * Math.PI);
+    ctx_des.moveTo(527, 554);
+    ctx_des.arc(527, 554, 25, 0, 2 * Math.PI);
     ctx_des.fill();
     ctx_des.stroke();
 }
