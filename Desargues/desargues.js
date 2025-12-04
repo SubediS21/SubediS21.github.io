@@ -386,19 +386,19 @@ window.onload = function () {
     ctx_des.fillStyle = "black";
     ctx_des.beginPath();
     ctx_des.setLineDash([]);
-    ctx_des.arc(473, 136, 25, 0, 2 * Math.PI);
+    ctx_des.arc(473, 136, 20, 0, 2 * Math.PI);
     ctx_des.moveTo(259, 86);
-    ctx_des.arc(259, 86, 25, 0, 2 * Math.PI);
+    ctx_des.arc(259, 86, 20, 0, 2 * Math.PI);
     ctx_des.moveTo(294, 148);
-    ctx_des.arc(294, 148, 25, 0, 2 * Math.PI);
+    ctx_des.arc(294, 148, 20, 0, 2 * Math.PI);
     ctx_des.moveTo(260, 197);
-    ctx_des.arc(260, 197, 25, 0, 2 * Math.PI);
+    ctx_des.arc(260, 197, 20, 0, 2 * Math.PI);
     ctx_des.moveTo(67, 41);
-    ctx_des.arc(67, 41, 25, 0, 2 * Math.PI);
+    ctx_des.arc(67, 41, 20, 0, 2 * Math.PI);
     ctx_des.moveTo(170, 156);
-    ctx_des.arc(170, 156, 25, 0, 2 * Math.PI);
+    ctx_des.arc(170, 156, 20, 0, 2 * Math.PI);
     ctx_des.moveTo(145, 230);
-    ctx_des.arc(145, 230, 25, 0, 2 * Math.PI);
+    ctx_des.arc(145, 230, 20, 0, 2 * Math.PI);
     ctx_des.fill();
     ctx_des.stroke();
 
@@ -414,7 +414,7 @@ window.onload = function () {
     ctx_des.beginPath();
     ctx_des.fillStyle = "#c40707ff"
     ctx_des.moveTo(64, 477);
-    ctx_des.arc(64, 477, 25, 0, 2 * Math.PI);
+    ctx_des.arc(64, 477, 20, 0, 2 * Math.PI);
     ctx_des.moveTo(262, 510);
     ctx_des.arc(262, 510, 25, 0, 2 * Math.PI);
     ctx_des.moveTo(527, 554);
