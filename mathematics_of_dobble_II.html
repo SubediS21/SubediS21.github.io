@@ -204,6 +204,41 @@
          font-family: "Luckiest Guy";
          font-style: normal;
       }
+      .card-container {
+      display: flex;
+      width: 400px;
+      min-width: 400px;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: #fae351;
+      border: #9879b0 10px solid;
+      border-radius: 20px;
+    }
+
+    .card-container>canvas {
+      width: 100px;
+      min-width: 100px;
+      height: 100px;
+      min-height: 100px;
+    }
+
+    .button-container {
+      display: flex;
+      width: 580px;
+      min-width: 250px;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: #9879b0;
+      border: solid 2px #000000;
+      border-radius: 10px;
+    }
+
+    .button-container>input {
+      width: 30px;
+      font-size: 20px;
+      margin: 3px;
+      border-radius: 7px;
+    }
    </style>
    <style>
       @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
@@ -1318,6 +1353,88 @@ you&rsquo;ll need to squint at the above photograph instead.) -->
          can help us to understand what&rsquo;s going on.
          Our next section provides a good illustration of this.
 
+      <h3 id="Level6_construction">Let's construct Level 6 Dobble using the directions</h3>
+      <center>
+            <p>
+               <input type="button" id="restart-btn6" value="Start again" onclick="initialize(5)">
+               <input type="button" id="check-btn6" value="Check answer" onclick="checkAnswer(5)">
+               <input type="button" id="reveal-btn6" value="Reveal solution" onclick="revealSolution(5)">
+            </p>
+
+            <p>
+            <div class="card-container" style="width:600px">
+               <!-- Can't seem to manage the width/height in CSS. 
+     Done in Javascript by 'window.onload' -->
+               <canvas id="card6-1" onclick="writeCurrSymbol(6,event,1)"></canvas>
+               <canvas id="card6-2" onclick="writeCurrSymbol(6,event,2)"></canvas>
+               <canvas id="card6-3" onclick="writeCurrSymbol(6,event,3)"></canvas>
+               <canvas id="card6-4" onclick="writeCurrSymbol(6,event,4)"></canvas>
+               <canvas id="card6-5" onclick="writeCurrSymbol(6,event,5)"></canvas>
+               <canvas id="card6-6" onclick="writeCurrSymbol(6,event,6)"></canvas>
+               <canvas id="card6-7" onclick="writeCurrSymbol(6,event,7)"></canvas>
+               <canvas id="card6-8" onclick="writeCurrSymbol(6,event,8)"></canvas>
+               <canvas id="card6-9" onclick="writeCurrSymbol(6,event,9)"></canvas>
+               <canvas id="card6-10" onclick="writeCurrSymbol(6,event,10)"></canvas>
+               <canvas id="card6-11" onclick="writeCurrSymbol(6,event,11)"></canvas>
+               <canvas id="card6-12" onclick="writeCurrSymbol(6,event,12)"></canvas>
+               <canvas id="card6-13" onclick="writeCurrSymbol(6,event,13)"></canvas>
+               <canvas id="card6-14" onclick="writeCurrSymbol(6,event,14)"></canvas>
+               <canvas id="card6-15" onclick="writeCurrSymbol(6,event,15)"></canvas>
+               <canvas id="card6-16" onclick="writeCurrSymbol(6,event,16)"></canvas>
+               <canvas id="card6-17" onclick="writeCurrSymbol(6,event,17)"></canvas>
+               <canvas id="card6-18" onclick="writeCurrSymbol(6,event,18)"></canvas>
+               <canvas id="card6-19" onclick="writeCurrSymbol(6,event,19)"></canvas>
+               <canvas id="card6-20" onclick="writeCurrSymbol(6,event,20)"></canvas>
+               <canvas id="card6-21" onclick="writeCurrSymbol(6,event,21)"></canvas>
+               <canvas id="card6-22" onclick="writeCurrSymbol(6,event,22)"></canvas>
+               <canvas id="card6-23" onclick="writeCurrSymbol(6,event,23)"></canvas>
+               <canvas id="card6-24" onclick="writeCurrSymbol(6,event,24)"></canvas>
+               <canvas id="card6-25" onclick="writeCurrSymbol(6,event,25)"></canvas>
+               <canvas id="card6-26" onclick="writeCurrSymbol(6,event,26)"></canvas>
+               <canvas id="card6-27" onclick="writeCurrSymbol(6,event,27)"></canvas>
+               <canvas id="card6-28" onclick="writeCurrSymbol(6,event,28)"></canvas>
+               <canvas id="card6-29" onclick="writeCurrSymbol(6,event,29)"></canvas>
+               <canvas id="card6-30" onclick="writeCurrSymbol(6,event,30)"></canvas>
+               <canvas id="card6-31" onclick="writeCurrSymbol(6,event,31)"></canvas>
+            </div>
+            </p>
+
+            <p>
+            <div class="button-container">
+               <input type="button" id="btn6-1" value="A" onclick="setCurrSymbol(6,'A',1)">
+               <input type="button" id="btn6-2" value="B" onclick="setCurrSymbol(6,'B',2)">
+               <input type="button" id="btn6-3" value="C" onclick="setCurrSymbol(6,'C',3)">
+               <input type="button" id="btn6-4" value="D" onclick="setCurrSymbol(6,'D',4)">
+               <input type="button" id="btn6-5" value="E" onclick="setCurrSymbol(6,'E',5)">
+               <input type="button" id="btn6-6" value="F" onclick="setCurrSymbol(6,'F',6)">
+               <input type="button" id="btn6-7" value="G" onclick="setCurrSymbol(6,'G',7)">
+               <input type="button" id="btn6-8" value="H" onclick="setCurrSymbol(6,'H',8)">
+               <input type="button" id="btn6-9" value="I" onclick="setCurrSymbol(6,'I',9)">
+               <input type="button" id="btn6-10" value="J" onclick="setCurrSymbol(6,'J',10)">
+               <input type="button" id="btn6-11" value="K" onclick="setCurrSymbol(6,'K',11)">
+               <input type="button" id="btn6-12" value="L" onclick="setCurrSymbol(6,'L',12)">
+               <input type="button" id="btn6-13" value="M" onclick="setCurrSymbol(6,'M',13)">
+               <input type="button" id="btn6-14" value="N" onclick="setCurrSymbol(6,'N',14)">
+               <input type="button" id="btn6-15" value="O" onclick="setCurrSymbol(6,'O',15)">
+               <input type="button" id="btn6-16" value="P" onclick="setCurrSymbol(6,'P',16)">
+               <input type="button" id="btn6-17" value="Q" onclick="setCurrSymbol(6,'Q',17)">
+               <input type="button" id="btn6-18" value="R" onclick="setCurrSymbol(6,'R',18)">
+               <input type="button" id="btn6-19" value="S" onclick="setCurrSymbol(6,'S',19)">
+               <input type="button" id="btn6-20" value="T" onclick="setCurrSymbol(6,'T',20)">
+               <input type="button" id="btn6-21" value="U" onclick="setCurrSymbol(6,'U',21)">
+               <input type="button" id="btn6-22" value="V" onclick="setCurrSymbol(6,'L',22)">
+               <input type="button" id="btn6-23" value="W" onclick="setCurrSymbol(6,'M',23)">
+               <input type="button" id="btn6-24" value="X" onclick="setCurrSymbol(6,'N',24)">
+               <input type="button" id="btn6-25" value="Y" onclick="setCurrSymbol(6,'O',25)">
+               <input type="button" id="btn6-26" value="Z" onclick="setCurrSymbol(6,'P',26)">
+               <input type="button" id="btn6-27" value="&alpha;" onclick="setCurrSymbol(6,'α',27)">
+               <input type="button" id="btn6-28" value="&beta;" onclick="setCurrSymbol(6,'β',28)">
+               <input type="button" id="btn6-29" value="&gamma;" onclick="setCurrSymbol(6,'γ',29)">
+               <input type="button" id="btn6-30" value="&delta;" onclick="setCurrSymbol(6,'δ',30)">
+               <input type="button" id="btn6-31" value="&epsilon;" onclick="setCurrSymbol(6,'ε',31)">
+            </div>
+            </p>
+      </center>
 
       <h3 id="Projective_3D">A three-dimensional perspective</h3>
 

@@ -31,7 +31,7 @@ const miniCenters = [[], [], [],  // padding
 
 const fontHeight = 20 ;
 const defaultSymButtonStyle = ""; // "font-size: 25px; width: 30px; ";
-const highlightedSymButtonStyle = defaultSymButtonStyle + "color: #9879b0; ";
+const highlightedSymButtonStyle = defaultSymButtonStyle + "color: #9068aeff;" + "border-radius: 2px;";
 const numberNames = ['zero','one','two','three','four','five'];  // for error reporting
 
 var currSymbol = '';
@@ -96,11 +96,11 @@ function writeSymbol(lev,cardNumber,slot,sym) {
   var CX = miniCenters[lev][slot][0];
   var CY = miniCenters[lev][slot][1];
   // delete previous symbol with filled rectangle
-  ctx.fillStyle = "#FFFFFF" ;
+  ctx.fillStyle = "#f5eefaff";
   ctx.fillRect(CX-(fontHeight/2),CY-(fontHeight/2),fontHeight,fontHeight) ;
   // add new symbol
   ctx.font = "" + fontHeight + "px Arial";
-  ctx.fillStyle = "#0000FF";
+  ctx.fillStyle = "#0202dbff";
   ctx.textAlign = "center";
   ctx.fillText(sym, CX, CY+(fontHeight/2));
   // update program data
