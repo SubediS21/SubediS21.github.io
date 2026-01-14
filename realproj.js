@@ -323,18 +323,19 @@ const cardCenter = cardCanvasSize / 2;
 const cardRadius = 40;
 const miniRadius = [0, 0, 0, 15, 14, 13];      // radius of circular region allocated for each symbol
 const verticalFudge = 3;
-const miniCenters = [[], [], [], [], [], [], []  // padding
-// for level 6:
-[[cardCenter, cardCenter - (cardRadius * 0.630) - verticalFudge],
-[cardCenter - (cardRadius * 0.600) - 1, cardCenter - (cardRadius * 0.195) + 1],
-[cardCenter + (cardRadius * 0.600) + 1, cardCenter - (cardRadius * 0.195) + 1],
-[cardCenter - (cardRadius * 0.370), cardCenter + (cardRadius * 0.510)],
-  [cardCenter + (cardRadius * 0.370), cardCenter + (cardRadius * 0.510)]]]
+const miniCenters = [[], [], [], [], [], [],  // padding
+//for level 6:
+[[cardCenter, cardCenter - (cardRadius * 0.6) - verticalFudge],
+[cardCenter - (cardRadius * 0.6), cardCenter - (cardRadius * 0.22) - verticalFudge],
+[cardCenter + (cardRadius * 0.6), cardCenter - (cardRadius * 0.22) - verticalFudge],
+[cardCenter - (cardRadius * 0.55), cardCenter + (cardRadius * 0.3)],
+[cardCenter + (cardRadius * 0.55), cardCenter + (cardRadius * 0.3)],
+[cardCenter, cardCenter + (cardRadius * 0.75) - verticalFudge]]];
 
 const fontHeight = 20;
 const defaultSymButtonStyle = ""; // "font-size: 25px; width: 30px; ";
 const highlightedSymButtonStyle = defaultSymButtonStyle + "color: #9068aeff;" + "border-radius: 7px;";
-const numberNames = ['zero', 'one', 'two', 'three', 'four', 'five'];  // for error reporting
+const numberNames = ['zero', 'one', 'two', 'three', 'four', 'five', 'six'];  // for error reporting
 var currSymbol = '';
 var active = true;
 var symbolCount = [0, 0, 0, 0, 0, 0, 0];
@@ -343,10 +344,23 @@ var symbolCount = [0, 0, 0, 0, 0, 0, 0];
 
 // Logical model globals
 
-const numberOfCards = [0, 1, 3, 7, 13, 21];
-const totalSyms = [0, 1, 6, 21, 52, 105];
+const numberOfCards = [0, 1, 3, 7, 13, 21, 31];
+const totalSyms = [0, 1, 6, 21, 52, 105, 186];
 
 const solutions6 = [[], [], [], [], [], [], [[],
+['A', 'B', 'C', 'D', 'E', 'F'], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
+['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
+['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
+['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
+['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
+['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
+['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
+['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
+['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
+['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
+['', '', '', '', '', '']]];
+
+var currentCardContents = [[], [], [], [], [], [], [[],
 ['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
 ['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
 ['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
@@ -357,7 +371,7 @@ const solutions6 = [[], [], [], [], [], [], [[],
 ['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
 ['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
 ['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
-['', '', '', '', '', ''],]];
+['', '', '', '', '', '']]];
 
 function square(x) {
   return x * x;
@@ -521,25 +535,24 @@ function revealSolution(lev) {
 // Initial setup
 
 window.onload = function () {
-  for (lev = 3; lev <= 5; lev++) {
-    for (i = 1; i <= numberOfCards[lev]; i++) {
-      var c = document.getElementById("card" + lev + "-" + i);
-      c.setAttribute("width", "100px");
-      c.setAttribute("height", "100px");
-      var ctx = c.getContext("2d");
-      // draw circle
-      ctx.lineWidth = 4;
-      ctx.beginPath();
-      ctx.arc(cardCenter, cardCenter, cardRadius, 0, 2 * Math.PI);
-      ctx.stroke();
-      ctx.fillStyle = "#FFFFFF";
-      ctx.fill();
-      // add card number in red
-      ctx.font = "15px Arial";
-      ctx.fillStyle = "#000000";
-      ctx.textAlign = "center";
-      ctx.fillText("" + i, 8, 16);
-    }
-    initialize(lev);
+  lev = 6;
+  for (i = 1; i <= numberOfCards[lev] - lev; i++) {
+    var c = document.getElementById("card" + lev + "-" + i);
+    c.setAttribute("width", "100px");
+    c.setAttribute("height", "100px");
+    var ctx = c.getContext("2d");
+    // draw circle
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.arc(cardCenter, cardCenter, cardRadius, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fill();
+    // add card number in red
+    ctx.font = "15px Arial";
+    ctx.fillStyle = "#000000";
+    ctx.textAlign = "center";
+    ctx.fillText("" + i, 8, 16);
   }
+  initialize(lev);
 }
