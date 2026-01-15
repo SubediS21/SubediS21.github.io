@@ -407,9 +407,12 @@ function writeCurrSymbol(lev, event, cardNumber) {
     var ctx = c.getContext("2d");
     var X = event.offsetX;
     var Y = event.offsetY;
-    for (i = 0; i < lev; i++) {
+    console.log("Click at X=" + X + ", Y=" + Y);
+    for (var i = 0; i < lev; i++) {
       var CX = miniCenters[lev][i][0];
       var CY = miniCenters[lev][i][1];
+      console.log("position: " + i + "center=(" + CX + "," + CY + "), radius=" + miniRadius[lev]);
+
       if (isWithin(X, Y, CX, CY, miniRadius[lev])) {
         writeSymbol(lev, cardNumber, i, currSymbol);
       }
@@ -420,7 +423,7 @@ function writeCurrSymbol(lev, event, cardNumber) {
 // Symbol button code
 
 function resetSymbolButtons(lev) {
-  for (j = 1; j <= numberOfCards[lev]; j++) {
+  for (var j = 1; j <= numberOfCards[lev]; j++) {
     document.getElementById("btn" + lev + "-" + j).setAttribute("style", defaultSymButtonStyle);
   }
 }
@@ -439,7 +442,7 @@ function setCurrSymbol(lev, sym, i) {
 
 function initialize(lev) {
   document.getElementById("puzzle-message" + lev).innerHTML =
-    'Level ' + lev + ' Dobble challenge';
+    'Level ' + lev + ' Dobble';
   // padded to allow indexing from 1
   symbolCount[lev] = 0;
   /*writeSymbol(lev, 1, 0, 'A');
@@ -454,8 +457,8 @@ function initialize(lev) {
   if (lev >= 6) {
     writeSymbol(lev, 1, 5, 'F');
   }*/
-  for (i = 1; i <= numberOfCards[lev]; i++) {
-    for (j = 0; j < lev; j++) {
+  for (var i = 1; i <= numberOfCards[lev]; i++) {
+    for (var j = 0; j < lev; j++) {
       writeSymbol(lev, i, j, '');
     }
   }
@@ -474,13 +477,13 @@ function checkAnswer(lev) {
   var C = currentCardContents[lev];
   CheckBody: {
     // checking individual cards
-    for (i = 1; i <= numberOfCards[lev]; i++) {
-      for (j = 0; j < lev; j++) {
+    for (var i = 1; i <= numberOfCards[lev]; i++) {
+      for (var j = 0; j < lev; j++) {
         if (C[i][j] == '') {
           raiseError('Card ' + i + ' not complete');
           break CheckBody;
         }
-        for (k = j + 1; k < lev; k++) {
+        for (var k = j + 1; k < lev; k++) {
           if (C[i][j] == C[i][k]) {
             raiseError('Symbol ' + C[i][j] + ' appears more than once on card ' + i);
             break CheckBody;
@@ -489,11 +492,11 @@ function checkAnswer(lev) {
       }
     }
     // checking pairs of cards
-    for (i = 1; i <= numberOfCards[lev]; i++) {
-      for (h = i + 1; h <= numberOfCards[lev]; h++) {
+    for (var i = 1; i <= numberOfCards[lev]; i++) {
+      for (var h = i + 1; h <= numberOfCards[lev]; h++) {
         var commonSyms = [];
         for (j = 0; j < lev; j++) {
-          for (k = 0; k < lev; k++) {
+          for (var k = 0; k < lev; k++) {
             if (C[i][j] == C[h][k]) {
               commonSyms = commonSyms.concat([C[i][j]]);
             }
@@ -518,8 +521,8 @@ function checkAnswer(lev) {
 function revealSolution(lev) {
   document.getElementById("puzzle-message" + lev).innerHTML = 'One possible solution:';
   var solution = solutions6[lev];
-  for (i = 1; i <= numberOfCards[lev]; i++) {
-    for (j = 0; j < lev; j++) {
+  for (var i = 1; i <= numberOfCards[lev]; i++) {
+    for (var j = 0; j < lev; j++) {
       writeSymbol(lev, i, j, solution[i][j]);
     }
   }
@@ -533,7 +536,7 @@ function revealSolution(lev) {
 
 window.onload = function () {
   lev = 6;
-  for (i = 1; i <= numberOfCards[lev] - lev; i++) {
+  for (var i = 1; i <= numberOfCards[lev] - lev; i++) {
     var c = document.getElementById("card" + lev + "-" + i);
     c.setAttribute("width", "100px");
     c.setAttribute("height", "100px");
@@ -573,11 +576,11 @@ window.onload = function () {
   const ctximg = document.getElementById("empty3").getContext("2d");
   const img = new Image();
   img.addEventListener("load", () => {
-    ctximg.drawImage(img,0,0, 675, 684, 50, 0, 170, 150);
+    ctximg.drawImage(img, 0, 0, 675, 684, 50, 0, 170, 150);
   });
 
   img.src = "/dobble2_imgs/directions6.png";
-  for (j = numberOfCards[lev] - lev + 1; j <= numberOfCards[lev]; j++) {
+  for (var j = numberOfCards[lev] - lev + 1; j <= numberOfCards[lev]; j++) {
     var c = document.getElementById("card" + lev + "-" + j);
     c.setAttribute("width", "100px");
     c.setAttribute("height", "100px");

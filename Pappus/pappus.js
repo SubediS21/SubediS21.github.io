@@ -163,6 +163,31 @@ function highlightSymbols() {
     }
 }
 
+
+function clearList() {
+    // Clear selected cards and symbols
+    selectedCards = [];
+    selectedSymbols = [];
+    
+    // Clear styling from all card elements
+    for (let i = 1; i <= currentCardContents.length; i++) {
+        const cardImg = document.getElementById("card5-" + i);
+        cardImg.style.border = "";
+        cardImg.style.boxShadow = "";
+    }
+    
+    // Clear styling from all symbol elements
+    for (let i = 1; i <= currentSymbols.length; i++) {
+        const symbol = document.getElementById("symbol5-" + i);
+        symbol.style.color = "";
+        symbol.style.border = "";
+    }
+    
+    // Update highlighting
+    highlightCards();
+    highlightSymbols();
+}
+
 function dragStart(event) {
     event.dataTransfer.setData("text", event.target.id);
 }
@@ -305,6 +330,7 @@ function checkLine() {
         }
     });
 }
+
 
 window.onload = function () {
     const canvas_papp = document.getElementById("pappus_canvas");
