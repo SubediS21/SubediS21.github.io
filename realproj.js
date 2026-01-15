@@ -348,17 +348,12 @@ const numberOfCards = [0, 1, 3, 7, 13, 21, 31];
 const totalSyms = [0, 1, 6, 21, 52, 105, 186];
 
 const solutions6 = [[], [], [], [], [], [], [[],
-['A', 'B', 'C', 'D', 'E', 'F'], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
-['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
-['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
-['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
-['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
-['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
-['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
-['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
-['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
-['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
-['', '', '', '', '', '']]];
+['A', 'F', 'L', 'P', 'W', 'γ'], ['B', 'F', 'M', 'Q', 'X', 'δ'], ['C', 'F', 'N', 'R', 'Y', 'Z'], ['D', 'F', 'O', 'S', 'U', 'α'], ['E', 'F', 'K', 'T', 'V', 'β'],
+['A', 'G', 'M', 'T', 'Y', 'α'], ['B', 'G', 'N', 'P', 'U', 'β'], ['C', 'G', 'O', 'Q', 'V', 'γ'], ['D', 'G', 'K', 'R', 'W', 'δ'], ['E', 'G', 'L', 'S', 'X', 'Z'],
+['A', 'H', 'N', 'S', 'V', 'δ'], ['B', 'H', 'O', 'T', 'W', 'Z'], ['C', 'H', 'K', 'P', 'X', 'α'], ['D', 'H', 'L', 'Q', 'Y', 'β'], ['E', 'H', 'M', 'R', 'U', 'γ'],
+['A', 'I', 'O', 'R', 'X', 'β'], ['B', 'I', 'K', 'S', 'Y', 'γ'], ['C', 'I', 'L', 'T', 'U', 'δ'], ['D', 'I', 'M', 'P', 'V', 'Z'], ['E', 'I', 'N', 'Q', 'W', 'α'],
+['A', 'J', 'K', 'Q', 'U', 'Z'], ['B', 'J', 'L', 'R', 'V', 'α'], ['C', 'J', 'M', 'S', 'W', 'β'], ['D', 'J', 'N', 'T', 'X', 'γ'], ['E', 'J', 'O', 'P', 'Y', 'δ'],
+['A', 'B', 'C', 'D', 'E', 'ε'], ['F', 'G', 'H', 'I', 'J', 'ε'], ['K', 'L', 'M', 'N', 'O', 'ε'], ['P', 'Q', 'R', 'S', 'T', 'ε'], ['U', 'V', 'W', 'X', 'Y', 'ε'], ['Z', 'α', 'β', 'γ', 'δ', 'ε']]];
 
 var currentCardContents = [[], [], [], [], [], [], [[],
 ['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
@@ -406,6 +401,7 @@ function writeSymbol(lev, cardNumber, slot, sym) {
 }
 
 function writeCurrSymbol(lev, event, cardNumber) {
+  document.getElementById("testbtn").innerHTML = currSymbol;
   if (active && currSymbol != '') {
     var c = document.getElementById("card" + lev + "-" + cardNumber);
     var ctx = c.getContext("2d");
@@ -435,6 +431,7 @@ function setCurrSymbol(lev, sym, i) {
     resetSymbolButtons(lev);
     var btn = document.getElementById("btn" + lev + "-" + i);
     btn.setAttribute("style", highlightedSymButtonStyle);
+    //document.getElementById("testbtn").innerHTML = currSymbol;
   }
 }
 
@@ -445,7 +442,7 @@ function initialize(lev) {
     'Level ' + lev + ' Dobble challenge';
   // padded to allow indexing from 1
   symbolCount[lev] = 0;
-  writeSymbol(lev, 1, 0, 'A');
+  /*writeSymbol(lev, 1, 0, 'A');
   writeSymbol(lev, 1, 1, 'B');
   writeSymbol(lev, 1, 2, 'C');
   if (lev >= 4) {
@@ -456,8 +453,8 @@ function initialize(lev) {
   }
   if (lev >= 6) {
     writeSymbol(lev, 1, 5, 'F');
-  }
-  for (i = 2; i <= numberOfCards[lev]; i++) {
+  }*/
+  for (i = 1; i <= numberOfCards[lev]; i++) {
     for (j = 0; j < lev; j++) {
       writeSymbol(lev, i, j, '');
     }
@@ -542,6 +539,16 @@ window.onload = function () {
     c.setAttribute("height", "100px");
     var ctx = c.getContext("2d");
     // draw circle
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(cardCanvasSize, 0);
+    ctx.lineTo(cardCanvasSize, cardCanvasSize);
+    ctx.lineTo(0, cardCanvasSize);
+    ctx.lineTo(0, 0);
+    ctx.lineTo(cardCanvasSize, 0);
+    ctx.fillStyle = "#fae351";
+    ctx.fill();
+    ctx.stroke();
     ctx.lineWidth = 4;
     ctx.beginPath();
     ctx.arc(cardCenter, cardCenter, cardRadius, 0, 2 * Math.PI);
@@ -552,7 +559,41 @@ window.onload = function () {
     ctx.font = "15px Arial";
     ctx.fillStyle = "#000000";
     ctx.textAlign = "center";
-    ctx.fillText("" + i, 8, 16);
+    ctx.fillText("" + i, 10, 16);
+  }
+  const empty = document.getElementById("empty1");
+  empty.setAttribute("width", "300px");
+  empty.setAttribute("height", "80px");
+  const empctx = empty.getContext("2d");
+  empctx.font = "20px Arial";
+  empctx.fillStyle = "#000000";
+  empctx.textAlign = "center";
+  empctx.fillText("Direction cards", 140, 70);
+
+  const ctximg = document.getElementById("empty3").getContext("2d");
+  const img = new Image();
+  img.addEventListener("load", () => {
+    ctximg.drawImage(img,0,0, 675, 684, 50, 0, 170, 150);
+  });
+
+  img.src = "/dobble2_imgs/directions6.png";
+  for (j = numberOfCards[lev] - lev + 1; j <= numberOfCards[lev]; j++) {
+    var c = document.getElementById("card" + lev + "-" + j);
+    c.setAttribute("width", "100px");
+    c.setAttribute("height", "100px");
+    var ctx = c.getContext("2d");
+    // draw circle
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.arc(cardCenter, cardCenter, cardRadius, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fill();
+    // add card number in red
+    ctx.font = "15px Arial";
+    ctx.fillStyle = "#000000";
+    ctx.textAlign = "center";
+    ctx.fillText("" + j, 10, 12);
   }
   initialize(lev);
 }
