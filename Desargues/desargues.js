@@ -206,8 +206,8 @@ function drop(event) {
     cardClone.id = data + "-clone";
     cardClone.style.border = "";
     cardClone.style.boxShadow = "";
-    cardClone.style.width = "60px";
-    cardClone.style.height = "60px";
+    cardClone.style.width = "65px";
+    cardClone.style.height = "65px";
     cardClone.style.position = "absolute";
     dropZone.appendChild(cardClone);
     checkLine();
@@ -426,7 +426,9 @@ window.onload = function () {
     ctx_des.fillStyle = "black";
     ctx_des.beginPath();
     ctx_des.setLineDash([]);
-    ctx_des.arc(473, 136, 20, 0, 2 * Math.PI);
+    //cop
+    ctx_des.arc(473, 136, 25, 0, 2 * Math.PI);
+    //triangles
     ctx_des.moveTo(259, 86);
     ctx_des.arc(259, 86, 20, 0, 2 * Math.PI);
     ctx_des.moveTo(294, 148);
@@ -454,7 +456,7 @@ window.onload = function () {
     ctx_des.beginPath();
     ctx_des.fillStyle = "#c40707ff"
     ctx_des.moveTo(64, 477);
-    ctx_des.arc(64, 477, 20, 0, 2 * Math.PI);
+    ctx_des.arc(64, 477, 25, 0, 2 * Math.PI);
     ctx_des.moveTo(262, 510);
     ctx_des.arc(262, 510, 25, 0, 2 * Math.PI);
     ctx_des.moveTo(527, 554);
