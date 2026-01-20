@@ -24,7 +24,7 @@ function selectSymbol(id) {
     const index = selectedSymbols.indexOf(currentSelectedSymbol);
 
     for (let i = 1; i <= currentSymbols.length; i++) {
-        const symbol = document.getElementById("symbol5-" + i);
+        const symbol = document.getElementById("des_symbol5-" + i);
         symbol.style.color = "";
         symbol.style.border = "";
     }
@@ -33,7 +33,7 @@ function selectSymbol(id) {
     selectedSymbols.forEach(sym => {
         if (sym !== currentSelectedSymbol) {
             const symIndex = currentSymbols.indexOf(sym) + 1;
-            const symElement = document.getElementById("symbol5-" + symIndex);
+            const symElement = document.getElementById("des_symbol5-" + symIndex);
             symElement.style.color = "blue";
             symElement.style.borderColor = "#c9eaf4";
         }
@@ -41,12 +41,25 @@ function selectSymbol(id) {
     );
 
     if (index === -1) {
+        //select 2 symbols
         if (selectedSymbols.length < 2) {
             selectedSymbols.push(currentSelectedSymbol);
             document.getElementById(id).style.color = "blue";
             document.getElementById(id).style.borderColor = "#c9eaf4";
         }
+        else if (selectedSymbols.length = 2) {
+            //reset symbol 3 to symbol 1 when more than 2 symbols selected
+            selectedSymbols = [currentSelectedSymbol];
+            for (let i = 1; i <= currentSymbols.length; i++) {
+                const symbol = document.getElementById("des_symbol5-" + i);
+                symbol.style.color = "";
+                symbol.style.border = "";
+            }
+            document.getElementById(id).style.color = "blue";
+            document.getElementById(id).style.borderColor = "#c9eaf4";
+        }
     } else {
+        //unselect symbol when clicked twice
         selectedSymbols.splice(index, 1);
         document.getElementById(id).style.color = "";
         document.getElementById(id).style.borderColor = "";
@@ -63,7 +76,7 @@ function selectCard(card) {
     const index = selectedCards.indexOf(selectedCardContent);
 
     for (let i = 1; i <= currentCardContents.length; i++) {
-        const cardImg = document.getElementById("card5-" + i);
+        const cardImg = document.getElementById("des_card5-" + i);
         cardImg.style.border = "";
         cardImg.style.boxShadow = "";
     }
@@ -72,7 +85,7 @@ function selectCard(card) {
     selectedCards.forEach(card => {
         if (card !== selectedCardContent) {
             const cardIndex = currentCardContents.indexOf(card) + 1;
-            const cardElement = document.getElementById("card5-" + cardIndex);
+            const cardElement = document.getElementById("des_card5-" + cardIndex);
             cardElement.style.border = "5px solid #9879b0";
         }
     }
@@ -80,10 +93,22 @@ function selectCard(card) {
 
     if (index === -1) {
         if (selectedCards.length < 2) {
+            //select 2 cards
             selectedCards.push(selectedCardContent);
             document.getElementById(card).style.border = "5px solid #9879b0";
         }
+        else if (selectedCards.length = 2) {
+            //reset card 3 to card 1 when more than 2 cards selected
+            selectedCards = [selectedCardContent];
+            for (let i = 1; i <= currentCardContents.length; i++) {
+                const cardImg = document.getElementById("des_card5-" + i);
+                cardImg.style.border = "";
+                cardImg.style.boxShadow = "";
+            }
+            document.getElementById(card).style.border = "5px solid #9879b0";
+        }
     } else {
+        //unselect card when clicked twice
         selectedCards.splice(index, 1);
         document.getElementById(card).style.border = "";
     }
@@ -93,7 +118,7 @@ function selectCard(card) {
 
 function highlightCards() {
     for (let i = 1; i <= currentCardContents.length; i++) {
-        const cardImg = document.getElementById("card5-" + i);
+        const cardImg = document.getElementById("des_card5-" + i);
         cardImg.style.border = "";
         cardImg.style.boxShadow = "";
     }
@@ -102,7 +127,7 @@ function highlightCards() {
     if (selectedSymbols.length === 1) {
         currentCardContents.forEach((symbols, j) => {
             if (symbols.includes(selectedSymbols[0])) {
-                const cardImg = document.getElementById("card5-" + (j + 1));
+                const cardImg = document.getElementById("des_card5-" + (j + 1));
                 cardImg.style.border = "5px solid #9879b0";
                 cardImg.style.boxShadow = "0 0 15px #f8f6faff";
             }
@@ -111,7 +136,7 @@ function highlightCards() {
     if (selectedSymbols.length === 2) {
         currentCardContents.forEach((symbols, j) => {
             if ((symbols.includes(selectedSymbols[0])) && (symbols.includes(selectedSymbols[1]))) {
-                const cardImg = document.getElementById("card5-" + (j + 1));
+                const cardImg = document.getElementById("des_card5-" + (j + 1));
                 cardImg.style.border = "5px solid #c9eaf4";
                 cardImg.style.boxShadow = "0 0 15px #264751ff";
             }
@@ -121,7 +146,7 @@ function highlightCards() {
 
 function highlightSymbols() {
     for (let i = 1; i <= currentSymbols.length; i++) {
-        const symbol = document.getElementById("symbol5-" + i);
+        const symbol = document.getElementById("des_symbol5-" + i);
         symbol.style.color = "";
         symbol.style.border = "";
     }
@@ -130,7 +155,7 @@ function highlightSymbols() {
         currentSymbols.forEach((symbolContent, j) => {
             for (let k = 0; k < currentLevel; k++) {
                 if (symbolContent.includes(selectedCards[0][k])) {
-                    const symbol = document.getElementById("symbol5-" + (j + 1));
+                    const symbol = document.getElementById("des_symbol5-" + (j + 1));
                     symbol.style.color = "blue";
                     symbol.style.border = "5px solid green";
                 }
@@ -143,7 +168,7 @@ function highlightSymbols() {
                 for (let l = 0; l < currentLevel; l++) {
                     if ((symbolContent.includes(selectedCards[0][k])) && (symbolContent.includes(selectedCards[1][l]))) {
                         //document.getElementById("test").innerHTML = selectedCards[0][k] + k + selectedCards[1][l] + l;
-                        const symbol = document.getElementById("symbol5-" + (j + 1));
+                        const symbol = document.getElementById("des_symbol5-" + (j + 1));
                         symbol.style.color = "blue";
                         symbol.style.border = "5px solid red";
                     }
@@ -173,6 +198,7 @@ function drop(event) {
         existingCard.style.width = "100px";
         existingCard.style.height = "100px";
         existingCard.style.position = "relative";
+        existingCard.style.display = "none"
         const cardContainer = document.getElementById("card-container");
         cardContainer.appendChild(existingCard);
     }
@@ -187,7 +213,7 @@ function drop(event) {
     checkLine();
     //event.target.appendChild(document.getElementById(data));
 }
-
+/*
 function dropBack(event) {
     event.preventDefault();
     const data = event.dataTransfer.getData("text");
@@ -204,6 +230,8 @@ function dropBack(event) {
     }
     checkLine();
 }
+    */
+
 function getZoneSymbols(zoneId) {
     const zone = document.getElementById(zoneId);
     if (!zone) return null;
@@ -224,6 +252,7 @@ function setLineLabel(lineId, text, color) {
 }
 
 function checkLine() {
+    setLineLabel("dStatus", "", "black")
     const groups = {
         /*triangle1: ["t1p1", "t1p2", "t1p3"],
         triangle2: ["t2p1", "t2p2", "t2p3"],*/
@@ -239,12 +268,11 @@ function checkLine() {
         int3line2: ["aop3", "t1p1", "t1p2"]
     };
 
-    statusZone = document.getElementById("dStatus");
     Object.keys(groups).forEach(line => {
         const zoneIds = groups[line];
         const symbols = zoneIds.map(getZoneSymbols);
 
-        if (!symbols[0] || !symbols[1]) {
+        if (!symbols[0] || !symbols[1] || !symbols[2]) {
             setLineLabel(line, "", "#9879b0");
             return;
         }
@@ -257,11 +285,7 @@ function checkLine() {
             return;
         }
         else if (commonAll.length > 0) {
-            /*if (line === "triangle1" || line === "triangle2") {
-                setLineLabel(line, commonAll[0], "orange");
-                setLineLabel("dStatus", "", "black");
-            }
-            else*/ if (line === "cop1" || line === "cop2" || line === "cop3") {
+            if (line === "cop1" || line === "cop2" || line === "cop3") {
                 setLineLabel(line, commonAll[0], "blue");
                 setLineLabel("dStatus", "", "black");
             }
@@ -285,24 +309,40 @@ function checkLine() {
                 setLineLabel(line, commonAll[0], "#9625ecff");
                 setLineLabel("dStatus", "", "black");
             }
-            //completed
-            if (/*document.getElementById("triangle1").textContent !== "" &&
-                document.getElementById("triangle2").textContent !== "" &&*/
-                document.getElementById("cop1").textContent !== "" &&
-                document.getElementById("cop2").textContent !== "" &&
-                document.getElementById("cop3").textContent !== "" &&
-                document.getElementById("aop").textContent !== "" &&
-                document.getElementById("int1line1").textContent !== "" &&
-                document.getElementById("int1line2").textContent !== "" &&
-                document.getElementById("int2line1").textContent !== "" &&
-                document.getElementById("int2line2").textContent !== "" &&
-                document.getElementById("int3line1").textContent !== "" &&
-                document.getElementById("int3line2").textContent !== ""
-            ) {
-                setLineLabel("dStatus", "Well done! You have completed Desargues-Dobble!", "blue");
-            }
         }
     });
+    //completed
+    if (
+        document.getElementById("cop1").textContent !== "" &&
+        document.getElementById("cop2").textContent !== "" &&
+        document.getElementById("cop3").textContent !== "" &&
+        document.getElementById("aop").textContent !== "" &&
+        document.getElementById("int1line1").textContent !== "" &&
+        document.getElementById("int1line2").textContent !== "" &&
+        document.getElementById("int2line1").textContent !== "" &&
+        document.getElementById("int2line2").textContent !== "" &&
+        document.getElementById("int3line1").textContent !== "" &&
+        document.getElementById("int3line2").textContent !== "") {
+        setLineLabel("dStatus", "Well done! You have completed Desargues-Dobble!", "blue");
+    }
+}
+
+function clearCardDesargeus() {
+    //clear cards out of the drop zones
+    const dropzones = document.getElementsByClassName("dropzone");
+    for (let i = 0; i < dropzones.length; i++) {
+        const zone = dropzones[i];
+        const img = zone.querySelector("img");
+        if (img) {
+            img.style.width = "100px";
+            img.style.height = "100px";
+            img.style.position = "relative";
+            img.style.display = "none";
+            const cardContainer = document.getElementById("card-container");
+            cardContainer.appendChild(img);
+        }
+    }
+    checkLine();
 }
 
 window.onload = function () {

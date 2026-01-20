@@ -105,14 +105,23 @@
         width="650px" height="325px" style="border:0px;"> </iframe>
     <h3>Dobble card trick with Desargues's Theorem</h3>
     <p>Let's try Desargues's Theorem with Level 5 Dobble!</p>
-    <p>Drag the cards from the cards containers into the circles(points) on the lines and triangles. You can click on a
-        card to see
-        which symbols it conatins and click on two cards to see the common symbol of the two. Similarly, you can click
-        on a symbol to highlight the cards that contains that symbol and click on two symbols to see a card that
-        contains both of those symbols.</p>
+    <p>Drag the cards from the cards containers into the circles(points) on the lines and triangles.</p>
+    <p> You can
+        click
+        on a symbol(letter) to highlight the cards that contains the chosen symbol and click on two symbols to highlight the
+        card that
+        contains both of those symbols. Similarly, you can
+        click
+        on a card to highlight the symbols that the card conatins and click on two cards to highlight the symbol that
+        the both of those cards contains.</p>
+    <p>If the three cards on a line has a common symbol, the symbol will be shown next to the line to verify you have
+        chosen the right cards to form the line, indicating that you are in the right path.</p>
     <p>Happy Desargues-Dobble playing!</p>
     <div class="canvas_container">
         <canvas id="desargeus_canvas" width="600" height="600px"></canvas>
+         <button id="clearCardsDes"
+            style="font-size: 17px; position: absolute; border-radius: 7.5px; background-color: #ffffff; left:20px; top: 560px;"
+            onclick="clearCardDesargeus(event)">Start Again</button>
         <div class="dropzone" id="cop" style="left: 447px; top: 110px;" ondrop="drop(event)"
             ondragover="allowDrop(event)"></div>
         <div class="dropzone" id="t1p1" style="left: 233px; top: 60px;" ondrop="drop(event)"
@@ -134,7 +143,7 @@
         <div class="dropzone" id="aop3" style="left: 501px; top: 528px;" ondrop="drop(event)"
             ondragover="allowDrop(event)"></div>
         <div class="status" id="dStatus"
-            style="position: absolute; left: 1800px; top: 10px; background-color: #cae89b;"></div>
+            style="position: absolute; left: 160px; top: 10px; background-color: #cae89b;"></div>
         <!--<div class="lineLabel" id="triangle1" style="left: 305px; top: 190px;"></div>
         <div class="lineLabel" id="triangle2" style="left: 145px; top: 175px;"></div>-->
         <div class="lineLabel" id="cop1" style="left: 20px; top: 50px;"></div>
@@ -151,76 +160,76 @@
     </div>
     <div class="desargues_trick2">
 
-        <div id="card-container" ondragover="allowDrop(event)" ondrop="dropBack(event)">
+        <div id="card-container" ondragover="allowDrop(event)">
             <p><strong>CARDS:</strong></p>
 
-            <img id="card5-1" src="../L5_cards/card5-1.png" onclick="selectCard('card5-1')"
+            <img id="des_card5-1" src="../L5_cards/card5-1.png" onclick="selectCard('des_card5-1')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-2" src="../L5_cards/card5-2.png" onclick="selectCard('card5-2')"
+            <img id="des_card5-2" src="../L5_cards/card5-2.png" onclick="selectCard('des_card5-2')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-3" src="../L5_cards/card5-3.png" onclick="selectCard('card5-3')"
+            <img id="des_card5-3" src="../L5_cards/card5-3.png" onclick="selectCard('des_card5-3')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-4" src="../L5_cards/card5-4.png" onclick="selectCard('card5-4')"
+            <img id="des_card5-4" src="../L5_cards/card5-4.png" onclick="selectCard('des_card5-4')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-5" src="../L5_cards/card5-5.png" onclick="selectCard('card5-5')"
+            <img id="des_card5-5" src="../L5_cards/card5-5.png" onclick="selectCard('des_card5-5')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-6" src="../L5_cards/card5-6.png" onclick="selectCard('card5-6')"
+            <img id="des_card5-6" src="../L5_cards/card5-6.png" onclick="selectCard('des_card5-6')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-7" src="../L5_cards/card5-7.png" onclick="selectCard('card5-7')"
+            <img id="des_card5-7" src="../L5_cards/card5-7.png" onclick="selectCard('des_card5-7')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-8" src="../L5_cards/card5-8.png" onclick="selectCard('card5-8')"
+            <img id="des_card5-8" src="../L5_cards/card5-8.png" onclick="selectCard('des_card5-8')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-9" src="../L5_cards/card5-9.png" onclick="selectCard('card5-9')"
+            <img id="des_card5-9" src="../L5_cards/card5-9.png" onclick="selectCard('des_card5-9')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-10" src="../L5_cards/card5-10.png" onclick="selectCard('card5-10')"
+            <img id="des_card5-10" src="../L5_cards/card5-10.png" onclick="selectCard('des_card5-10')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-11" src="../L5_cards/card5-11.png" onclick="selectCard('card5-11')"
+            <img id="des_card5-11" src="../L5_cards/card5-11.png" onclick="selectCard('des_card5-11')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-12" src="../L5_cards/card5-12.png" onclick="selectCard('card5-12')"
+            <img id="des_card5-12" src="../L5_cards/card5-12.png" onclick="selectCard('des_card5-12')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-13" src="../L5_cards/card5-13.png" onclick="selectCard('card5-13')"
+            <img id="des_card5-13" src="../L5_cards/card5-13.png" onclick="selectCard('des_card5-13')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-14" src="../L5_cards/card5-14.png" onclick="selectCard('card5-14')"
+            <img id="des_card5-14" src="../L5_cards/card5-14.png" onclick="selectCard('des_card5-14')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-15" src="../L5_cards/card5-15.png" onclick="selectCard('card5-15')"
+            <img id="des_card5-15" src="../L5_cards/card5-15.png" onclick="selectCard('des_card5-15')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-16" src="../L5_cards/card5-16.png" onclick="selectCard('card5-16')"
+            <img id="des_card5-16" src="../L5_cards/card5-16.png" onclick="selectCard('des_card5-16')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-17" src="../L5_cards/card5-17.png" onclick="selectCard('card5-17')"
+            <img id="des_card5-17" src="../L5_cards/card5-17.png" onclick="selectCard('des_card5-17')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-18" src="../L5_cards/card5-18.png" onclick="selectCard('card5-18')"
+            <img id="des_card5-18" src="../L5_cards/card5-18.png" onclick="selectCard('des_card5-18')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-19" src="../L5_cards/card5-19.png" onclick="selectCard('card5-19')"
+            <img id="des_card5-19" src="../L5_cards/card5-19.png" onclick="selectCard('des_card5-19')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-20" src="../L5_cards/card5-20.png" onclick="selectCard('card5-20')"
+            <img id="des_card5-20" src="../L5_cards/card5-20.png" onclick="selectCard('des_card5-20')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-            <img id="card5-21" src="../L5_cards/card5-21.png" onclick="selectCard('card5-21')"
+            <img id="des_card5-21" src="../L5_cards/card5-21.png" onclick="selectCard('des_card5-21')"
                 ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
 
         </div>
         <div id="symbol-container">
             <p><strong>SYMBOLS:</strong></p>
-            <button id="symbol5-1" style="font-size: 18px;" onclick="selectSymbol('symbol5-1')"> A </button>
-            <button id="symbol5-2" style="font-size: 18px;" onclick="selectSymbol('symbol5-2')"> B </button>
-            <button id="symbol5-3" style="font-size: 18px;" onclick="selectSymbol('symbol5-3')"> C </button>
-            <button id="symbol5-4" style="font-size: 18px;" onclick="selectSymbol('symbol5-4')"> D </button>
-            <button id="symbol5-5" style="font-size: 18px;" onclick="selectSymbol('symbol5-5')"> E </button>
-            <button id="symbol5-6" style="font-size: 18px;" onclick="selectSymbol('symbol5-6')"> F </button>
-            <button id="symbol5-7" style="font-size: 18px;" onclick="selectSymbol('symbol5-7')"> G </button>
-            <button id="symbol5-8" style="font-size: 18px;" onclick="selectSymbol('symbol5-8')"> H </button>
-            <button id="symbol5-9" style="font-size: 18px;" onclick="selectSymbol('symbol5-9')"> I </button>
-            <button id="symbol5-10" style="font-size: 18px;" onclick="selectSymbol('symbol5-10')"> J </button>
-            <button id="symbol5-11" style="font-size: 18px;" onclick="selectSymbol('symbol5-11')"> K </button>
-            <button id="symbol5-12" style="font-size: 18px;" onclick="selectSymbol('symbol5-12')"> L </button>
-            <button id="symbol5-13" style="font-size: 18px;" onclick="selectSymbol('symbol5-13')"> M </button>
-            <button id="symbol5-14" style="font-size: 18px;" onclick="selectSymbol('symbol5-14')"> N </button>
-            <button id="symbol5-15" style="font-size: 18px;" onclick="selectSymbol('symbol5-15')"> O </button>
-            <button id="symbol5-16" style="font-size: 18px;" onclick="selectSymbol('symbol5-16')"> P </button>
-            <button id="symbol5-17" style="font-size: 18px;" onclick="selectSymbol('symbol5-17')"> Q </button>
-            <button id="symbol5-18" style="font-size: 18px;" onclick="selectSymbol('symbol5-18')"> R </button>
-            <button id="symbol5-19" style="font-size: 18px;" onclick="selectSymbol('symbol5-19')"> S </button>
-            <button id="symbol5-20" style="font-size: 18px;" onclick="selectSymbol('symbol5-20')"> T </button>
-            <button id="symbol5-21" style="font-size: 18px;" onclick="selectSymbol('symbol5-21')"> U </button>
+            <button id="des_symbol5-1" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-1')"> A </button>
+            <button id="des_symbol5-2" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-2')"> B </button>
+            <button id="des_symbol5-3" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-3')"> C </button>
+            <button id="des_symbol5-4" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-4')"> D </button>
+            <button id="des_symbol5-5" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-5')"> E </button>
+            <button id="des_symbol5-6" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-6')"> F </button>
+            <button id="des_symbol5-7" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-7')"> G </button>
+            <button id="des_symbol5-8" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-8')"> H </button>
+            <button id="des_symbol5-9" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-9')"> I </button>
+            <button id="des_symbol5-10" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-10')"> J </button>
+            <button id="des_symbol5-11" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-11')"> K </button>
+            <button id="des_symbol5-12" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-12')"> L </button>
+            <button id="des_symbol5-13" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-13')"> M </button>
+            <button id="des_symbol5-14" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-14')"> N </button>
+            <button id="des_symbol5-15" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-15')"> O </button>
+            <button id="des_symbol5-16" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-16')"> P </button>
+            <button id="des_symbol5-17" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-17')"> Q </button>
+            <button id="des_symbol5-18" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-18')"> R </button>
+            <button id="des_symbol5-19" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-19')"> S </button>
+            <button id="des_symbol5-20" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-20')"> T </button>
+            <button id="des_symbol5-21" style="font-size: 18px;" onclick="selectSymbol('des_symbol5-21')"> U </button>
         </div>
         <p id="test"></p>
         <script src="desargues.js"></script>
