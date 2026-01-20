@@ -237,7 +237,7 @@ function drop(event) {
         existingCard.style.width = "100px";
         existingCard.style.height = "100px";
         existingCard.style.position = "relative";
-        existingCard.style.display = "none"
+        existingCard.style.display = "none";
         const cardContainer = document.getElementById("card-container");
         cardContainer.appendChild(existingCard);
     }
