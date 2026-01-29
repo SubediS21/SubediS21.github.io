@@ -1,4 +1,4 @@
-/* level4
+﻿/* level4
 const currentCardContents = [['A', 'B', 'C', 'D'], ['A', 'E', 'F', 'G'], ['A', 'H', 'I', 'J'], ['A', 'K', 'L', 'M'],
 ['B', 'E', 'H', 'K'], ['B', 'F', 'I', 'L'], ['B', 'G', 'J', 'M'],
 ['C', 'E', 'I', 'M'], ['C', 'F', 'J', 'K'], ['C', 'G', 'H', 'L'],
@@ -34,7 +34,7 @@ function selectSymbol(id) {
     const index = selectedSymbols.indexOf(currentSelectedSymbol);
 
     for (let i = 1; i <= currentSymbols.length; i++) {
-        const symbol = document.getElementById("symbol5-" + i);
+        const symbol = document.getElementById("pap_symbol5-" + i);
         symbol.style.color = "";
         symbol.style.border = "";
     }
@@ -43,7 +43,7 @@ function selectSymbol(id) {
     selectedSymbols.forEach(sym => {
         if (sym !== currentSelectedSymbol) {
             const symIndex = currentSymbols.indexOf(sym) + 1;
-            const symElement = document.getElementById("symbol5-" + symIndex);
+            const symElement = document.getElementById("pap_symbol5-" + symIndex);
             symElement.style.color = "blue";
             symElement.style.borderColor = "#c9eaf4";
         }
@@ -61,7 +61,7 @@ function selectSymbol(id) {
             //reset symbol 3 to symbol 1 when more than 2 symbols selected
             selectedSymbols = [currentSelectedSymbol];
             for (let i = 1; i <= currentSymbols.length; i++) {
-                const symbol = document.getElementById("symbol5-" + i);
+                const symbol = document.getElementById("pap_symbol5-" + i);
                 symbol.style.color = "";
                 symbol.style.border = "";
             }
@@ -86,7 +86,7 @@ function selectCard(card) {
     const index = selectedCards.indexOf(selectedCardContent);
 
     for (let i = 1; i <= currentCardContents.length; i++) {
-        const cardImg = document.getElementById("card5-" + i);
+        const cardImg = document.getElementById("pap_card5-" + i);
         cardImg.style.border = "";
         cardImg.style.boxShadow = "";
     }
@@ -95,7 +95,7 @@ function selectCard(card) {
     selectedCards.forEach(card => {
         if (card !== selectedCardContent) {
             const cardIndex = currentCardContents.indexOf(card) + 1;
-            const cardElement = document.getElementById("card5-" + cardIndex);
+            const cardElement = document.getElementById("pap_card5-" + cardIndex);
             cardElement.style.border = "5px solid #9879b0";
         }
     }
@@ -111,7 +111,7 @@ function selectCard(card) {
             //reset card 3 to card 1 when more than 2 cards selected
             selectedCards = [selectedCardContent];
             for (let i = 1; i <= currentCardContents.length; i++) {
-                const cardImg = document.getElementById("card5-" + i);
+                const cardImg = document.getElementById("pap_card5-" + i);
                 cardImg.style.border = "";
                 cardImg.style.boxShadow = "";
             }
@@ -128,7 +128,7 @@ function selectCard(card) {
 
 function highlightCards() {
     for (let i = 1; i <= currentCardContents.length; i++) {
-        const cardImg = document.getElementById("card5-" + i);
+        const cardImg = document.getElementById("pap_card5-" + i);
         cardImg.style.border = "";
         cardImg.style.boxShadow = "";
     }
@@ -137,7 +137,7 @@ function highlightCards() {
     if (selectedSymbols.length === 1) {
         currentCardContents.forEach((symbols, j) => {
             if (symbols.includes(selectedSymbols[0])) {
-                const cardImg = document.getElementById("card5-" + (j + 1));
+                const cardImg = document.getElementById("pap_card5-" + (j + 1));
                 cardImg.style.border = "5px solid #9879b0";
                 cardImg.style.boxShadow = "0 0 15px #f8f6faff";
             }
@@ -146,7 +146,7 @@ function highlightCards() {
     if (selectedSymbols.length === 2) {
         currentCardContents.forEach((symbols, j) => {
             if ((symbols.includes(selectedSymbols[0])) && (symbols.includes(selectedSymbols[1]))) {
-                const cardImg = document.getElementById("card5-" + (j + 1));
+                const cardImg = document.getElementById("pap_card5-" + (j + 1));
                 cardImg.style.border = "5px solid #c9eaf4";
                 cardImg.style.boxShadow = "0 0 15px #264751ff";
             }
@@ -156,7 +156,7 @@ function highlightCards() {
 
 function highlightSymbols() {
     for (let i = 1; i <= currentSymbols.length; i++) {
-        const symbol = document.getElementById("symbol5-" + i);
+        const symbol = document.getElementById("pap_symbol5-" + i);
         symbol.style.color = "";
         symbol.style.border = "";
     }
@@ -165,7 +165,7 @@ function highlightSymbols() {
         currentSymbols.forEach((symbolContent, j) => {
             for (let k = 0; k < currentLevel; k++) {
                 if (symbolContent.includes(selectedCards[0][k])) {
-                    const symbol = document.getElementById("symbol5-" + (j + 1));
+                    const symbol = document.getElementById("pap_symbol5-" + (j + 1));
                     symbol.style.color = "blue";
                     symbol.style.border = "5px solid green";
                 }
@@ -179,7 +179,7 @@ function highlightSymbols() {
                     if ((symbolContent.includes(selectedCards[0][k])) && (symbolContent.includes(selectedCards[1][l]))) {
                         //document.getElementById("test").innerHTML = selectedCards[0][k] + k + selectedCards[1][l] + l;
                         //document.getElementById("test").innerHTML = selectedCards;
-                        const symbol = document.getElementById("symbol5-" + (j + 1));
+                        const symbol = document.getElementById("pap_symbol5-" + (j + 1));
                         symbol.style.color = "blue";
                         symbol.style.border = "5px solid red";
                     }
@@ -198,14 +198,14 @@ function clearList() {
     
     // Clear styling from all card elements
     for (let i = 1; i <= currentCardContents.length; i++) {
-        const cardImg = document.getElementById("card5-" + i);
+        const cardImg = document.getElementById("pap_card5-" + i);
         cardImg.style.border = "";
         cardImg.style.boxShadow = "";
     }
     
     // Clear styling from all symbol elements
     for (let i = 1; i <= currentSymbols.length; i++) {
-        const symbol = document.getElementById("symbol5-" + i);
+        const symbol = document.getElementById("pap_symbol5-" + i);
         symbol.style.color = "";
         symbol.style.border = "";
     }
