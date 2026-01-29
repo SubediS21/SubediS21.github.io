@@ -168,17 +168,18 @@ function geometry(F, chars) {
     for (let i = 0; i < noOfCards; i++) {
         cards.push([]);
     }
-    for (let i = 0; i < lines.length; i++) {
+    for (let i = 1; i <= lines.length; i++) {
         let lineChar = lines[i];
-        if (lineChar != "0") {
-            let cardIndex = chars.indexOf(lineChar);
-            cards[cardIndex].push(lineChar);
-        }}
+        //group lineindex when character changes to make a card with 4 symbols
+        for (let c = 0; c < cards.length; c++) {
+            if (cards[c].length < F.noOfElems - 1 && !cards[c].includes(lineChar)) {
+                cards[c].push(lineChar);
+                break;
+            }
+        }
+    }
     return cards;
 }
-
-
-
 
 function testFieldBtnPP() {
     document.getElementById("testboxPP").innerHTML = "Projective Plane of order " + F.noOfElems + "<br>";
@@ -189,8 +190,9 @@ function testFieldBtnPP() {
     }
 }
 function testFieldBtnLine() {
+    let newLine = findLines(F, characters); 
     //document.getElementById("testboxLine").innerHTML += "new points: " + lineFor(8, F);
-    document.getElementById("testboxLine").innerHTML += "<br> New line chars: " + findLines(F, characters) + "<br> length: " + findLines(F, characters).length ;
+    document.getElementById("testboxLine").innerHTML += "<br> New line chars: " + newLine.slice(1, newLine.length);
 }
 function testFieldBtnGeom() {
     for (let i = 0; i < noOfPoints; i++) {
