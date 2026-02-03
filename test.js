@@ -1,6 +1,6 @@
 //constants
-const nConst = 5;
-const F = new PrimeField(nConst, 1);
+const nConst = 7;
+const F = new PrimeField(nConst);
 const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
     "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "ς", "τ", "υ", "φ", "χ", "ψ", "ω",
     "1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -181,29 +181,6 @@ function charToPoint(F, chars) {
     }
     return dict;
 }
-/*
-function geometry(F, chars) {
-    //call findLines, group characters.
-    //chars is a list of n^2+n+1 characters.
-    //return list of cards which is list of n-1 characters. //list of list
-    let lines = findLines(F, chars);
-    let cards = [];
-    for (let i = 0; i < noOfPoints; i++) {
-        cards.push([]);
-    }
-    for (let i = 1; i <= lines.length; i++) {
-        let lineChar = lines[i];
-        //group lineindex when character changes to make a card with 4 symbols
-        for (let c = 0; c < cards.length; c++) {
-            if (cards[c].length < F.noOfElems - 1 && !cards[c].includes(lineChar)) {
-                cards[c].push(lineChar);
-                break;
-            }
-        }
-    }
-    return cards;
-}
-*/
 
 function dotProduct(F, pointA, pointB) {
     return F.add(F.add(F.mult(pointA[0], pointB[0]), F.mult(pointA[1], pointB[1])), F.mult(pointA[2], pointB[2]));
@@ -236,8 +213,8 @@ function geometry(F, chars) {
                 currCard.push(sSym);
             }
         }
-        currCard = [...new Set(currCard)];
-        allCards.push(currCard);
+        //currCard = [...new Set(currCard)];
+        allCards.push([cSym, (currCard)]);
     }
     return allCards;
 }
@@ -260,9 +237,12 @@ function testFieldBtnLine() {
     }
 }
 function testFieldBtnGeom() {
+    let cards = geometry(F, characters)
     for (let i = 0; i < noOfPoints; i++) {
-        document.getElementById("testboxGeom").innerHTML += "Card " + (i + 1) + ": " + geometry(F, characters)[i] + "<br>";
+        document.getElementById("testboxGeom").innerHTML += "Card " + cards[i][0] + ": - " + cards[i][1] + "<br>";
     }
+    //document.getElementById("testboxGeom").innerHTML += geometry(F, characters) + "<br>";
+
 }
 function testFieldBtnDict() {
     document.getElementById("testboxDict").innerHTML += "Dictionary: " + "<br>"
