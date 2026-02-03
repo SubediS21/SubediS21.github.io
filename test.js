@@ -113,7 +113,9 @@ function testFieldBtnN3() {
 //projective plane with:
 //(n^3-1)/(n-1) = n^2+n+1
 //div(n^2), div(n), mod(n)
-const noOfPoints = (F.noOfElems ** 3 - 1) / (F.noOfElems - 1);
+//const noOfPoints = (F.noOfElems ** 3 - 1) / (F.noOfElems - 1);
+const noOfPoints = F.noOfElems ** 2 + F.noOfElems + 1;
+
 function getPointCoords(pointNum, n) {
     let x = Math.floor((pointNum) / (n ** 2));
     let y = Math.floor(((pointNum) % (n ** 2)) / n);
@@ -138,16 +140,16 @@ function lineFor(pointNum, F) {
 
 function findLines(F, chars) {
     // return an n^3 array where pointNums of a line = character representation
-    let result = new Array(F.noOfElems ** 3);
-    result[0] = "0";
+    let lineChar = new Array(F.noOfElems ** 3);
+    lineChar[0] = "0";
     let charIndex = 0;
     for (let i = 1; i < F.noOfElems ** 3; i++) {
-        if (result[i] == null) {
+        if (lineChar[i] == null) {
             let lineI = lineFor(i, F);
             // assign same character to all points on this line
             let currentChar = chars[charIndex];
             for (let l = 0; l < lineI.length; l++) {
-                result[lineI[l]] = currentChar;
+                lineChar[lineI[l]] = currentChar;
             }
 
             charIndex++;
@@ -155,17 +157,38 @@ function findLines(F, chars) {
         }
     }
 
-    return result;
+    return lineChar;
 }
 
+function charToPoint(F, chars) {
+    //make a dictionary to see where the chars are in the line.
+    //e.g. A -> 1
+    // B -> 5
+    // C -> 6
+    // D -> 7
+    // ... 
+    // ε -> 49
+    let line = findLines(F, chars);
+    let dict = [];
+    let charIndex = 0;
+    let pointNumChar = "";
+    for (let i = 1; i < line.length; i++) {
+        if (line[i] != pointNumChar && !dict.some(e => e[0] === line[i])) {
+            pointNumChar = line[i];
+            dict.push([pointNumChar, i]);
+            charIndex++;
+        }
+    }
+    return dict;
+}
+/*
 function geometry(F, chars) {
     //call findLines, group characters.
     //chars is a list of n^2+n+1 characters.
     //return list of cards which is list of n-1 characters. //list of list
     let lines = findLines(F, chars);
     let cards = [];
-    let noOfCards = F.noOfElems ** 2 + F.noOfElems + 1;
-    for (let i = 0; i < noOfCards; i++) {
+    for (let i = 0; i < noOfPoints; i++) {
         cards.push([]);
     }
     for (let i = 1; i <= lines.length; i++) {
@@ -180,6 +203,44 @@ function geometry(F, chars) {
     }
     return cards;
 }
+*/
+
+function dotProduct(F, pointA, pointB) {
+    return F.add(F.add(F.mult(pointA[0], pointB[0]), F.mult(pointA[1], pointB[1])), F.mult(pointA[2], pointB[2]));
+}
+
+function geometry(F, chars) {
+    //allCards = []
+    //for c in chars
+    //currCard =[]
+    //for s in chars
+    // if dot product of (getPointCoords(cDictionaryNum) and getPointCoords(sDictionaryNum)) == 0
+    // add c to currCard
+    // if n-1 char in currCard add currCard to allCards.
+    let allCards = [];
+    let dict = charToPoint(F, chars);
+
+    for (let c = 0; c < dict.length; c++) {
+        let currCard = [];
+
+        let cSym = dict[c][0];
+        let cDictNum = dict[c][1];
+        let cCoords = getPointCoords(cDictNum, F.noOfElems);
+
+        for (let s = 0; s < dict.length; s++) {
+            let sSym = dict[s][0];
+            let sDictNum = dict[s][1];
+            let sCoords = getPointCoords(sDictNum, F.noOfElems);
+
+            if (dotProduct(F, cCoords, sCoords) == 0) {
+                currCard.push(sSym);
+            }
+        }
+        currCard = [...new Set(currCard)];
+        allCards.push(currCard);
+    }
+    return allCards;
+}
 
 function testFieldBtnPP() {
     document.getElementById("testboxPP").innerHTML = "Projective Plane of order " + F.noOfElems + "<br>";
@@ -190,12 +251,24 @@ function testFieldBtnPP() {
     }
 }
 function testFieldBtnLine() {
-    let newLine = findLines(F, characters); 
+    let newLine = findLines(F, characters);
     //document.getElementById("testboxLine").innerHTML += "new points: " + lineFor(8, F);
-    document.getElementById("testboxLine").innerHTML += "<br> New line chars: " + newLine.slice(1, newLine.length);
+    document.getElementById("testboxLine").innerHTML += "Add characters lines to the pointNums: " + "<br>";
+    for (let i = 1; i < F.noOfElems ** 3; i++) {
+        //document.getElementById("testboxLine").innerHTML += i + ": " ;
+        document.getElementById("testboxLine").innerHTML += newLine[i] + ", ";
+    }
 }
 function testFieldBtnGeom() {
     for (let i = 0; i < noOfPoints; i++) {
         document.getElementById("testboxGeom").innerHTML += "Card " + (i + 1) + ": " + geometry(F, characters)[i] + "<br>";
     }
 }
+function testFieldBtnDict() {
+    document.getElementById("testboxDict").innerHTML += "Dictionary: " + "<br>"
+    for (let i = 0; i < noOfPoints; i++) {
+        document.getElementById("testboxDict").innerHTML += charToPoint(F, characters)[i][0] + " --> " + charToPoint(F, characters)[i][1] + ", ";
+    }
+}
+
+//document.getElementById("orig").innerHTML+= geometry(F, characters);
