@@ -1,9 +1,37 @@
 //constants
-const nConst = 7;
-const F = new PrimeField(nConst);
-const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-    "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "ς", "τ", "υ", "φ", "χ", "ψ", "ω",
-    "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+let nConst;
+let F;
+
+function inputLvl(){
+    nConst = parseInt(document.getElementById("level").value) - 1;
+    if (nConst == 4){
+        F = new FieldOfFour(nConst);
+    }
+    else {
+        F = new PrimeField(nConst);
+    }
+    loadGeom();
+}
+
+function loadGeom(){
+    const noOfPoints = F.noOfElems ** 2 + F.noOfElems + 1;
+    let cards = geometry(F, characters);
+    document.getElementById("testprint").innerHTML = "Level " + (nConst + 1) + " (order " + (nConst) + ") cards: <br><br>";
+    for (let i = 0; i < noOfPoints; i++) {
+        document.getElementById("testprint").innerHTML += "Card " + cards[i][0] + ": - " + cards[i][1] + "<br>";
+    }
+    document.getElementById("testprint").innerHTML += "<br>Number of cards/symbol: " + noOfPoints;
+}
+
+const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y",
+    "Z", "α", "β", "Γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ὀ", "π", "Ϸ", "ς", "τ", "ύ", "φ", "χ", "ψ", "ω",
+    "1", "2", "3", "4", "5", "6", "7", "8", "9", "£",
+    "क", "ख", "ग", "घ", "ङ ", "च", "छ", "ज", "झ", "ञ", "ट", "ठ", "ड", "ढ", "ण", "त", "थ", "द", "ध", "न",
+    "प", "फ", "ब", "भ", "म", "य", "र", "ल", "व", "श", "ष", "स", "ह", "क्ष", "त्र", "ज्ञ", "अ", "ई", "ऊ", "ए", //100
+    "ऋ", "$", "€", "¥", "%", "◲", "⋕", "ϡ", "Ͽ", "Δ", "Σ", "ϖ", "⫍", "∽", "◊", "§", "@", "¬", "个", "大",
+    "山", "三", "义", "飞", "乡", "川", "九", "中", "日", "开", "水", "斗", "及"];
+//133 symbols
 
 //p(prime)
 //n = p^k (Dobble Level -1 )
@@ -91,13 +119,6 @@ function FiniteField(p, k) {
     }
 */
 
-function testFieldBtn() {
-    document.getElementById("testbox").innerHTML = "Field of order " + F.noOfElems + "<br>";
-    document.getElementById("testbox").innerHTML += "Add: 2 + 3 = " + F.add(2, 3) + "<br>";
-    //document.getElementById("testbox").innerHTML += "Neg: -3 = " + F.neg(3) + "<br>";
-    document.getElementById("testbox").innerHTML += "Mult: 2 * 3 = " + F.mult(2, 3) + "<br>";
-    //document.getElementById("testbox").innerHTML += "Inv: 3^-1 = " + F.inv(3) + "<br>";
-}
 
 //make list of non-origin points
 //n^3 box with:
@@ -106,16 +127,11 @@ let nonOriginPoints = [];
 for (let i = 1; i < F.noOfElems ** 3; i++) {
     nonOriginPoints.push(i);
 }
-function testFieldBtnN3() {
-    document.getElementById("testboxN3").innerHTML = "Non-origin points (n^3): " + "<br>" + nonOriginPoints;
-}
 
 //projective plane with:
 //(n^3-1)/(n-1) = n^2+n+1
 //div(n^2), div(n), mod(n)
 //const noOfPoints = (F.noOfElems ** 3 - 1) / (F.noOfElems - 1);
-const noOfPoints = F.noOfElems ** 2 + F.noOfElems + 1;
-
 function getPointCoords(pointNum, n) {
     let x = Math.floor((pointNum) / (n ** 2));
     let y = Math.floor(((pointNum) % (n ** 2)) / n);
@@ -219,6 +235,16 @@ function geometry(F, chars) {
     return allCards;
 }
 
+function testFieldBtn() {
+    document.getElementById("testbox").innerHTML = "Field of order " + F.noOfElems + "<br>";
+    document.getElementById("testbox").innerHTML += "Add: 2 + 3 = " + F.add(2, 3) + "<br>";
+    //document.getElementById("testbox").innerHTML += "Neg: -3 = " + F.neg(3) + "<br>";
+    document.getElementById("testbox").innerHTML += "Mult: 2 * 3 = " + F.mult(2, 3) + "<br>";
+    //document.getElementById("testbox").innerHTML += "Inv: 3^-1 = " + F.inv(3) + "<br>";
+}
+function testFieldBtnN3() {
+    document.getElementById("testboxN3").innerHTML = "Non-origin points (n^3): " + "<br>" + nonOriginPoints;
+}
 function testFieldBtnPP() {
     document.getElementById("testboxPP").innerHTML = "Projective Plane of order " + F.noOfElems + "<br>";
     document.getElementById("testboxPP").innerHTML += "Total Points: " + nonOriginPoints.length + "<br>";
@@ -237,12 +263,13 @@ function testFieldBtnLine() {
     }
 }
 function testFieldBtnGeom() {
-    let cards = geometry(F, characters)
+    let cards = geometry(F, characters);
+    document.getElementById("testboxGeom").innerHTML += "Level " + (nConst + 1) + " (order " + (nConst) + ") cards: <br><br>";
     for (let i = 0; i < noOfPoints; i++) {
         document.getElementById("testboxGeom").innerHTML += "Card " + cards[i][0] + ": - " + cards[i][1] + "<br>";
     }
+    document.getElementById("testboxGeom").innerHTML += "<br>Number of cards/symbol: " + noOfPoints;
     //document.getElementById("testboxGeom").innerHTML += geometry(F, characters) + "<br>";
-
 }
 function testFieldBtnDict() {
     document.getElementById("testboxDict").innerHTML += "Dictionary: " + "<br>"
@@ -250,5 +277,3 @@ function testFieldBtnDict() {
         document.getElementById("testboxDict").innerHTML += charToPoint(F, characters)[i][0] + " --> " + charToPoint(F, characters)[i][1] + ", ";
     }
 }
-
-//document.getElementById("orig").innerHTML+= geometry(F, characters);

@@ -17,12 +17,14 @@
     <div id="banner"
         style="border: 15px solid #9879b0; background-color: #fae351; min-width: 500px; justify-content: center; text-align: center; align-self: center;">
         <blockquote>
-            <h1>The Mathematics of Dobble</h1>
+            <h1>The Mathematics of Dobble: </h1>
+            <h2>Card Generator</h2>
         </blockquote>
     </div>
-    <script src="test.js"></script>
+    <script src="card_gen.js"></script>
+    <a style="font-size: medium;" href="index.html">Back to main Page</a>
     <hr style="height:10px; background-color:#9879b0">
-    <p id="testbox"></p>
+    <!--<p id="testbox"></p>
     <button id="testbtn" onclick="testFieldBtn()">Finite field example</button>
     <p id="testboxN3"></p>
     <button id="testbtnN3" onclick="testFieldBtnN3()">Non-origin points example</button>
@@ -34,7 +36,19 @@
     <p id="testboxDict"></p>
     <button id="testbtnDict" onclick="testFieldBtnDict()">Dictionary example</button>
     <p id="testboxGeom"></p>
-    <button id="testbtnGeom" onclick="testFieldBtnGeom()">Geometry example</button>
+    <button id="testbtnGeom" onclick="testFieldBtnGeom()">Complete cards with symbols</button>-->
+    <p>This page generates card sets of different levels using mathematics and JavaScript. Choose a p+1 (prime number + 1) number (or 5) and submit it to see the complete card set of that level with their symbols.</p>
+    <select id="level" aria-placeholder="Choose Level">
+        <option value="" >Choose Level</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="6">6</option>
+        <option value="8">8</option>
+        <option value="12">12</option>
+    </select>
+    <button onclick="inputLvl()">Submit</button> 
+    <p id="testprint"></p>
+
 
 </body>
 
