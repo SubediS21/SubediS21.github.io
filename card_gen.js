@@ -2,6 +2,7 @@
 
 let nConst;
 let F;
+let fontHeight = 20;
 
 const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y",
     "Z", "α", "β", "Γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ὀ", "π", "Ϸ", "ς", "τ", "ύ", "φ", "χ", "ψ", "ω",
@@ -47,10 +48,10 @@ const miniCenters = [[], [], [],  // padding
 [cardCenter - (cardRadius * 0.55), cardCenter - (cardRadius * 0.3) - verticalFudge],
 [cardCenter + (cardRadius * 0.55), cardCenter - (cardRadius * 0.3) - verticalFudge],
 [cardCenter, cardCenter],
-[cardCenter - (cardRadius * 0.55), cardCenter + (cardRadius * 0.2)],
-[cardCenter + (cardRadius * 0.55), cardCenter + (cardRadius * 0.2)],
-[cardCenter - (cardRadius * 0.28), cardCenter + (cardRadius * 0.7)],
-[cardCenter + (cardRadius * 0.28), cardCenter + (cardRadius * 0.75) - verticalFudge]],
+[cardCenter - (cardRadius * 0.55), cardCenter + (cardRadius * 0.12)],
+[cardCenter + (cardRadius * 0.55), cardCenter + (cardRadius * 0.12)],
+[cardCenter - (cardRadius * 0.28), cardCenter + (cardRadius * 0.63)],
+[cardCenter + (cardRadius * 0.28), cardCenter + (cardRadius * 0.63)]],
 //for level 9, tba:
 [],
 //for level 10, tba:
@@ -61,27 +62,28 @@ const miniCenters = [[], [], [],  // padding
 [[cardCenter - (cardRadius * 0.22), cardCenter - (cardRadius * 0.55) - verticalFudge], //1
 [cardCenter + (cardRadius * 0.22), cardCenter - (cardRadius * 0.55) - verticalFudge], //2
 
-[cardCenter - (cardRadius * 0.55), cardCenter - (cardRadius * 0.2) - verticalFudge], //3
-[cardCenter - (cardRadius * 0.2), cardCenter - (cardRadius * 0.2) - verticalFudge], //4
-[cardCenter + (cardRadius * 0.2), cardCenter - (cardRadius * 0.2) - verticalFudge], //5
-[cardCenter + (cardRadius * 0.55), cardCenter - (cardRadius * 0.2) - verticalFudge], //6
+[cardCenter - (cardRadius * 0.6), cardCenter - (cardRadius * 0.18) - verticalFudge], //3
+[cardCenter - (cardRadius * 0.2), cardCenter - (cardRadius * 0.18) - verticalFudge], //4
+[cardCenter + (cardRadius * 0.2), cardCenter - (cardRadius * 0.18) - verticalFudge], //5
+[cardCenter + (cardRadius * 0.6), cardCenter - (cardRadius * 0.18) - verticalFudge], //6
 
-[cardCenter - (cardRadius * 0.55), cardCenter + (cardRadius * 0.2) - verticalFudge], //7
-[cardCenter - (cardRadius * 0.2), cardCenter + (cardRadius * 0.2) - verticalFudge], //8
-[cardCenter + (cardRadius * 0.2), cardCenter + (cardRadius * 0.2) - verticalFudge], //9
-[cardCenter + (cardRadius * 0.55), cardCenter + (cardRadius * 0.2) - verticalFudge], //10
+[cardCenter - (cardRadius * 0.6), cardCenter + (cardRadius * 0.25) - verticalFudge], //7
+[cardCenter - (cardRadius * 0.2), cardCenter + (cardRadius * 0.25) - verticalFudge], //8
+[cardCenter + (cardRadius * 0.2), cardCenter + (cardRadius * 0.25) - verticalFudge], //9
+[cardCenter + (cardRadius * 0.6), cardCenter + (cardRadius * 0.25) - verticalFudge], //10
 
-[cardCenter - (cardRadius * 0.22), cardCenter + (cardRadius * 0.55) - verticalFudge], //11
-[cardCenter + (cardRadius * 0.22), cardCenter + (cardRadius * 0.55) - verticalFudge]]]; //12
+[cardCenter - (cardRadius * 0.22), cardCenter + (cardRadius * 0.65) - verticalFudge], //11
+[cardCenter + (cardRadius * 0.22), cardCenter + (cardRadius * 0.65) - verticalFudge]]]; //12
 
 function inputLvl() {
-    //nConst = parseInt(document.getElementById("level").value) - 1;
-    nConst = 11;
+    nConst = parseInt(document.getElementById("level").value) - 1;
+    //nConst = 11;
     if (nConst == 4) {
         F = new FieldOfFour(nConst);
     }
     else if (nConst == 6) {
         document.getElementById("testprint").innerHTML = "Level 7 (order 6) Dobble does not exist. 6 is not a prime number or a power of a prime number."
+        clearCanvas();
         return;
     }
     else {
@@ -94,9 +96,9 @@ function loadGeom() {
     const noOfPoints = F.noOfElems ** 2 + F.noOfElems + 1;
     let cards = geometry(F, characters);
     document.getElementById("testprint").innerHTML = "Level " + (nConst + 1) + " (order " + (nConst) + ") cards: <br><br>";
-    /*for (let i = 0; i < noOfPoints; i++) {
+    for (let i = 0; i < noOfPoints; i++) {
         document.getElementById("testprint").innerHTML += "Card " + cards[i][0] + ": - " + cards[i][1] + "<br>";
-    }*/
+    }
     document.getElementById("testprint").innerHTML += "Card " + cards[0][0] + ": - " + cards[0][1] + "<br>";
 
     document.getElementById("testprint").innerHTML += "<br>Number of cards/symbol: " + noOfPoints;
@@ -108,26 +110,35 @@ function loadGeom() {
 
 function makeCards(allCards) {
     const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    //make the cards fit in the canvas
     const noOfPoints = F.noOfElems ** 2 + F.noOfElems + 1;
     const cardsPerRow = Math.ceil(Math.sqrt(noOfPoints));
     const rows = Math.ceil(noOfPoints / cardsPerRow);
-    //const noOfPoints = F.noOfElems ** 2 + F.noOfElems + 1;
+
     canvas.setAttribute("width", (cardCanvasSize *cardsPerRow) + 20); // set canvas width to fit all cards with some padding
     canvas.setAttribute("height", (cardCanvasSize * rows) + 20); // set canvas height with some padding
     canvas._grid = {cardsPerRow, rows};
+
     //display cards with allCards by geometry function
-    //let Fi = new PrimeField(7)
-    //let allCards = geometry(Fi, characters);
     for (let i = 0; i < allCards.length; i++) {
         let card = allCards[i];
         let sym = card[0];
         let cardSyms = card[1];
         let col = (i % cardsPerRow) + 1;
         let row = Math.floor(i / cardsPerRow) + 1;
+
+        //draw circle for each card
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.arc(((col - 1) * cardCanvasSize + cardCenter), ((row - 1) * cardCanvasSize + cardCenter), cardRadius, 0, 2 * Math.PI);
+        ctx.stroke();
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fill();
         for (let j = 0; j < cardSyms.length; j++) {
             let symCard = cardSyms[j];
-            let slot = j;
-            writeSymbol(nConst + 1, i, slot, symCard, col, row);
+            writeSymbol(nConst + 1, i, j, symCard, col, row);
         }
     }
 }
@@ -140,10 +151,13 @@ function writeSymbol(lev, cardNumber, slot, sym, col, row) {
     const offsetY = (row - 1) * cardCanvasSize;
     const X = miniCenters[lev][slot][0] + offsetX;
     const Y = miniCenters[lev][slot][1] + offsetY;
-    ctx.beginPath();
-    //ctx.arc(X, Y, miniRadius[lev], 0, 2 * Math.PI);
-    ctx.font = "15px Arial";
-    ctx.fillStyle = "black";
+    if (lev == 12){
+        fontHeight = 18;
+    }
+    ctx.fillStyle = "#f5eefaff";
+    ctx.fillRect(X - (fontHeight / 2), Y - (fontHeight / 2), fontHeight, fontHeight);
+    ctx.font = "" + fontHeight + "px Arial";
+    ctx.fillStyle = "blue";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillText(sym, X, Y);
@@ -153,6 +167,8 @@ function clearCanvas(){
     const c = document.getElementById("canvas");
     const ctx = c.getContext("2d");
     ctx.clearRect(0, 0, c.width, c.height);
+    c.setAttribute("width", 20);
+    c.setAttribute("height", 20);
 }
 
 
