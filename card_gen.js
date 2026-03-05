@@ -5,7 +5,7 @@ let F;
 let fontHeight = 20;
 
 const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y",
-    "Z", "α", "β", "Γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ὀ", "π", "Ϸ", "ς", "τ", "ύ", "φ", "χ", "ψ", "ω",
+    "Z", "α", "β", "Γ", "δ", "ε", "ζ", "η", "θ", "ἵ'", "κ'", "λ", "μ", "ν'", "ξ", "ὀ", "π", "Ϸ", "ς", "τ'", "ύ", "φ", "χ'", "ψ", "ω",
     "1", "2", "3", "4", "5", "6", "7", "8", "9", "£",
     "क", "ख", "ग", "घ", "ङ ", "च", "छ", "ज", "झ", "ञ", "ट", "ठ", "ड", "ढ", "ण", "त", "थ", "द", "ध", "न",
     "प", "फ", "ब", "भ", "म", "य", "र", "ल", "व", "श", "ष", "स", "ह", "क्ष", "त्र", "ज्ञ", "अ", "ई", "ऊ", "ए", //100
@@ -99,8 +99,6 @@ function loadGeom() {
     for (let i = 0; i < noOfPoints; i++) {
         document.getElementById("testprint").innerHTML += "Card " + cards[i][0] + ": - " + cards[i][1] + "<br>";
     }
-    document.getElementById("testprint").innerHTML += "Card " + cards[0][0] + ": - " + cards[0][1] + "<br>";
-
     document.getElementById("testprint").innerHTML += "<br>Number of cards/symbol: " + noOfPoints;
     clearCanvas();
     makeCards(cards);
