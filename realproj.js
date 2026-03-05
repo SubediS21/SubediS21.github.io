@@ -321,7 +321,7 @@ function switchMode(event) {
 const cardCanvasSize = 100;  // must match canvas width and height as set in CSS
 const cardCenter = cardCanvasSize / 2;
 const cardRadius = 40;
-const miniRadius = [0, 0, 0, 15, 14, 13];      // radius of circular region allocated for each symbol
+const miniRadius = [0, 0, 0, 15, 14, 13, 12];      // radius of circular region allocated for each symbol
 const verticalFudge = 3;
 const miniCenters = [[], [], [], [], [], [],  // padding
 //for level 6:

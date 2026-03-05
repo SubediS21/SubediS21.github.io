@@ -3,27 +3,6 @@
 let nConst;
 let F;
 
-function inputLvl(){
-    nConst = parseInt(document.getElementById("level").value) - 1;
-    if (nConst == 4){
-        F = new FieldOfFour(nConst);
-    }
-    else {
-        F = new PrimeField(nConst);
-    }
-    loadGeom();
-}
-
-function loadGeom(){
-    const noOfPoints = F.noOfElems ** 2 + F.noOfElems + 1;
-    let cards = geometry(F, characters);
-    document.getElementById("testprint").innerHTML = "Level " + (nConst + 1) + " (order " + (nConst) + ") cards: <br><br>";
-    for (let i = 0; i < noOfPoints; i++) {
-        document.getElementById("testprint").innerHTML += "Card " + cards[i][0] + ": - " + cards[i][1] + "<br>";
-    }
-    document.getElementById("testprint").innerHTML += "<br>Number of cards/symbol: " + noOfPoints;
-}
-
 const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y",
     "Z", "α", "β", "Γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ὀ", "π", "Ϸ", "ς", "τ", "ύ", "φ", "χ", "ψ", "ω",
     "1", "2", "3", "4", "5", "6", "7", "8", "9", "£",
@@ -32,6 +11,151 @@ const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", 
     "ऋ", "$", "€", "¥", "%", "◲", "⋕", "ϡ", "Ͽ", "Δ", "Σ", "ϖ", "⫍", "∽", "◊", "§", "@", "¬", "个", "大",
     "山", "三", "义", "飞", "乡", "川", "九", "中", "日", "开", "水", "斗", "及"];
 //133 symbols
+
+const cardCanvasSize = 100;
+const cardCenter = cardCanvasSize / 2;
+const cardRadius = 40;
+const miniRadius = [0, 0, 0, 15, 14, 13, 12, 11, 10, 9, 9, 9, 9];      // radius of circular region allocated for each symbol
+const verticalFudge = 3;
+const miniCenters = [[], [], [],  // padding
+// for level 3:
+[[cardCenter, cardCenter - (cardRadius / 2) - verticalFudge],
+[cardCenter - (cardRadius * 0.433), cardCenter + (cardRadius / 4) - verticalFudge],
+[cardCenter + (cardRadius * 0.433), cardCenter + (cardRadius / 4) - verticalFudge]],
+// for level 4:
+[[cardCenter - (cardRadius * 0.354), cardCenter - (cardRadius * 0.354) - verticalFudge],
+[cardCenter + (cardRadius * 0.354), cardCenter - (cardRadius * 0.354) - verticalFudge],
+[cardCenter - (cardRadius * 0.354), cardCenter + (cardRadius * 0.354) - verticalFudge],
+[cardCenter + (cardRadius * 0.354), cardCenter + (cardRadius * 0.354) - verticalFudge]],
+// for level 5:
+[[cardCenter, cardCenter - (cardRadius * 0.630) - verticalFudge],
+[cardCenter - (cardRadius * 0.600) - 1, cardCenter - (cardRadius * 0.195) + 1],
+[cardCenter + (cardRadius * 0.600) + 1, cardCenter - (cardRadius * 0.195) + 1],
+[cardCenter - (cardRadius * 0.370), cardCenter + (cardRadius * 0.510)],
+[cardCenter + (cardRadius * 0.370), cardCenter + (cardRadius * 0.510)]],
+//for level 6:
+[[cardCenter, cardCenter - (cardRadius * 0.6) - verticalFudge],
+[cardCenter - (cardRadius * 0.6), cardCenter - (cardRadius * 0.22) - verticalFudge],
+[cardCenter + (cardRadius * 0.6), cardCenter - (cardRadius * 0.22) - verticalFudge],
+[cardCenter - (cardRadius * 0.55), cardCenter + (cardRadius * 0.3)],
+[cardCenter + (cardRadius * 0.55), cardCenter + (cardRadius * 0.3)],
+[cardCenter, cardCenter + (cardRadius * 0.75) - verticalFudge]],
+//no level 7
+[],
+//for level 8:
+[[cardCenter, cardCenter - (cardRadius * 0.5) - verticalFudge],
+[cardCenter - (cardRadius * 0.55), cardCenter - (cardRadius * 0.3) - verticalFudge],
+[cardCenter + (cardRadius * 0.55), cardCenter - (cardRadius * 0.3) - verticalFudge],
+[cardCenter, cardCenter],
+[cardCenter - (cardRadius * 0.55), cardCenter + (cardRadius * 0.2)],
+[cardCenter + (cardRadius * 0.55), cardCenter + (cardRadius * 0.2)],
+[cardCenter - (cardRadius * 0.28), cardCenter + (cardRadius * 0.7)],
+[cardCenter + (cardRadius * 0.28), cardCenter + (cardRadius * 0.75) - verticalFudge]],
+//for level 9, tba:
+[],
+//for level 10, tba:
+[],
+//for level 11, tba:
+[],
+//for level 12:
+[[cardCenter - (cardRadius * 0.22), cardCenter - (cardRadius * 0.55) - verticalFudge], //1
+[cardCenter + (cardRadius * 0.22), cardCenter - (cardRadius * 0.55) - verticalFudge], //2
+
+[cardCenter - (cardRadius * 0.55), cardCenter - (cardRadius * 0.2) - verticalFudge], //3
+[cardCenter - (cardRadius * 0.2), cardCenter - (cardRadius * 0.2) - verticalFudge], //4
+[cardCenter + (cardRadius * 0.2), cardCenter - (cardRadius * 0.2) - verticalFudge], //5
+[cardCenter + (cardRadius * 0.55), cardCenter - (cardRadius * 0.2) - verticalFudge], //6
+
+[cardCenter - (cardRadius * 0.55), cardCenter + (cardRadius * 0.2) - verticalFudge], //7
+[cardCenter - (cardRadius * 0.2), cardCenter + (cardRadius * 0.2) - verticalFudge], //8
+[cardCenter + (cardRadius * 0.2), cardCenter + (cardRadius * 0.2) - verticalFudge], //9
+[cardCenter + (cardRadius * 0.55), cardCenter + (cardRadius * 0.2) - verticalFudge], //10
+
+[cardCenter - (cardRadius * 0.22), cardCenter + (cardRadius * 0.55) - verticalFudge], //11
+[cardCenter + (cardRadius * 0.22), cardCenter + (cardRadius * 0.55) - verticalFudge]]]; //12
+
+function inputLvl() {
+    //nConst = parseInt(document.getElementById("level").value) - 1;
+    nConst = 11;
+    if (nConst == 4) {
+        F = new FieldOfFour(nConst);
+    }
+    else if (nConst == 6) {
+        document.getElementById("testprint").innerHTML = "Level 7 (order 6) Dobble does not exist. 6 is not a prime number or a power of a prime number."
+        return;
+    }
+    else {
+        F = new PrimeField(nConst);
+    }
+    loadGeom();
+}
+
+function loadGeom() {
+    const noOfPoints = F.noOfElems ** 2 + F.noOfElems + 1;
+    let cards = geometry(F, characters);
+    document.getElementById("testprint").innerHTML = "Level " + (nConst + 1) + " (order " + (nConst) + ") cards: <br><br>";
+    /*for (let i = 0; i < noOfPoints; i++) {
+        document.getElementById("testprint").innerHTML += "Card " + cards[i][0] + ": - " + cards[i][1] + "<br>";
+    }*/
+    document.getElementById("testprint").innerHTML += "Card " + cards[0][0] + ": - " + cards[0][1] + "<br>";
+
+    document.getElementById("testprint").innerHTML += "<br>Number of cards/symbol: " + noOfPoints;
+    clearCanvas();
+    makeCards(cards);
+}
+
+
+
+function makeCards(allCards) {
+    const canvas = document.getElementById("canvas");
+    const noOfPoints = F.noOfElems ** 2 + F.noOfElems + 1;
+    const cardsPerRow = Math.ceil(Math.sqrt(noOfPoints));
+    const rows = Math.ceil(noOfPoints / cardsPerRow);
+    //const noOfPoints = F.noOfElems ** 2 + F.noOfElems + 1;
+    canvas.setAttribute("width", (cardCanvasSize *cardsPerRow) + 20); // set canvas width to fit all cards with some padding
+    canvas.setAttribute("height", (cardCanvasSize * rows) + 20); // set canvas height with some padding
+    canvas._grid = {cardsPerRow, rows};
+    //display cards with allCards by geometry function
+    //let Fi = new PrimeField(7)
+    //let allCards = geometry(Fi, characters);
+    for (let i = 0; i < allCards.length; i++) {
+        let card = allCards[i];
+        let sym = card[0];
+        let cardSyms = card[1];
+        let col = (i % cardsPerRow) + 1;
+        let row = Math.floor(i / cardsPerRow) + 1;
+        for (let j = 0; j < cardSyms.length; j++) {
+            let symCard = cardSyms[j];
+            let slot = j;
+            writeSymbol(nConst + 1, i, slot, symCard, col, row);
+        }
+    }
+}
+
+function writeSymbol(lev, cardNumber, slot, sym, col, row) {
+    //make cards with one canvas and make circles for each symbol position. write symbol in circle.
+    const c = document.getElementById("canvas");
+    const ctx = c.getContext("2d");
+    const offsetX = (col - 1) * cardCanvasSize;
+    const offsetY = (row - 1) * cardCanvasSize;
+    const X = miniCenters[lev][slot][0] + offsetX;
+    const Y = miniCenters[lev][slot][1] + offsetY;
+    ctx.beginPath();
+    //ctx.arc(X, Y, miniRadius[lev], 0, 2 * Math.PI);
+    ctx.font = "15px Arial";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(sym, X, Y);
+}
+
+function clearCanvas(){
+    const c = document.getElementById("canvas");
+    const ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, c.width, c.height);
+}
+
+
 
 //p(prime)
 //n = p^k (Dobble Level -1 )
@@ -276,4 +400,13 @@ function testFieldBtnDict() {
     for (let i = 0; i < noOfPoints; i++) {
         document.getElementById("testboxDict").innerHTML += charToPoint(F, characters)[i][0] + " --> " + charToPoint(F, characters)[i][1] + ", ";
     }
+}
+
+//save canvas "canvas" as jpg image in the same folder.
+function saveCanvas() {
+    var canvas = document.getElementById("canvas");
+    var link = document.createElement('a');
+    link.download = 'dobble_cards.jpg';
+    link.href = canvas.toDataURL("image/jpeg", 1.0);
+    link.click();
 }

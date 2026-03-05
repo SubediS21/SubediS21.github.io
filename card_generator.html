@@ -37,17 +37,21 @@
     <button id="testbtnDict" onclick="testFieldBtnDict()">Dictionary example</button>
     <p id="testboxGeom"></p>
     <button id="testbtnGeom" onclick="testFieldBtnGeom()">Complete cards with symbols</button>-->
-    <p>This page generates card sets of different levels using mathematics and JavaScript. Choose a p+1 (prime number + 1) number (or 5) and submit it to see the complete card set of that level with their symbols.</p>
+    <p>This page generates card sets of different levels using mathematics and JavaScript. Choose a p+1 (prime number +
+        1) number (or 5) and submit it to see the complete card set of that level with their symbols.</p>
     <select id="level" aria-placeholder="Choose Level">
-        <option value="" >Choose Level</option>
+        <option value="">Choose Level</option>
         <option value="3">3</option>
         <option value="4">4</option>
+        <option value="5">5</option>
         <option value="6">6</option>
+        <option value="7">7</option>
         <option value="8">8</option>
         <option value="12">12</option>
     </select>
-    <button onclick="inputLvl()">Submit</button> 
+    <button onclick="inputLvl()">Submit</button>
     <p id="testprint"></p>
+    <canvas style="border: 1px solid black;" id="canvas" width="700" height="700"></canvas>
 
 
 </body>
