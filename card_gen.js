@@ -52,10 +52,27 @@ const miniCenters = [[], [], [],  // padding
 [cardCenter + (cardRadius * 0.55), cardCenter + (cardRadius * 0.12)],
 [cardCenter - (cardRadius * 0.28), cardCenter + (cardRadius * 0.63)],
 [cardCenter + (cardRadius * 0.28), cardCenter + (cardRadius * 0.63)]],
-//for level 9, tba:
-[],
+//for level 9:
+[[cardCenter, cardCenter - (cardRadius * 0.6) - verticalFudge],
+[cardCenter - (cardRadius * 0.5), cardCenter - (cardRadius * 0.3) - verticalFudge],
+[cardCenter, cardCenter - (cardRadius * 0.2) - verticalFudge],
+[cardCenter + (cardRadius * 0.5), cardCenter - (cardRadius * 0.3)- verticalFudge],
+[cardCenter - (cardRadius * 0.55), cardCenter + (cardRadius * 0.12)],
+[cardCenter, cardCenter + (cardRadius * 0.2)],
+[cardCenter + (cardRadius * 0.55), cardCenter + (cardRadius * 0.12)],
+[cardCenter - (cardRadius * 0.3), cardCenter + (cardRadius * 0.63)],
+[cardCenter + (cardRadius * 0.3), cardCenter + (cardRadius * 0.63)]],
 //for level 10, tba:
-[],
+[[cardCenter - (cardRadius * 0.25), cardCenter - (cardRadius * 0.6) - verticalFudge],
+[cardCenter + (cardRadius * 0.25), cardCenter - (cardRadius * 0.6) - verticalFudge],
+[cardCenter - (cardRadius * 0.55), cardCenter - (cardRadius * 0.22) - verticalFudge],
+[cardCenter, cardCenter - (cardRadius * 0.2) - verticalFudge],
+[cardCenter + (cardRadius * 0.55), cardCenter - (cardRadius * 0.22)- verticalFudge],
+[cardCenter - (cardRadius * 0.6), cardCenter + (cardRadius * 0.17)],
+[cardCenter, cardCenter + (cardRadius * 0.2)],
+[cardCenter + (cardRadius * 0.6), cardCenter + (cardRadius * 0.17)],
+[cardCenter - (cardRadius * 0.25), cardCenter + (cardRadius * 0.65)],
+[cardCenter + (cardRadius * 0.25), cardCenter + (cardRadius * 0.65)]],
 //no level 11
 [],
 //for level 12:
@@ -156,7 +173,7 @@ function writeSymbol(lev, cardNumber, slot, sym, col, row) {
     const offsetY = (row - 1) * cardCanvasSize;
     const X = miniCenters[lev][slot][0] + offsetX;
     const Y = miniCenters[lev][slot][1] + offsetY;
-    if (lev == 12) {
+    if (lev == 12 || lev == 10 || lev == 9) {
         fontHeight = 18;
     }
     ctx.fillStyle = "#f5eefaff";
