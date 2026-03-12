@@ -56,7 +56,7 @@ const miniCenters = [[], [], [],  // padding
 [],
 //for level 10, tba:
 [],
-//for level 11, tba:
+//no level 11
 [],
 //for level 12:
 [[cardCenter - (cardRadius * 0.22), cardCenter - (cardRadius * 0.55) - verticalFudge], //1
@@ -218,15 +218,20 @@ function FieldOfEight() {
     }
     //add: ((a + d), (b + e), (c + f)) XOR
     this.add = function (x, y) {
-        return ((this.elems[x][0] ^ this.elems[y][0]), (this.elems[x][1] ^ this.elems[y][1]), (this.elems[x][2] ^ this.elems[y][2]))
+        //return ((this.elems[x][0] ^ this.elems[y][0]), (this.elems[x][1] ^ this.elems[y][1]), (this.elems[x][2] ^ this.elems[y][2]));
+        return x ^ y;
     }
     //multiply: ((af + be + cd + ad), (ae + ce + bd + bf + ad), (ae + bd + cf)) AND
-    this.mult = function (x, y){
-        return (
-            ((this.elems[x][0] * this.elems[y][2]) & (this.elems[x][1] * this.elems[y][1]) & (this.elems[x][2] * this.elems[y][0]) & (this.elems[x][0] * this.elems[y][0])),
-            ((this.elems[x][0] * this.elems[y][1]) & (this.elems[x][2] * this.elems[y][1]) & (this.elems[x][1] * this.elems[y][0]) & (this.elems[x][1] * this.elems[y][2]) & (this.elems[x][0] * this.elems[y][1+0])),
-            ((this.elems[x][0] * this.elems[y][1]) & (this.elems[x][1] * this.elems[y][0]) & (this.elems[x][2] * this.elems[y][2]))
-            )
+    this.mult = function (x, y) {
+        const a = this.elems[x][0];
+        const b = this.elems[x][1];
+        const c = this.elems[x][2];
+        const d = this.elems[y][0];
+        const e = this.elems[y][1];
+        const f = this.elems[y][2];
+        return ((((a & f) ^ (b & e) ^ (c & d) ^ (a & d)) << 2) |
+            (((a & e) ^ (c & e) ^ (b & d) ^ (b & f) ^ (a & d)) << 1) |
+            ((a & e) ^ (b & d) ^ (c & f)));
     }
 }
 
@@ -239,16 +244,15 @@ function FieldOfNine() {
     }
     //add: ((a + c), (b + d))
     this.add = function (x, y) {
-        return ((this.elems[x][0] + this.elems[y][0]) % 3, (this.elems[x][1] + this.elems[y][1]) % 3);
+        return (((this.elems[x][0] + this.elems[y][0]) % 3) * 3) + ((this.elems[x][1] + this.elems[y][1]) % 3);
     }
-    //multiply: ((ad + bc), (bd - ac))
+    //multiply: ((ad + bc), (bd - ac) or (bd + 2ac))
     this.mult = function (x, y) {
-        return (
-            ((((this.elems[x][0] * this.elems[y][1]) % 3)
-                + ((this.elems[x][1] * this.elems[y][0]) % 3)) % 3),
-            ((((this.elems[x][1] * this.elems[y][1]) % 3)
-                - ((this.elems[x][0] * this.elems[y][0]) % 3)) % 3)
-        )
+        const a = this.elems[x][0];
+        const b = this.elems[x][1];
+        const c = this.elems[y][0];
+        const d = this.elems[y][1];
+        return (((((a * d + b * c) % 3 + 3) % 3) * 3) + ((b * d + 2 * (a * c)) % 3 + 3) % 3);
     }
 }
 /*
