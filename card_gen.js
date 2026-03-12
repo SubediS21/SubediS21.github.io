@@ -77,12 +77,18 @@ const miniCenters = [[], [], [],  // padding
 
 function inputLvl() {
     nConst = parseInt(document.getElementById("level").value) - 1;
-    //nConst = 11;
+    //nConst = lvl - 1 ;
     if (nConst == 4) {
-        F = new FieldOfFour(nConst);
+        F = new FieldOfFour();
     }
-    else if (nConst == 6) {
-        document.getElementById("testprint").innerHTML = "Level 7 (order 6) Dobble does not exist. 6 is not a prime number or a power of a prime number."
+    else if (nConst == 8) {
+        F = new FieldOfEight();
+    }
+    else if (nConst == 9) {
+        F = new FieldOfNine();
+    }
+    else if (nConst == 6 || nConst == 10) {
+        document.getElementById("testprint").innerHTML = "Level " + (nConst + 1) + " (order " + nConst + ") Dobble does not exist. " + nConst + " is not a prime number or a power of a prime number."
         clearCanvas();
         return;
     }
@@ -98,6 +104,7 @@ function loadGeom() {
     document.getElementById("testprint").innerHTML = "Level " + (nConst + 1) + " (order " + (nConst) + ") cards: <br><br>";
     for (let i = 0; i < noOfPoints; i++) {
         document.getElementById("testprint").innerHTML += "Card " + cards[i][0] + ": - " + cards[i][1] + "<br>";
+        //document.getElementById("testprint").innerHTML += cards[i][1] + "<br>";
     }
     document.getElementById("testprint").innerHTML += "<br>Number of cards/symbol: " + noOfPoints;
     clearCanvas();
@@ -115,9 +122,9 @@ function makeCards(allCards) {
     const cardsPerRow = Math.ceil(Math.sqrt(noOfPoints));
     const rows = Math.ceil(noOfPoints / cardsPerRow);
 
-    canvas.setAttribute("width", (cardCanvasSize *cardsPerRow) + 20); // set canvas width to fit all cards with some padding
+    canvas.setAttribute("width", (cardCanvasSize * cardsPerRow) + 20); // set canvas width to fit all cards with some padding
     canvas.setAttribute("height", (cardCanvasSize * rows) + 20); // set canvas height with some padding
-    canvas._grid = {cardsPerRow, rows};
+    canvas._grid = { cardsPerRow, rows };
 
     //display cards with allCards by geometry function
     for (let i = 0; i < allCards.length; i++) {
@@ -149,7 +156,7 @@ function writeSymbol(lev, cardNumber, slot, sym, col, row) {
     const offsetY = (row - 1) * cardCanvasSize;
     const X = miniCenters[lev][slot][0] + offsetX;
     const Y = miniCenters[lev][slot][1] + offsetY;
-    if (lev == 12){
+    if (lev == 12) {
         fontHeight = 18;
     }
     ctx.fillStyle = "#f5eefaff";
@@ -161,7 +168,7 @@ function writeSymbol(lev, cardNumber, slot, sym, col, row) {
     ctx.fillText(sym, X, Y);
 }
 
-function clearCanvas(){
+function clearCanvas() {
     const c = document.getElementById("canvas");
     const ctx = c.getContext("2d");
     ctx.clearRect(0, 0, c.width, c.height);
@@ -199,6 +206,49 @@ function FieldOfFour() {
     this.multiplication = [[0, 0, 0, 0], [0, 1, 2, 3], [0, 2, 3, 1], [0, 3, 1, 2]];
     this.mult = function (x, y) {
         return this.multiplication[x][y];
+    }
+}
+
+function FieldOfEight() {
+    this.noOfElems = 8;
+    //elems = triple(n div 4, n div 2 mod 2, n mod 2)
+    this.elems = [];
+    for (let i = 0; i < this.noOfElems; i++) {
+        this.elems.push([Math.floor(i / 4), Math.floor(i / 2) % 2, i % 2]);
+    }
+    //add: ((a + d), (b + e), (c + f)) XOR
+    this.add = function (x, y) {
+        return ((this.elems[x][0] ^ this.elems[y][0]), (this.elems[x][1] ^ this.elems[y][1]), (this.elems[x][2] ^ this.elems[y][2]))
+    }
+    //multiply: ((af + be + cd + ad), (ae + ce + bd + bf + ad), (ae + bd + cf)) AND
+    this.mult = function (x, y){
+        return (
+            ((this.elems[x][0] * this.elems[y][2]) & (this.elems[x][1] * this.elems[y][1]) & (this.elems[x][2] * this.elems[y][0]) & (this.elems[x][0] * this.elems[y][0])),
+            ((this.elems[x][0] * this.elems[y][1]) & (this.elems[x][2] * this.elems[y][1]) & (this.elems[x][1] * this.elems[y][0]) & (this.elems[x][1] * this.elems[y][2]) & (this.elems[x][0] * this.elems[y][1+0])),
+            ((this.elems[x][0] * this.elems[y][1]) & (this.elems[x][1] * this.elems[y][0]) & (this.elems[x][2] * this.elems[y][2]))
+            )
+    }
+}
+
+function FieldOfNine() {
+    this.noOfElems = 9;
+    //elems = tuple(n div 3, n mod 3)
+    this.elems = [];
+    for (let i = 0; i < this.noOfElems; i++) {
+        this.elems.push([Math.floor(i / 3), i % 3]);
+    }
+    //add: ((a + c), (b + d))
+    this.add = function (x, y) {
+        return ((this.elems[x][0] + this.elems[y][0]) % 3, (this.elems[x][1] + this.elems[y][1]) % 3);
+    }
+    //multiply: ((ad + bc), (bd - ac))
+    this.mult = function (x, y) {
+        return (
+            ((((this.elems[x][0] * this.elems[y][1]) % 3)
+                + ((this.elems[x][1] * this.elems[y][0]) % 3)) % 3),
+            ((((this.elems[x][1] * this.elems[y][1]) % 3)
+                - ((this.elems[x][0] * this.elems[y][0]) % 3)) % 3)
+        )
     }
 }
 /*
@@ -424,3 +474,5 @@ function saveCanvas() {
     link.href = canvas.toDataURL("image/jpeg", 1.0);
     link.click();
 }
+
+//export{inputLvl,geometry, characters, miniCenters}
