@@ -269,7 +269,7 @@ function FieldOfNine() {
         const b = this.elems[x][1];
         const c = this.elems[y][0];
         const d = this.elems[y][1];
-        return (((((a * d + b * c) % 3 + 3) % 3) * 3) + ((b * d + 2 * (a * c)) % 3 + 3) % 3);
+        return (((a * d + b * c) % 3) * 3) + ((b * d + 2 * (a * c)) % 3);
     }
 }
 /*
