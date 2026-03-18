@@ -44,19 +44,19 @@ const miniCenters = [[], [], [],  // padding
 //no level 7
 [],
 //for level 8:
-[[cardCenter, cardCenter - (cardRadius * 0.5) - verticalFudge],
+[[cardCenter, cardCenter - (cardRadius * 0.6)],
 [cardCenter - (cardRadius * 0.55), cardCenter - (cardRadius * 0.3) - verticalFudge],
 [cardCenter + (cardRadius * 0.55), cardCenter - (cardRadius * 0.3) - verticalFudge],
 [cardCenter, cardCenter],
 [cardCenter - (cardRadius * 0.55), cardCenter + (cardRadius * 0.12)],
 [cardCenter + (cardRadius * 0.55), cardCenter + (cardRadius * 0.12)],
-[cardCenter - (cardRadius * 0.28), cardCenter + (cardRadius * 0.63)],
-[cardCenter + (cardRadius * 0.28), cardCenter + (cardRadius * 0.63)]],
+[cardCenter - (cardRadius * 0.28), cardCenter + (cardRadius * 0.6)],
+[cardCenter + (cardRadius * 0.28), cardCenter + (cardRadius * 0.6)]],
 //for level 9:
 [[cardCenter, cardCenter - (cardRadius * 0.6) - verticalFudge],
 [cardCenter - (cardRadius * 0.5), cardCenter - (cardRadius * 0.3) - verticalFudge],
 [cardCenter, cardCenter - (cardRadius * 0.2) - verticalFudge],
-[cardCenter + (cardRadius * 0.5), cardCenter - (cardRadius * 0.3)- verticalFudge],
+[cardCenter + (cardRadius * 0.5), cardCenter - (cardRadius * 0.3) - verticalFudge],
 [cardCenter - (cardRadius * 0.55), cardCenter + (cardRadius * 0.12)],
 [cardCenter, cardCenter + (cardRadius * 0.2)],
 [cardCenter + (cardRadius * 0.55), cardCenter + (cardRadius * 0.12)],
@@ -67,7 +67,7 @@ const miniCenters = [[], [], [],  // padding
 [cardCenter + (cardRadius * 0.25), cardCenter - (cardRadius * 0.6) - verticalFudge],
 [cardCenter - (cardRadius * 0.55), cardCenter - (cardRadius * 0.22) - verticalFudge],
 [cardCenter, cardCenter - (cardRadius * 0.2) - verticalFudge],
-[cardCenter + (cardRadius * 0.55), cardCenter - (cardRadius * 0.22)- verticalFudge],
+[cardCenter + (cardRadius * 0.55), cardCenter - (cardRadius * 0.22) - verticalFudge],
 [cardCenter - (cardRadius * 0.6), cardCenter + (cardRadius * 0.17)],
 [cardCenter, cardCenter + (cardRadius * 0.2)],
 [cardCenter + (cardRadius * 0.6), cardCenter + (cardRadius * 0.17)],
@@ -76,21 +76,21 @@ const miniCenters = [[], [], [],  // padding
 //no level 11
 [],
 //for level 12:
-[[cardCenter - (cardRadius * 0.22), cardCenter - (cardRadius * 0.55) - verticalFudge], //1
-[cardCenter + (cardRadius * 0.22), cardCenter - (cardRadius * 0.55) - verticalFudge], //2
+[[cardCenter - (cardRadius * 0.22), cardCenter - (cardRadius * 0.65)], //1
+[cardCenter + (cardRadius * 0.22), cardCenter - (cardRadius * 0.65)], //2
 
 [cardCenter - (cardRadius * 0.6), cardCenter - (cardRadius * 0.18) - verticalFudge], //3
 [cardCenter - (cardRadius * 0.2), cardCenter - (cardRadius * 0.18) - verticalFudge], //4
 [cardCenter + (cardRadius * 0.2), cardCenter - (cardRadius * 0.18) - verticalFudge], //5
 [cardCenter + (cardRadius * 0.6), cardCenter - (cardRadius * 0.18) - verticalFudge], //6
 
-[cardCenter - (cardRadius * 0.6), cardCenter + (cardRadius * 0.25) - verticalFudge], //7
-[cardCenter - (cardRadius * 0.2), cardCenter + (cardRadius * 0.25) - verticalFudge], //8
-[cardCenter + (cardRadius * 0.2), cardCenter + (cardRadius * 0.25) - verticalFudge], //9
-[cardCenter + (cardRadius * 0.6), cardCenter + (cardRadius * 0.25) - verticalFudge], //10
+[cardCenter - (cardRadius * 0.6), cardCenter + (cardRadius * 0.3) - verticalFudge], //7
+[cardCenter - (cardRadius * 0.2), cardCenter + (cardRadius * 0.3) - verticalFudge], //8
+[cardCenter + (cardRadius * 0.2), cardCenter + (cardRadius * 0.3) - verticalFudge], //9
+[cardCenter + (cardRadius * 0.6), cardCenter + (cardRadius * 0.3) - verticalFudge], //10
 
-[cardCenter - (cardRadius * 0.22), cardCenter + (cardRadius * 0.65) - verticalFudge], //11
-[cardCenter + (cardRadius * 0.22), cardCenter + (cardRadius * 0.65) - verticalFudge]]]; //12
+[cardCenter - (cardRadius * 0.22), cardCenter + (cardRadius * 0.65)], //11
+[cardCenter + (cardRadius * 0.22), cardCenter + (cardRadius * 0.65)]]]; //12
 
 function inputLvl() {
     nConst = parseInt(document.getElementById("level").value) - 1;
@@ -112,10 +112,33 @@ function inputLvl() {
     else {
         F = new PrimeField(nConst);
     }
-    loadGeom();
+    loadGeom(F);
 }
 
-function loadGeom() {
+function displayCards(level) {
+    nConst = parseInt(level) - 1;
+    if (isNaN(nConst)) return;
+
+    if (nConst == 4) {
+        F = new FieldOfFour();
+    } else if (nConst == 8) {
+        F = new FieldOfEight();
+    } else if (nConst == 9) {
+        F = new FieldOfNine();
+    } else if (nConst == 6 || nConst == 10) {
+        document.getElementById("testprint").innerHTML = "Level " + (nConst + 1) + " (order " + nConst + ") Dobble does not exist. " + nConst + " is not a prime number or a power of a prime number.";
+        clearCanvas();
+        return;
+    } else {
+        F = new PrimeField(nConst);
+    }
+    //const noOfPoints = F.noOfElems ** 2 + F.noOfElems + 1;
+    let cards = geometry(F, characters);
+    clearCanvas();
+    makeCards(cards);
+}
+
+function loadGeom(F) {
     const noOfPoints = F.noOfElems ** 2 + F.noOfElems + 1;
     let cards = geometry(F, characters);
     document.getElementById("testprint").innerHTML = "Level " + (nConst + 1) + " (order " + (nConst) + ") cards: <br><br>";
@@ -173,8 +196,14 @@ function writeSymbol(lev, cardNumber, slot, sym, col, row) {
     const offsetY = (row - 1) * cardCanvasSize;
     const X = miniCenters[lev][slot][0] + offsetX;
     const Y = miniCenters[lev][slot][1] + offsetY;
-    if (lev == 12 || lev == 10 || lev == 9) {
+    if (lev == 12) {
+        fontHeight = 16;
+    }
+    else if (lev == 10 || lev == 9) {
         fontHeight = 18;
+    }
+    else {
+        fontHeight = 20;
     }
     ctx.fillStyle = "#f5eefaff";
     ctx.fillRect(X - (fontHeight / 2), Y - (fontHeight / 2), fontHeight, fontHeight);
@@ -332,9 +361,12 @@ function FiniteField(p, k) {
 //make list of non-origin points
 //n^3 box with:
 // 1 to n^3-1 vals
-let nonOriginPoints = [];
-for (let i = 1; i < F.noOfElems ** 3; i++) {
-    nonOriginPoints.push(i);
+function getNonOriginPoints(F) {
+    const points = [];
+    for (let i = 1; i < F.noOfElems ** 3; i++) {
+        points.push(i);
+    }
+    return points;
 }
 
 //projective plane with:
@@ -452,12 +484,12 @@ function testFieldBtn() {
     //document.getElementById("testbox").innerHTML += "Inv: 3^-1 = " + F.inv(3) + "<br>";
 }
 function testFieldBtnN3() {
-    document.getElementById("testboxN3").innerHTML = "Non-origin points (n^3): " + "<br>" + nonOriginPoints;
+    document.getElementById("testboxN3").innerHTML = "Non-origin points (n^3): " + "<br>" + getNonOriginPoints(F);
 }
 function testFieldBtnPP() {
     document.getElementById("testboxPP").innerHTML = "Projective Plane of order " + F.noOfElems + "<br>";
-    document.getElementById("testboxPP").innerHTML += "Total Points: " + nonOriginPoints.length + "<br>";
-    for (let i = 1; i <= nonOriginPoints.length; i++) {
+    document.getElementById("testboxPP").innerHTML += "Total Points: " + getNonOriginPoints(F).length + "<br>";
+    for (let i = 1; i <= getNonOriginPoints(F).length; i++) {
         let coords = getPointCoords(i, F.noOfElems);
         document.getElementById("testboxPP").innerHTML += "Point " + i + ": (" + coords + ") <br>";
     }
