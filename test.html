@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <meta charset="utf-8" />
+    <title>TEST</title>
+    <link href="test.css" rel="stylesheet">
+</head>
+
 <body>
     <h1>TEST</h1>
-    <button id="4" onclick="test(4)">L4</button>
-    <button id="8" onclick="test(8)">L8</button>
-    
-    <p id="testprintTest"></p>
+    <div class="controls">
+        <button onclick="test(3)">3</button>
+        <button onclick="test(4)">4</button>
+        <button onclick="test(5)">5</button>
+        <button onclick="test(6)">6</button>
+        <button onclick="test(7)">7</button>
+        <button onclick="test(8)">8</button>
+        <button onclick="test(9)">9</button>
+        <button onclick="test(10)">10</button>
+        <button onclick="test(11)">11</button>
+        <button onclick="test(12)">12</button>
+    </div>
 
-    <canvas style="background-color: #fae351; border: solid 5px #9879b0; border-radius: 15px;" id="canvas" width="500" height="500"></canvas>
-    <canvas style="background-color: #fae351; border: solid 5px #9879b0; border-radius: 15px;" id = "symbols" width="500" height="100"></canvas>
+    <div id="card-container">
+    </div>
+    <div id="symbol-container"></div>
+    <div id="status">Choose level to render cards.</div>
 
     <script src="card_gen.js"></script>
     <script type="module" src="test.js"></script>
