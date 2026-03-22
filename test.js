@@ -44,7 +44,7 @@ function renderCardGrid(cards, level) {
         const cardBox = document.createElement("div");
         cardBox.className = "card-box";
         cardBox.dataset.index = i;
-        cardBox.onclick = () => toggleCard(i);
+        cardBox.onclick = () => selectCard(i);
         cardBox.style.position = "relative";
 
         card[1].forEach((sym, slot) => {
@@ -88,26 +88,34 @@ function renderSymbolButtons(cards) {
         const btn = document.createElement("button");
         btn.textContent = sym;
         btn.dataset.sym = sym;
-        btn.onclick = () => toggleSymbol(sym);
+        btn.onclick = () => selectSymbol(sym);
         symbolContainer.appendChild(btn);
     });
 }
 
-function toggleCard(cardIndex) {
-    const cardSym = currentCards[cardIndex][1];
+function selectCard(cardIndex) {
+    selectedSymbols.clear();
+    //const cardSym = currentCards[cardIndex][1];
     const key = String(cardIndex);
     if (selectedCards.has(key)) {
         selectedCards.delete(key);
     } else {
+        if (selectedCards.size >= 2){
+            selectedCards.clear();
+        }
         selectedCards.add(key);
     }
     highlightBySelection();
 }
 
-function toggleSymbol(sym) {
+function selectSymbol(sym) {
+    selectedCards.clear();
     if (selectedSymbols.has(sym)) {
         selectedSymbols.delete(sym);
     } else {
+        if (selectedSymbols.size >= 2){
+            selectedSymbols.clear();
+        }
         selectedSymbols.add(sym);
     }
     highlightBySelection();
@@ -151,8 +159,8 @@ function updateStatusFromSelection() {
 }
 
 function setStatus(text) {
-    const s = document.getElementById("status");
-    if (s) s.textContent = text;
+    const stat = document.getElementById("status");
+    if (stat) stat.textContent = text;
 }
 
 function clearContainers() {
