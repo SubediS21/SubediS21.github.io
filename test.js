@@ -3,12 +3,15 @@ const selectedCards = new Set();
 const selectedSymbols = new Set();
 let currentCards = [];
 
-window.test = function (level) {
-    renderCards(level);
+window.test = function () {
+    //document.getElementById("test").innerHTML = "button pressed";
+    let currLevel = document.getElementById("controls").value
+    renderCards(currLevel);
 };
 
-function renderCards(level) {
-    const nConst = parseInt(level) - 1;
+function renderCards(lev) {
+    const level = parseInt(lev);
+    const nConst = level - 1;
     if (isNaN(nConst)) return;
 
     if (nConst === 4) {
@@ -28,27 +31,41 @@ function renderCards(level) {
     currentCards = geometry(F, characters);
     selectedCards.clear();
     selectedSymbols.clear();
-    renderCardGrid(currentCards);
+    renderCardGrid(currentCards, level);
     renderSymbolButtons(currentCards);
     setStatus("Level " + (nConst + 1) + " cards. Click cards or symbols.");
 }
 
-function renderCardGrid(cards) {
+function renderCardGrid(cards, level) {
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
+    const centers = miniCenters[level] || [];
     cards.forEach((card, i) => {
         const cardBox = document.createElement("div");
         cardBox.className = "card-box";
         cardBox.dataset.index = i;
         cardBox.onclick = () => toggleCard(i);
+        cardBox.style.position = "relative";
+
+        card[1].forEach((sym, slot) => {
+            const center = centers[slot] || [cardCenter, cardCenter];
+            const symbolEl = document.createElement("span");
+            symbolEl.className = "card-symbol";
+            symbolEl.textContent = sym;
+            symbolEl.style.left = `${center[0]}px`;
+            symbolEl.style.top = `${center[1]}px`;
+            cardBox.appendChild(symbolEl);
+        });
+
+        cardContainer.appendChild(cardBox);
 
         /*
         const title = document.createElement("div");
         title.className = "card-title";
         title.textContent = `Card ${card[0]}`;
         cardBox.appendChild(title);
-        */
-
+        
+    
         const symbolGrid = document.createElement("div");
         symbolGrid.className = "card-symbols";
         card[1].forEach((sym) => {
@@ -57,8 +74,8 @@ function renderCardGrid(cards) {
             symbolGrid.appendChild(spin);
         });
         cardBox.appendChild(symbolGrid);
-
-        cardContainer.appendChild(cardBox);
+    
+        cardContainer.appendChild(cardBox);*/
     });
 }
 

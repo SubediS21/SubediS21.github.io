@@ -114,7 +114,7 @@ function inputLvl() {
     }
     loadGeom(F);
 }
-
+/*
 function displayCards(level) {
     nConst = parseInt(level) - 1;
     if (isNaN(nConst)) return;
@@ -136,7 +136,7 @@ function displayCards(level) {
     let cards = geometry(F, characters);
     clearCanvas();
     makeCards(cards);
-}
+}*/
 
 function loadGeom(F) {
     const noOfPoints = F.noOfElems ** 2 + F.noOfElems + 1;
@@ -149,6 +149,7 @@ function loadGeom(F) {
     document.getElementById("testprint").innerHTML += "<br>Number of cards/symbol: " + noOfPoints;
     clearCanvas();
     makeCards(cards);
+    checkSet(cards);
 }
 
 
@@ -162,8 +163,8 @@ function makeCards(allCards) {
     const cardsPerRow = Math.ceil(Math.sqrt(noOfPoints));
     const rows = Math.ceil(noOfPoints / cardsPerRow);
 
-    canvas.setAttribute("width", (cardCanvasSize * cardsPerRow) + 20); // set canvas width to fit all cards with some padding
-    canvas.setAttribute("height", (cardCanvasSize * rows) + 20); // set canvas height with some padding
+    canvas.setAttribute("width", (cardCanvasSize * cardsPerRow) + 20);
+    canvas.setAttribute("height", (cardCanvasSize * rows) + 20); 
     canvas._grid = { cardsPerRow, rows };
 
     //display cards with allCards by geometry function
@@ -222,7 +223,32 @@ function clearCanvas() {
     c.setAttribute("height", 20);
 }
 
-
+function checkSet(cards) {
+    //check if the set looks correct
+    //check every symbols only appears as many times as the level is in total.
+    let symbolCount = {};
+    for (let i = 0; i < cards.length; i++) {
+        let cardSyms = cards[i][1];
+        for (let j = 0; j < cardSyms.length; j++) {
+            let sym = cardSyms[j];
+            if (symbolCount[sym]) {
+                symbolCount[sym]++;
+            } else {
+                symbolCount[sym] = 1;
+            }
+        }
+    }
+    for (let sym in symbolCount) {
+        if (symbolCount[sym] != nConst + 1) {
+            alert( "Error: Symbol " + sym + " appears " + symbolCount[sym] + " times, but should appear " + (nConst + 1) + " times.<br>");
+            break
+        }/*
+        else{
+            alert("Correct numbers?");
+            break
+        }*/
+    }
+}
 
 //p(prime)
 //n = p^k (Dobble Level -1 )

@@ -8,24 +8,30 @@
 </head>
 
 <body>
-    <h1>TEST</h1>
-    <div class="controls">
-        <button onclick="test(3)">3</button>
-        <button onclick="test(4)">4</button>
-        <button onclick="test(5)">5</button>
-        <button onclick="test(6)">6</button>
-        <button onclick="test(7)">7</button>
-        <button onclick="test(8)">8</button>
-        <button onclick="test(9)">9</button>
-        <button onclick="test(10)">10</button>
-        <button onclick="test(11)">11</button>
-        <button onclick="test(12)">12</button>
-    </div>
-
+    <a style="font-size: medium;" href="index.html">Back to main Page</a>
+    <hr style="height:10px; background-color:#9879b0">
+    <h1>Chooser</h1>
+    <select id="controls" aria-placeholder="Choose Level">
+        <option value="">Choose Level</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+    </select>
+    <button onclick="test()">Submit</button>
+    <br>
+    <br>
     <div id="card-container">
     </div>
     <div id="symbol-container"></div>
     <div id="status">Choose level to render cards.</div>
+    <p id="test"></p>
 
     <script src="card_gen.js"></script>
     <script type="module" src="test.js"></script>
