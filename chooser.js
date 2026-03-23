@@ -6,6 +6,7 @@ let currentCards = [];
 window.submit = function () {
     //document.getElementById("test").innerHTML = "button pressed";
     let currLevel = document.getElementById("controls").value;
+    document.getElementById("chooserFeaturesDesc").style.display = "block";
     document.getElementById("chooserFeatures").style.display = "block";
     renderCards(currLevel);
 };
