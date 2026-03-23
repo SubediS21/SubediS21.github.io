@@ -442,25 +442,19 @@ function setCurrSymbol(lev, sym, i) {
 // Control button code
 
 function initialize(lev) {
-  document.getElementById("puzzle-message" + lev).innerHTML =
-    'Level ' + lev + ' Dobble';
+  document.getElementById("puzzle-message" + lev).innerHTML = "";
   // padded to allow indexing from 1
   symbolCount[lev] = 0;
-  /*writeSymbol(lev, 1, 0, 'A');
-  writeSymbol(lev, 1, 1, 'B');
-  writeSymbol(lev, 1, 2, 'C');
-  if (lev >= 4) {
-    writeSymbol(lev, 1, 3, 'D');
-  }
-  if (lev >= 5) {
-    writeSymbol(lev, 1, 4, 'E');
-  }
-  if (lev >= 6) {
-    writeSymbol(lev, 1, 5, 'F');
-  }*/
+
   for (var i = 1; i <= numberOfCards[lev]; i++) {
     for (var j = 0; j < lev; j++) {
       writeSymbol(lev, i, j, '');
+      writeSymbol(lev, 1, 0, 'A');
+      writeSymbol(lev, 6, 0, 'A');
+      writeSymbol(lev, 11, 0, 'A');
+      writeSymbol(lev, 16, 0, 'A');
+      writeSymbol(lev, 21, 0, 'A');
+      writeSymbol(lev, 30, 0, 'A');
     }
   }
   currSymbol = '';
@@ -574,41 +568,41 @@ window.onload = function () {
   empctx.textAlign = "center";
   empctx.fillText("Direction cards", 180, 70);
 
-// After initialize(lev); in window.onload
+  // After initialize(lev); in window.onload
 
-// Get the canvases
-const empty2 = document.getElementById("empty2");
-const empty3 = document.getElementById("empty3");
-const empty4 = document.getElementById("empty4");
+  // Get the canvases
+  const empty2 = document.getElementById("empty2");
+  const empty3 = document.getElementById("empty3");
+  const empty4 = document.getElementById("empty4");
 
-// Get their bounding rectangles
-const rect2 = empty2.getBoundingClientRect();
-const rect3 = empty3.getBoundingClientRect();
-const rect4 = empty4.getBoundingClientRect();
+  // Get their bounding rectangles
+  const rect2 = empty2.getBoundingClientRect();
+  const rect3 = empty3.getBoundingClientRect();
+  const rect4 = empty4.getBoundingClientRect();
 
-// Calculate the combined bounding box
-const minLeft = Math.min(rect2.left, rect3.left, rect4.left);
-const minTop = Math.min(rect2.top, rect3.top, rect4.top);
-const maxRight = Math.max(rect2.right, rect3.right, rect4.right);
-const maxBottom = Math.max(rect2.bottom, rect3.bottom, rect4.bottom);
+  // Calculate the combined bounding box
+  const minLeft = Math.min(rect2.left, rect3.left, rect4.left);
+  const minTop = Math.min(rect2.top, rect3.top, rect4.top);
+  const maxRight = Math.max(rect2.right, rect3.right, rect4.right);
+  const maxBottom = Math.max(rect2.bottom, rect3.bottom, rect4.bottom);
 
-// Get the container's position for relative positioning
-const container = document.querySelector(".card-container2");
-const containerRect = container.getBoundingClientRect();
+  // Get the container's position for relative positioning
+  const container = document.querySelector(".card-container2");
+  const containerRect = container.getBoundingClientRect();
 
-// Create the image element
-const overlayImg = document.createElement("img");
-overlayImg.src = "directions.png";
-overlayImg.style.position = "absolute";
-overlayImg.style.left = (minLeft - containerRect.left) + "px";
-overlayImg.style.top = (minTop - containerRect.top) + "px";
-overlayImg.style.width = (maxRight - minLeft -10) + "px";
-overlayImg.style.height = (maxBottom - minTop +10) + "px";
-//overlayImg.style.zIndex = "10";
-//overlayImg.style.objectFit = "cover";
+  // Create the image element
+  const overlayImg = document.createElement("img");
+  overlayImg.src = "directions.png";
+  overlayImg.style.position = "absolute";
+  overlayImg.style.left = (minLeft - containerRect.left) + "px";
+  overlayImg.style.top = (minTop - containerRect.top) + "px";
+  overlayImg.style.width = (maxRight - minLeft - 10) + "px";
+  overlayImg.style.height = (maxBottom - minTop + 10) + "px";
+  //overlayImg.style.zIndex = "10";
+  //overlayImg.style.objectFit = "cover";
 
-// Append to the container
-container.appendChild(overlayImg);
+  // Append to the container
+  container.appendChild(overlayImg);
 
   /*const ctximg = document.getElementById("empty2").getContext("2d");
   const img = new Image();

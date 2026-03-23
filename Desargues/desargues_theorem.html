@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    
+
     <div id="banner">
         <blockquote>
             <h1>The Mathematics of Dobble</h1>
@@ -48,7 +48,7 @@
                 <a href="../mathematics_of_dobble_II.html#Slope_cards">Completing the set: Slope
                     cards</a>
                 <a href="../mathematics_of_dobble_II.html#level6_construction">Construct Level 6 using directions</a>
-
+                <a href="../mathematics_of_dobble_II.html#setChooser">Chooser</a>
                 <a href="../mathematics_of_dobble_II.html#Projective_3D">A three-dimensional
                     perspective</a>
                 <a href="../mathematics_of_dobble_II.html#Infinite_Dobble">&lsquo;Infinite
@@ -110,20 +110,21 @@
     <h3>Dobble card trick with Desargues's Theorem</h3>
     <p>Let's try Desargues's Theorem with Level 5 Dobble!</p>
     <p>Drag the cards from the cards containers into the circles(points) on the lines and triangles.</p>
-    <p> You can
-        click
-        on a symbol(letter) to highlight the cards that contains the chosen symbol and click on two symbols to highlight the
-        card that
-        contains both of those symbols. Similarly, you can
-        click
-        on a card to highlight the symbols that the card conatins and click on two cards to highlight the symbol that
-        the both of those cards contains.</p>
+    <p>If you need help to find any specific cards, use the chooser(the containers) as following :</p>
+    <ul>
+        <li>You can click on a symbol(letter) in the symbol container to highlight the cards that contains the chosen
+            symbol and click on two symbols to highlight
+            the card that contains both of those symbols.</li>
+        <li>Similarly, you can click on a card in the card container to highlight the symbols that the card conatins and
+            click on two cards to highlight the symbol that
+            the both of those cards contains.</li>
+    </ul>
     <p>If the three cards on a line has a common symbol, the symbol will be shown next to the line to verify you have
         chosen the right cards to form the line, indicating that you are in the right path.</p>
     <p>Happy Desargues-Dobble playing!</p>
     <div class="canvas_container">
         <canvas id="desargeus_canvas" width="600" height="600px"></canvas>
-         <button id="clearCardsDes"
+        <button id="clearCardsDes"
             style="font-size: 17px; position: absolute; border-radius: 7.5px; background-color: #ffffff; left:20px; top: 560px;"
             onclick="clearCardDesargeus(event)">Start Again</button>
         <div class="dropzone" id="cop" style="left: 447px; top: 110px;" ondrop="drop(event)"
@@ -146,8 +147,8 @@
             ondragover="allowDrop(event)"></div>
         <div class="dropzone" id="aop3" style="left: 501px; top: 528px;" ondrop="drop(event)"
             ondragover="allowDrop(event)"></div>
-        <div class="status" id="dStatus"
-            style="position: absolute; left: 160px; top: 10px; background-color: #cae89b;"></div>
+        <div class="status" id="dStatus" style="position: absolute; left: 160px; top: 10px; background-color: #cae89b;">
+        </div>
         <!--<div class="lineLabel" id="triangle1" style="left: 305px; top: 190px;"></div>
         <div class="lineLabel" id="triangle2" style="left: 145px; top: 175px;"></div>-->
         <div class="lineLabel" id="cop1" style="left: 20px; top: 50px;"></div>

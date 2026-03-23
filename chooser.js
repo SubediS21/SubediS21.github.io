@@ -3,9 +3,10 @@ const selectedCards = new Set();
 const selectedSymbols = new Set();
 let currentCards = [];
 
-window.test = function () {
+window.submit = function () {
     //document.getElementById("test").innerHTML = "button pressed";
-    let currLevel = document.getElementById("controls").value
+    let currLevel = document.getElementById("controls").value;
+    document.getElementById("chooserFeatures").style.display = "block";
     renderCards(currLevel);
 };
 
@@ -21,8 +22,8 @@ function renderCards(lev) {
     } else if (nConst === 9) {
         F = new FieldOfNine();
     } else if (nConst === 6 || nConst === 10) {
-        setStatus("Level " + (nConst + 1) + " does not exist.");
         clearContainers();
+        document.getElementById("card-container").innerHTML= "!!! Level " + (nConst + 1) + " (order " +nConst+ ") Dobble does not exist!!!  <br>" + nConst + " is not a prime number or a power of a prime number."
         return;
     } else {
         F = new PrimeField(nConst);
@@ -100,7 +101,7 @@ function selectCard(cardIndex) {
     if (selectedCards.has(key)) {
         selectedCards.delete(key);
     } else {
-        if (selectedCards.size >= 2){
+        if (selectedCards.size >= 2) {
             selectedCards.clear();
         }
         selectedCards.add(key);
@@ -113,7 +114,7 @@ function selectSymbol(sym) {
     if (selectedSymbols.has(sym)) {
         selectedSymbols.delete(sym);
     } else {
-        if (selectedSymbols.size >= 2){
+        if (selectedSymbols.size >= 2) {
             selectedSymbols.clear();
         }
         selectedSymbols.add(sym);
@@ -153,9 +154,12 @@ function updateStatusFromSelection() {
         setStatus("Click any card or symbol.");
         return;
     }
-    const cardText = [...selectedCards].map((i) => currentCards[i][0]).join(", ");
+    else {
+        setStatus("");
+    }
+    /*const cardText = [...selectedCards].map((i) => currentCards[i][0]).join(", ");
     const symbolText = [...selectedSymbols].join(", ");
-    setStatus(`Selected cards: ${cardText || "none"} | symbols: ${symbolText || "none"}`);
+    setStatus(`Selected cards: ${cardText || "none"} \n  Selected symbols: ${symbolText || "none"}`);*/
 }
 
 function setStatus(text) {

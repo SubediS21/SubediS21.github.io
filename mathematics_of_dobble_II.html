@@ -313,6 +313,7 @@
             <a href="../mathematics_of_dobble_II.html#Slope_cards">Completing the set: Slope
                cards</a>
             <a href="../mathematics_of_dobble_II.html#level6_construction">Construct Level 6 using directions</a>
+            <a href="../mathematics_of_dobble_II.html#setChooser">Chooser</a>
             <a href="../mathematics_of_dobble_II.html#Projective_3D">A three-dimensional
                perspective</a>
             <a href="../mathematics_of_dobble_II.html#Infinite_Dobble">&lsquo;Infinite
@@ -1381,8 +1382,14 @@ you&rsquo;ll need to squint at the above photograph instead.) -->
 
       <h3 id="level6_construction">Let's construct Level 6 Dobble using directions</h3>
 
+      <p>For <b>Level 6</b>, there are 31 cards and symbols in total. We will be using all of the English alphabets and
+         five Greek alphabets as symbols. As you can see, the cards are arranged in 5x5 grid and 6 directional cards
+         below the grid with an image that acts as a helper for the directions.
+      </p>
+      <p>Using the symbols listed below the cards, attempt the constuction of Level 6 Dobble.</p>
+      </p>
+      <h4 id="puzzle-message6"></h4>
 
-      <h4 id="puzzle-message6">Level 6 Dobble</h4>
       <p>
          <input type="button" id="restart-btn6" value="Start again" onclick="initialize(6)">
          <input type="button" id="check-btn6" value="Check answer" onclick="checkAnswer(6)">
@@ -1432,7 +1439,7 @@ you&rsquo;ll need to squint at the above photograph instead.) -->
                <canvas id="empty5" style="width: 80px; height: 100px;"></canvas>
                <canvas id="empty6" style="width: 150px; height: 100px;"></canvas>
                <canvas id="card6-30" onclick="writeCurrSymbol(6,event,30)"></canvas>
-               <canvas id="empty7" style="width: 100px; height: 100px;"></canvas>
+               <canvas id="empty7" style="width: 150px; height: 100px;"></canvas>
                <canvas id="card6-31" onclick="writeCurrSymbol(6,event,31)"></canvas>
             </div>
          </center>
@@ -1477,10 +1484,21 @@ you&rsquo;ll need to squint at the above photograph instead.) -->
 
       </div>
       </p>
+      <h3 id="setChooser">Chooser</h3>
+      <p>Using Javascript, we have created an algorithm that genrates and displays Dobble set cards for  many different levels. In chooser you can see all the cards generated of the chosen Dobble Level set.</p>
+      <p>More importantly, the unique features of a chooser are: </p>
+      <ul>
+         <li>When you click on one card, all the symbols containing in the card will be highlighted.</li>
+         <li>When you click on two cards, the common symbol of the two cards will be highlighted</li>
+         <li>Vice versa, when you click on one symbol, all the cards that contains the chosen symbol will be highlighted.</li>
+         <li>When you click on two symbols, the card that contains both of the chosen symbol will be highlighted.</li>
+      </ul>
 
-      <a href="card_generator.html">Draft Card generator</a>
+      <p>The purpose of this chooser is to not only let you see the construction of different Dobble-style card sets, but also prove that these sets follow the finite projective geometry properties we previously mentioned.</p>
+      <p>We will also use the chooser for more games and applets in other pages.</p>
+      <p><i><b>Link to a standard chooser: </i></b><a id="chooserLink" style="border: 4px solid #9879b0; border-radius: 20px; background-color: #fae351; text-decoration: none;" href="chooser.html"> <b>Chooser</b></a></p>
+      
       <br>
-      <a href="chooser.html"> Chooser</a>
       <h3 id="Projective_3D">A three-dimensional perspective</h3>
 
       <!--
@@ -1582,14 +1600,12 @@ reveals the full beauty of the situation.
             contained in both.
       </ul>
 
+      <!--
       <p>
          [ALSO TO BE ADDED: The analogous thing for the &lsquo;order 7&rsquo; case.
          The ideas can be illustrated using a 7&times;7&times;7 cube.
          The following will give an idea of where we're heading,
          although it&rsquo;s not interactive yet.]
-
-
-         <!-- 7x7x7 cube thing -->
 
          <center>
             <div id="cube-canvas-div"
@@ -1728,6 +1744,7 @@ reveals the full beauty of the situation.
 
       [TO BE ADDED]
 
+      -->
       <hr style="height:10px; background-color:#9879b0">
 
       <address><a href="mailto:jrl@staffmail.ed.ac.uk">John Longley</a></address>
