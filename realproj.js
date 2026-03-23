@@ -402,7 +402,7 @@ function writeSymbol(lev, cardNumber, slot, sym) {
 }
 
 function writeCurrSymbol(lev, event, cardNumber) {
-  document.getElementById("testbtn").innerHTML = currSymbol;
+  //document.getElementById("testbtn").innerHTML = currSymbol;
   if (active && currSymbol != '') {
     var c = document.getElementById("card" + lev + "-" + cardNumber);
     var ctx = c.getContext("2d");
