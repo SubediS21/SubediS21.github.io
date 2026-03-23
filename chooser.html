@@ -2,13 +2,26 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name=viewport content="width=device-width,initial-scale=1">
     <meta charset="utf-8" />
     <title>Chooser</title>
-    <link href="test.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="logoDraft.png">
+    <link href="chooser.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+    </style>
 </head>
 
 <body>
     <a style="font-size: medium;" href="index.html">Back to main Page</a>
+
+    <div id="banner">
+        <blockquote>
+            <h1>The Mathematics of Dobble </h1>
+        </blockquote>
+    </div>
     <hr style="height:10px; background-color:#9879b0">
     <h1>Chooser</h1>
     <select style="padding: 5px; border-radius: 5px;" id="controls" aria-placeholder="Choose Level">
@@ -34,7 +47,7 @@
     <p id="test"></p>
 
     <script src="card_gen.js"></script>
-    <script type="module" src="test.js"></script>
+    <script type="module" src="chooser.js"></script>
 </body>
 
 </html>
