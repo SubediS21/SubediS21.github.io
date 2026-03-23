@@ -353,7 +353,8 @@ const solutions6 = [[], [], [], [], [], [], [[],
 ['A', 'H', 'N', 'S', 'V', 'δ'], ['B', 'H', 'O', 'T', 'W', 'Z'], ['C', 'H', 'K', 'P', 'X', 'α'], ['D', 'H', 'L', 'Q', 'Y', 'β'], ['E', 'H', 'M', 'R', 'U', 'γ'],
 ['A', 'I', 'O', 'R', 'X', 'β'], ['B', 'I', 'K', 'S', 'Y', 'γ'], ['C', 'I', 'L', 'T', 'U', 'δ'], ['D', 'I', 'M', 'P', 'V', 'Z'], ['E', 'I', 'N', 'Q', 'W', 'α'],
 ['A', 'J', 'K', 'Q', 'U', 'Z'], ['B', 'J', 'L', 'R', 'V', 'α'], ['C', 'J', 'M', 'S', 'W', 'β'], ['D', 'J', 'N', 'T', 'X', 'γ'], ['E', 'J', 'O', 'P', 'Y', 'δ'],
-['A', 'B', 'C', 'D', 'E', 'ε'], ['F', 'G', 'H', 'I', 'J', 'ε'], ['K', 'L', 'M', 'N', 'O', 'ε'], ['P', 'Q', 'R', 'S', 'T', 'ε'], ['U', 'V', 'W', 'X', 'Y', 'ε'], ['Z', 'α', 'β', 'γ', 'δ', 'ε']]];
+['Z', 'α', 'β', 'γ', 'δ', 'ε'], ['K', 'L', 'M', 'N', 'O', 'ε'], ['U', 'V', 'W', 'X', 'Y', 'ε'], ['F', 'G', 'H', 'I', 'J', 'ε'],
+['A', 'B', 'C', 'D', 'E', 'ε'], ['P', 'Q', 'R', 'S', 'T', 'ε']]];
 
 var currentCardContents = [[], [], [], [], [], [], [[],
 ['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', ''],
@@ -565,21 +566,57 @@ window.onload = function () {
     ctx.fillText("" + i, 10, 16);
   }
   const empty = document.getElementById("empty1");
-  empty.setAttribute("width", "300px");
+  empty.setAttribute("width", "355px");
   empty.setAttribute("height", "80px");
   const empctx = empty.getContext("2d");
-  empctx.font = "20px Arial";
+  empctx.font = "24px Arial";
   empctx.fillStyle = "#000000";
   empctx.textAlign = "center";
-  empctx.fillText("Direction cards", 140, 70);
+  empctx.fillText("Direction cards", 180, 70);
 
-  const ctximg = document.getElementById("empty3").getContext("2d");
+// After initialize(lev); in window.onload
+
+// Get the canvases
+const empty2 = document.getElementById("empty2");
+const empty3 = document.getElementById("empty3");
+const empty4 = document.getElementById("empty4");
+
+// Get their bounding rectangles
+const rect2 = empty2.getBoundingClientRect();
+const rect3 = empty3.getBoundingClientRect();
+const rect4 = empty4.getBoundingClientRect();
+
+// Calculate the combined bounding box
+const minLeft = Math.min(rect2.left, rect3.left, rect4.left);
+const minTop = Math.min(rect2.top, rect3.top, rect4.top);
+const maxRight = Math.max(rect2.right, rect3.right, rect4.right);
+const maxBottom = Math.max(rect2.bottom, rect3.bottom, rect4.bottom);
+
+// Get the container's position for relative positioning
+const container = document.querySelector(".card-container2");
+const containerRect = container.getBoundingClientRect();
+
+// Create the image element
+const overlayImg = document.createElement("img");
+overlayImg.src = "directions.png";
+overlayImg.style.position = "absolute";
+overlayImg.style.left = (minLeft - containerRect.left) + "px";
+overlayImg.style.top = (minTop - containerRect.top) + "px";
+overlayImg.style.width = (maxRight - minLeft -10) + "px";
+overlayImg.style.height = (maxBottom - minTop +10) + "px";
+//overlayImg.style.zIndex = "10";
+//overlayImg.style.objectFit = "cover";
+
+// Append to the container
+container.appendChild(overlayImg);
+
+  /*const ctximg = document.getElementById("empty2").getContext("2d");
   const img = new Image();
   img.addEventListener("load", () => {
-    ctximg.drawImage(img, 0, 0, 675, 684, 50, 0, 170, 150);
+    ctximg.drawImage(img, 0, 0, 655, 684, 70, 0, 200, 300);
   });
+  img.src = "directions.png";*/
 
-  img.src = "/dobble2_imgs/directions6.png";
   for (var j = numberOfCards[lev] - lev + 1; j <= numberOfCards[lev]; j++) {
     var c = document.getElementById("card" + lev + "-" + j);
     c.setAttribute("width", "100px");

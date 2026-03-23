@@ -234,6 +234,12 @@
 
       .card-container2 {
          min-height: 150px;
+         display: flex;
+         flex-wrap: wrap;
+         align-items: flex-start;
+         justify-content: center;
+         gap: 5px;
+         position: relative;
       }
 
       .card-container2>canvas {
@@ -966,8 +972,7 @@
          &ndash; but is this just &lsquo;coincidence&rsquo;, or is there some good mathematical reason for it?
          Indeed there is a good reason, and it has to do with the fact that 7 is a <i>prime number</i>.
          If you tried the same thing with a 6 &times; 6 grid, for example, things wouldn&rsquo;t work out
-         so nicely. You might like to think about this for yourself, or else read more here about
-         <a href="dobble_prime_numbers.html">the role of prime numbers in Dobble geometry</a>. //todo
+         so nicely.
 
       <blockquote>
          <p><b>Quiz question 1:</b> The space we&rsquo;ve described so far has
@@ -1185,8 +1190,7 @@ you&rsquo;ll need to squint at the above photograph instead.) -->
          Most of the time, you will find that these lines will intersect in
          one and only one card, which will contain both of your symbols.
          Indeed, this will <i>always</i> happen provided your two lines have different slopes.
-         (This again is one of the
-         <a href="dobble_prime_numbers.html">good things that happen because 7 is a prime number</a>.) //todo
+         (This again is one of the good things that happen because 7 is a prime number).
          But if your two lines happen to be <i>parallel</i>,
          then &ndash; just as in ordinary plane geometry &ndash; these lines will never meet.
          For instance:
@@ -1416,17 +1420,20 @@ you&rsquo;ll need to squint at the above photograph instead.) -->
                <canvas id="card6-24" onclick="writeCurrSymbol(6,event,24)"></canvas>
                <canvas id="card6-25" onclick="writeCurrSymbol(6,event,25)"></canvas>
             </div>
-            <div class="card-container2" style>
+            <div class="card-container2">
+               <canvas id="empty1" style="width: 320px; height: 80px;"></canvas>
                <canvas id="card6-26" onclick="writeCurrSymbol(6,event,26)"></canvas>
-               <canvas id="empty1" style="width: 300px; height: 80px;"></canvas>
-               <canvas id="card6-31" onclick="writeCurrSymbol(6,event,31)"></canvas>
-               <canvas id="empty2" style="width: 80px; height: 80px;"></canvas>
                <canvas id="card6-27" onclick="writeCurrSymbol(6,event,27)"></canvas>
-               <canvas id="empty3" style="width: 200px; height: 100px;"></canvas>
-               <canvas id="card6-30" onclick="writeCurrSymbol(6,event,30)"></canvas>
-               <canvas id="empty4" style="width: 90px; height: 80px;"></canvas>
+               <canvas id="empty2" style="width: 430px; height: 100px;"></canvas>
                <canvas id="card6-28" onclick="writeCurrSymbol(6,event,28)"></canvas>
+               <canvas id="empty3" style="width: 430px; height: 100px;"></canvas>
                <canvas id="card6-29" onclick="writeCurrSymbol(6,event,29)"></canvas>
+               <canvas id="empty4" style="width: 430px; height: 100px;"></canvas>
+               <canvas id="empty5" style="width: 80px; height: 100px;"></canvas>
+               <canvas id="empty6" style="width: 150px; height: 100px;"></canvas>
+               <canvas id="card6-30" onclick="writeCurrSymbol(6,event,30)"></canvas>
+               <canvas id="empty7" style="width: 100px; height: 100px;"></canvas>
+               <canvas id="card6-31" onclick="writeCurrSymbol(6,event,31)"></canvas>
             </div>
          </center>
       </div>
@@ -1472,6 +1479,8 @@ you&rsquo;ll need to squint at the above photograph instead.) -->
       </p>
 
       <a href="card_generator.html">Draft Card generator</a>
+      <br>
+      <a href="chooser.html"> Chooser</a>
       <h3 id="Projective_3D">A three-dimensional perspective</h3>
 
       <!--
@@ -1491,7 +1500,7 @@ reveals the full beauty of the situation.
 -->
 
       <p>
-         [TEXT TO BE ADDED.]
+
 
       <p>
          The following interactive demo illustrates the connection between

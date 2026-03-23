@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>When are two Dobble systems &lsquo;the same&rsquo;</title>
+  </head>
+
+  <body bgcolor="#a0ffff">
+  <font size=4pt>
+
+<center>
+<blockquote style="border: 10px solid #d93bd3; border-radius: 60px; background-color: #f9ff47; max-width: 500px; justify-content: center">
+<center>
+<h3 style="color:Black">The Mathematics of Dobble</h3>
+<a style="color:Black">John Longley, University of Edinburgh</a>
+<p> 
+Back to <a href="index.html">main page</a>
+</p>
+</center>
+</blockquote>
+</center>
+
+
+<p>
+<h2>When are two Dobble systems &lsquo;the same&rsquo;?</h2>
+<!--
+<h4>John Longley, School of Informatics, University of Edinburgh</h4> -->
+</p>
+
+<p>
+You may well have found a Level 3 Dobble system that&rsquo;s different from mine.
+Here once again is my solution:
+ //TODO
+<center>
+<p>
+SOLUTION 1:
+<p>
+<img src="dobble3.jpg" width="60%">
+</p>
+</center>
+
+<p>
+However, it&rsquo;s possible that you came up with a solution like this:
+
+<center>
+<p>
+SOLUTION 2:
+<p>
+<img src="dobble3b.jpg" width="60%">
+</p>
+</center>
+
+<!--
+<p>
+Or you might have departed from my suggestion of having A,B,C on the first card
+and come up with this solution:
+
+<center>
+<p>
+SOLUTION 3:
+<p>
+<img src="dobble3d.jpg" width="60%">
+</p>
+</center>
+-->
+
+<p>
+On the face of it, these two solutions appear quite different: 
+for instance, Solution 2 has a card containing A,D,G, while Solution does not. 
+However, there&rsquo;s a sense in which they are really all the same solution &lsquo;in disguise&rsquo;. 
+For example, suppose we <i>translate</i> the symbols of Solution 2 into those of Solution 1 using the following &lsquo;dictionary&rsquo;:
+
+<center>
+<p>
+  A &rarr; A , B &rarr; B , C &rarr; C , D &rarr; D , 
+  E &rarr; G , F &rarr; F , G &rarr; E
+</p>
+</center>
+
+<p>
+This means that if I had come up with Solution 1 and you had come up with Solution 2,
+we could take the view that you were using E where I had used G, 
+and <i>vice versa</i>, but that otherwise we had found the same solution.
+Let&rsquo;s see what we get if we apply this translation to every symbol 
+in Solution 2:
+
+<center>
+<p>
+<img src="dobble3c.jpg" width="60%">
+</p>
+</center>
+
+<p>
+This still isn&rsquo;t <i>exactly</i> Solution 1 &ndash; 
+but it&rsquo;s easy to see that just
+by rearranging the cards and repositioning the symbols within some of the cards, 
+it can be brought into the exact form of Solution 1 above.
+
+<p>
+In mathematical terminology, we say two Dobble systems are <i>isomorphic</i> if we can 
+transform one into the other by means of some translation of symbols 
+(possibly combined with some rearrangement of cards and repositioning of symbols). 
+In the case of Level 3 Dobble, it&rsquo;s known that <i>all</i> 7-card solutions are isomorphic (and that 7 is the maximum possible number of cards).
+
+<p>
+<b>Exercise:</b>
+If you found some other solution that was different from my Solution 1, 
+you might like to see if you can discover some translation of symbols 
+that shows they are isomorphic.
+
+<p>
+Interestingly, there won&rsquo;t be just a <i>single</i> translation that does this.
+For instance, we&rsquo;ve already seen one dictionary that can be used to translate Solution 2 to
+Solution 1 &ndash; but here&rsquo;s another dictionary that does the same job (try it!):
+
+<center>
+<p>
+  A &rarr; B , B &rarr; D , C &rarr; F , D &rarr; A , E &rarr; G , F &rarr; E , G &rarr; C
+</p>
+</center>
+
+<p>
+This is closely related to the fact that a Dobble system is isomorphic to <i>itself</i> in many different ways.
+For instance, it&lsquo;s obvious that we could &lsquo;transform&rsquo; Solution 1
+into itself using the boring translation that leaves every symbol just as it is:
+
+<center>
+<p>
+  A &rarr; A , B &rarr; B , C &rarr; C , D &rarr; D , E &rarr; E , F &rarr; F , G &rarr; G
+</p>
+</center>
+
+<p>
+But there are other ways to do it. Here is one of them:
+
+<center>
+<p>
+  A &rarr; B , B &rarr; D , C &rarr; F , D &rarr; A , E &rarr; C , F &rarr; E , G &rarr; G
+</p>
+</center>
+
+<p>
+This is actually what you get if you start from Solution 1, 
+use the first of the above translations (in reverse) to get to Solution 2,
+then use the second translation to get back to Solution 1 again.
+You might like to check directly that if we apply this translation to Solution 1, 
+we do indeed get Solution 1 again (after a bit of rearrangement and repositioning).
+
+<p>
+Translations that can be used to transform a Dobble system into itself are especially interesting, and are known as <i>symmetries</i> of the system.
+(The more technical term <i>collineations</i> is also used in this context.)
+One of the most beautiful things about Dobble systems is the very high degree 
+of symmetry they tend to possess. 
+For instance, our Level 3 Dobble system 
+(which, as we&rsquo;ve seen, is in essence the only one possible with 7 cards)
+has no fewer than 168 different symmetries.
+In mathematical jargon, these 168 symmetries form a well-known example of a <i>group</i> &ndash; a beautiful mathematical structure in its own right.
+We&rsquo;ll say more about these groups later when we look at symmetries of
+Dobble systems in more detail.)
+
+<p>
+[Return to <a href="index.html">main page</a>.]
+
+<hr style="height:10px; background-color:#d93bd3">
+
+<address><a href="mailto:jrl@staffmail.ed.ac.uk">John Longley</a></address>
+</body>
+</html>
