@@ -258,14 +258,14 @@ function checkSet(cards) {
 //neg(x)
 //mult(x,y)
 //inv(x)
-function PrimeField(p) {
-    this.p = p;
-    this.noOfElems = p;
+function PrimeField(n) {
+    this.n = n;
+    this.noOfElems = n;
     this.add = function (x, y) {
-        return (x + y) % this.p;
+        return (x + y) % this.n;
     }
     this.mult = function (x, y) {
-        return (x * y) % this.p;
+        return (x * y) % this.n;
     }
 }
 
@@ -316,7 +316,7 @@ function FieldOfNine() {
     }
     //add: ((a + c), (b + d))
     this.add = function (x, y) {
-        return (((this.elems[x][0] + this.elems[y][0]) % 3) * 3) + ((this.elems[x][1] + this.elems[y][1]) % 3);
+        return (((this.elems[x][0] + this.elems[y][0]) % 3) + ((this.elems[x][1] + this.elems[y][1]) % 3));
     }
     //multiply: ((ad + bc), (bd - ac) or (bd + 2ac))
     this.mult = function (x, y) {
