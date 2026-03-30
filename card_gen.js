@@ -148,8 +148,8 @@ function loadGeom(F) {
     }
     document.getElementById("testprint").innerHTML += "<br>Number of cards/symbol: " + noOfPoints;
     clearCanvas();
-    makeCards(cards);
     checkSet(cards);
+    makeCards(cards);
 }
 
 
@@ -224,32 +224,69 @@ function clearCanvas() {
 }
 
 function checkSet(cards) {
-    //check if the set looks correct
-    //check every symbols only appears as many times as the level is in total.
-    let symbolCount = {};
-    for (let i = 0; i < cards.length; i++) {
-        let cardSyms = cards[i][1];
-        for (let j = 0; j < cardSyms.length; j++) {
-            let sym = cardSyms[j];
-            if (symbolCount[sym]) {
-                symbolCount[sym]++;
-            } else {
-                symbolCount[sym] = 1;
+    const noOfPoints = F.noOfElems ** 2 + F.noOfElems + 1;
+    CheckSets: {
+        // checking individual cards
+        for (var i = 1; i < noOfPoints; i++) {
+            for (var j = 0; j < F.noOfElems; j++) {
+                let cardSyms = cards[i][1]
+                if (cardSyms[j] == '') {
+                    alert('Card ' + i + ' not complete');
+                    break CheckSets;
+                }
+                for (var k = j + 1; k < F.noOfElems; k++) {
+                    if (cardSyms[j] == cardSyms[k]) {
+                        alert('Symbol ' + cardSyms[j] + ' appears more than once on card ' + i);
+                        break CheckSets;
+                    }
+                }
+            }
+        }
+        //check similar symbol between 2 cards
+        for (var i = 0; i < noOfPoints; i++) {
+            for (var j = i + 1; j < noOfPoints; j++) {
+                let cardSymsI = cards[i][1];
+                let cardSymsJ = cards[j][1];
+                let commonSyms = [];
+                for (var k = 0; k <= F.noOfElems; k++) {
+                    for (var l = 0; l <= F.noOfElems; l++) {
+                        if (cardSymsI[k] == cardSymsJ[l]) {
+                            commonSyms = commonSyms.concat([cardSymsI[k]]);
+                        }
+                    }
+                }
+                if (commonSyms.length == 0) {
+                    alert('Cards ' + i + ' and ' + j + ' have no common symbol');
+                    break CheckSets;
+                } else if (commonSyms.length > 1) {
+                    alert('Cards ' + i + ' and ' + j + ' share '
+                        + commonSyms.length + ' symbols: '
+                        + commonSyms.toString());
+                    break CheckSets;
+                }
+            }
+        }
+        //check if the set looks correct
+        //check every symbols only appears as many times as the level is in total.
+        let symbolCount = {};
+        for (var i = 0; i < noOfPoints; i++) {
+            let cardSyms = cards[i][1];
+            for (let j = 0; j < cardSyms.length; j++) {
+                let sym = cardSyms[j];
+                if (symbolCount[sym]) {
+                    symbolCount[sym]++;
+                } else {
+                    symbolCount[sym] = 1;
+                }
+            }
+        }
+        for (let sym in symbolCount) {
+            if (symbolCount[sym] != nConst + 1) {
+                alert("Error: Symbol " + sym + " appears " + symbolCount[sym] + " times, but should appear " + (nConst + 1) + " times.<br>");
+                break CheckSets;
             }
         }
     }
-    for (let sym in symbolCount) {
-        if (symbolCount[sym] != nConst + 1) {
-            alert("Error: Symbol " + sym + " appears " + symbolCount[sym] + " times, but should appear " + (nConst + 1) + " times.<br>");
-            break
-        }/*
-        else{
-            alert("Correct numbers?");
-            break
-        }*/
-    }
-
-    //check one similar symbol. card j=1.
 }
 
 //p(prime)
