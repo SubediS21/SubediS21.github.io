@@ -592,7 +592,7 @@ window.onload = function () {
 
   // Create the image element
   const overlayImg = document.createElement("img");
-  overlayImg.src = "directions.png";
+  overlayImg.src = "dobble2_imgs/directions.png";
   overlayImg.style.position = "absolute";
   overlayImg.style.left = (minLeft - containerRect.left) + "px";
   overlayImg.style.top = (minTop - containerRect.top) + "px";
