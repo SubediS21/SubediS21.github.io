@@ -164,7 +164,7 @@ function makeCards(allCards) {
     const rows = Math.ceil(noOfPoints / cardsPerRow);
 
     canvas.setAttribute("width", (cardCanvasSize * cardsPerRow) + 20);
-    canvas.setAttribute("height", (cardCanvasSize * rows) + 20); 
+    canvas.setAttribute("height", (cardCanvasSize * rows) + 20);
     canvas._grid = { cardsPerRow, rows };
 
     //display cards with allCards by geometry function
@@ -240,7 +240,7 @@ function checkSet(cards) {
     }
     for (let sym in symbolCount) {
         if (symbolCount[sym] != nConst + 1) {
-            alert( "Error: Symbol " + sym + " appears " + symbolCount[sym] + " times, but should appear " + (nConst + 1) + " times.<br>");
+            alert("Error: Symbol " + sym + " appears " + symbolCount[sym] + " times, but should appear " + (nConst + 1) + " times.<br>");
             break
         }/*
         else{
@@ -248,6 +248,8 @@ function checkSet(cards) {
             break
         }*/
     }
+
+    //check one similar symbol. card j=1.
 }
 
 //p(prime)
@@ -316,7 +318,7 @@ function FieldOfNine() {
     }
     //add: ((a + c), (b + d))
     this.add = function (x, y) {
-        return (((this.elems[x][0] + this.elems[y][0]) % 3) + ((this.elems[x][1] + this.elems[y][1]) % 3));
+        return (((this.elems[x][0] + this.elems[y][0]) % 3) * 3) + ((this.elems[x][1] + this.elems[y][1]) % 3);
     }
     //multiply: ((ad + bc), (bd - ac) or (bd + 2ac))
     this.mult = function (x, y) {
@@ -517,21 +519,25 @@ function testFieldBtnPP() {
     document.getElementById("testboxPP").innerHTML += "Total Points: " + getNonOriginPoints(F).length + "<br>";
     for (let i = 1; i <= getNonOriginPoints(F).length; i++) {
         let coords = getPointCoords(i, F.noOfElems);
-        document.getElementById("testboxPP").innerHTML += "Point " + i + ": (" + coords + ") <br>";
+        let num = getPointNum(coords, F.noOfElems)
+        document.getElementById("testboxPP").innerHTML += "Point " + num + ": (" + coords + ") <br>";
     }
 }
 function testFieldBtnLine() {
     let newLine = findLines(F, characters);
-    //document.getElementById("testboxLine").innerHTML += "new points: " + lineFor(8, F);
     document.getElementById("testboxLine").innerHTML += "Add characters lines to the pointNums: " + "<br>";
     for (let i = 1; i < F.noOfElems ** 3; i++) {
         //document.getElementById("testboxLine").innerHTML += i + ": " ;
-        document.getElementById("testboxLine").innerHTML += newLine[i] + ", ";
+        document.getElementById("testboxLine").innerHTML += "<br>" + newLine[i] + ", ";
+        document.getElementById("testboxLine").innerHTML += "new point: " + lineFor(i, F);
+
     }
 }
 function testFieldBtnGeom() {
     let cards = geometry(F, characters);
     document.getElementById("testboxGeom").innerHTML += "Level " + (nConst + 1) + " (order " + (nConst) + ") cards: <br><br>";
+    const noOfPoints = F.noOfElems ** 2 + F.noOfElems + 1;
+
     for (let i = 0; i < noOfPoints; i++) {
         document.getElementById("testboxGeom").innerHTML += "Card " + cards[i][0] + ": - " + cards[i][1] + "<br>";
     }
@@ -540,11 +546,14 @@ function testFieldBtnGeom() {
 }
 function testFieldBtnDict() {
     document.getElementById("testboxDict").innerHTML += "Dictionary: " + "<br>"
+    const noOfPoints = F.noOfElems ** 2 + F.noOfElems + 1;
+
     for (let i = 0; i < noOfPoints; i++) {
         document.getElementById("testboxDict").innerHTML += charToPoint(F, characters)[i][0] + " --> " + charToPoint(F, characters)[i][1] + ", ";
     }
 }
 
+/*
 //save canvas "canvas" as jpg image in the same folder.
 function saveCanvas() {
     var canvas = document.getElementById("canvas");
@@ -553,5 +562,5 @@ function saveCanvas() {
     link.href = canvas.toDataURL("image/jpeg", 1.0);
     link.click();
 }
-
+*/
 //export{inputLvl,geometry, characters, miniCenters}
