@@ -553,55 +553,46 @@ window.onload = function () {
     ctx.stroke();
     ctx.fillStyle = "#FFFFFF";
     ctx.fill();
-    // add card number in red
+    //add card number in red
     ctx.font = "15px Arial";
     ctx.fillStyle = "#000000";
     ctx.textAlign = "center";
     ctx.fillText("" + i, 10, 16);
   }
   const empty = document.getElementById("empty1");
-  empty.setAttribute("width", "355px");
-  empty.setAttribute("height", "80px");
+  empty.setAttribute("width", "450px");//sized double(ish) to make the font look less blurry
+  empty.setAttribute("height", "150px");
   const empctx = empty.getContext("2d");
-  empctx.font = "24px Arial";
+  empctx.font = "55px Arial bold";
   empctx.fillStyle = "#000000";
   empctx.textAlign = "center";
-  empctx.fillText("Direction cards", 180, 70);
+  empctx.fillText("Direction cards", 225, 115);
 
-  // After initialize(lev); in window.onload
-
-  // Get the canvases
+  //empty canvases that would be overlayed by the img
   const empty2 = document.getElementById("empty2");
   const empty3 = document.getElementById("empty3");
   const empty4 = document.getElementById("empty4");
-
-  // Get their bounding rectangles
+  //get the canvases' bounding rectangles
   const rect2 = empty2.getBoundingClientRect();
   const rect3 = empty3.getBoundingClientRect();
   const rect4 = empty4.getBoundingClientRect();
-
-  // Calculate the combined bounding box
+  //calculate the combined bounding box
   const minLeft = Math.min(rect2.left, rect3.left, rect4.left);
   const minTop = Math.min(rect2.top, rect3.top, rect4.top);
   const maxRight = Math.max(rect2.right, rect3.right, rect4.right);
   const maxBottom = Math.max(rect2.bottom, rect3.bottom, rect4.bottom);
-
-  // Get the container's position for relative positioning
+  //get the container's position
   const container = document.querySelector(".card-container2");
   const containerRect = container.getBoundingClientRect();
 
-  // Create the image element
   const overlayImg = document.createElement("img");
   overlayImg.src = "dobble2_imgs/directions.png";
   overlayImg.style.position = "absolute";
   overlayImg.style.left = (minLeft - containerRect.left) + "px";
   overlayImg.style.top = (minTop - containerRect.top) + "px";
-  overlayImg.style.width = (maxRight - minLeft - 10) + "px";
-  overlayImg.style.height = (maxBottom - minTop + 10) + "px";
-  //overlayImg.style.zIndex = "10";
-  //overlayImg.style.objectFit = "cover";
-
-  // Append to the container
+  overlayImg.style.width = (maxRight - minLeft - 15) + "px";
+  overlayImg.style.height = (maxBottom - minTop + 15) + "px";
+ 
   container.appendChild(overlayImg);
 
   /*const ctximg = document.getElementById("empty2").getContext("2d");
@@ -633,10 +624,9 @@ window.onload = function () {
 }
 
 
-//code reference fir scroll to top button: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_scroll_to_top
+//code reference f0r scroll to top button: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_scroll_to_top
 let mybutton = document.getElementById("myBtn");
 
-// When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
@@ -647,7 +637,6 @@ function scrollFunction() {
   }
 }
 
-// When the user clicks on the button, scroll to the top of the document
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
