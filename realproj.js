@@ -334,7 +334,7 @@ const miniCenters = [[], [], [], [], [], [],  // padding
 
 const fontHeight = 20;
 const defaultSymButtonStyle = ""; // "font-size: 25px; width: 30px; ";
-const highlightedSymButtonStyle = defaultSymButtonStyle + "color: #9068aeff;" + "border-radius: 7px;";
+const highlightedSymButtonStyle = defaultSymButtonStyle + "background-color: #848481;" + "color: #dfc00b;" + "border-radius: 5px;" + "font-weight: bold";
 const numberNames = ['zero', 'one', 'two', 'three', 'four', 'five', 'six'];  // for error reporting
 var currSymbol = '';
 var active = true;

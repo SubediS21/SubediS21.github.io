@@ -1126,10 +1126,16 @@ you&rsquo;ll need to squint at the above photograph instead.) -->
 
          <p>For <b>Level 6</b>, there are 31 cards and symbols in total. We will be using all of the English alphabets
             and
-            five Greek alphabets as symbols. As you can see, the cards are arranged in 5x5 grid and 6 directional cards
-            below the grid with an image that acts as a helper for the directions.
+            five Greek alphabets as symbols. As you can see, the cards are arranged in 5&times;5 grid and 6 slope cards
+            below the grid with an image that acts as a helper for the directions. Here, we have only 2 knight's move
+            lines because the others are not needed as they will give you similar result.
          </p>
-         <p>Using the symbols listed below the cards, attempt the constuction of Level 6 Dobble.</p>
+         <p>To add a symbol to any card (or replace an existing symbol), use the symbol buttons under the card box to
+            select the symbol you want, then click on the appropriate position within the card. Once you've finished,
+            click 'Check answer' to see if your solution is correct.</p>
+
+         <p>To help you get started, symbol 'A' is added on each card in the first column of the grid and on
+            the "vertical" direction card as an example. </p>
          </p>
          <h4 id="puzzle-message6"></h4>
 
@@ -1228,29 +1234,7 @@ you&rsquo;ll need to squint at the above photograph instead.) -->
 
          </div>
          </p>
-         <h3 id="setChooser">Chooser</h3>
-         <p>Using Javascript, we have created an algorithm that genrates and displays Dobble set cards for many
-            different levels. In chooser you can see all the cards generated of the chosen Dobble Level set.</p>
-         <p>More importantly, the unique features of a chooser are: </p>
-         <ul>
-            <li>When you click on one card, all the symbols containing in the card will be highlighted.</li>
-            <li>When you click on two cards, the common symbol of the two cards will be highlighted</li>
-            <li>Vice versa, when you click on one symbol, all the cards that contains the chosen symbol will be
-               highlighted.</li>
-            <li>When you click on two symbols, the card that contains both of the chosen symbol will be highlighted.
-            </li>
-         </ul>
-
-         <p>The purpose of this chooser is to not only let you see the construction of different Dobble-style card sets,
-            but also prove that these sets follow the finite projective geometry properties we previously mentioned.</p>
-         <p>We will also use the chooser for more games and applets in other pages.</p>
-         <p><i><b>Link to a standard chooser: </i></b><a id="chooserLink"
-               style="border: 4px solid #9879b0; border-radius: 20px; background-color: #fae351; text-decoration: none;"
-               href="chooser/chooser.html"> <b>Chooser</b></a></p>
-
-         <br>
          <h3 id="Projective_3D">A three-dimensional perspective</h3>
-
          <!--
 <p>The way we have arrived at our &lsquo;projective space&rsquo; is by starting with 
 a <i>two-dimensional</i> space and then extending it with some additional points 
@@ -1359,8 +1343,33 @@ reveals the full beauty of the situation.
          </ul>
 
          <p>
-            This provides us the evidence of... works for more than the levels up there with wrap-up geometry.
+            This provides us the evidence that construction of many more Dobble Level is possible. This geometry works
+            for construction of more levels than with the wrap-up geometry above.
          </p>
+
+         <h3 id="setChooser">Chooser</h3>
+         <p>As evidence of the possibility of more Dobble level sets construction, using JavaScript, we have created an
+            algorithm that generates and displays Dobble set cards for many different levels. In the chooser, you can
+            see all the cards generated for the chosen Dobble Level set.</p>
+         <p>The unique features of a chooser are: </p>
+         <ul>
+            <li>When you click on any card, all the symbols contained in the card will be highlighted.</li>
+            <li>When you click on two cards, the common symbol between them will be highlighted.</li>
+            <li>Vice versa, when you click on one symbol, all the cards that contain the chosen symbol will be
+               highlighted.</li>
+            <li>When you click on two symbols, the card that contains both of the chosen symbols will be highlighted.</li>
+         </ul>
+
+         <p>The purpose of this chooser is not only to let you see the construction of different Dobble-style card sets,
+            but also to prove that these sets follow the finite projective geometry properties we previously mentioned.
+         </p>
+         <p>We will also use the chooser for more games and applets in other pages.</p>
+         <p><i><b>Link to a standard chooser: </i></b><a id="chooserLink"
+               style="border: 4px solid #9879b0; border-radius: 20px; background-color: #fae351; text-decoration: none;"
+               href="chooser/chooser.html"> <b>Chooser</b></a></p>
+
+         <br>
+
          <!--
       <p>
          [ALSO TO BE ADDED: The analogous thing for the &lsquo;order 7&rsquo; case.
