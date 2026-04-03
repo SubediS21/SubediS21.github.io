@@ -234,11 +234,17 @@ function checkSet(cards) {
                     alert('Card ' + i + ' not complete');
                     break CheckSets;
                 }
+                /*else{
+                    alert('Card ' + i + ' completed.')
+                }*/
                 for (var k = j + 1; k < F.noOfElems; k++) {
                     if (cardSyms[j] == cardSyms[k]) {
                         alert('Symbol ' + cardSyms[j] + ' appears more than once on card ' + i);
                         break CheckSets;
                     }
+                    /*else{
+                        alert('Symbol ' + cardSyms[j] + ' appears only once as expected on card ' + i)
+                    }*/
                 }
             }
         }
@@ -264,6 +270,9 @@ function checkSet(cards) {
                         + commonSyms.toString());
                     break CheckSets;
                 }
+                /*else{
+                    alert('Cards ' + i + ' and ' + j + ' share exactly one symbol as expected.')
+                }*/
             }
         }
         //check if the set looks correct
@@ -285,6 +294,9 @@ function checkSet(cards) {
                 alert("Error: Symbol " + sym + " appears " + symbolCount[sym] + " times, but should appear " + (nConst + 1) + " times.<br>");
                 break CheckSets;
             }
+            /*else{
+                alert("Symbol " + sym + " appears " + symbolCount[sym] + " times as expected.")
+            }*/
         }
     }
 }
@@ -439,8 +451,8 @@ function getNonOriginPoints(F) {
 //div(n^2), div(n), mod(n)
 //const noOfPoints = (F.noOfElems ** 3 - 1) / (F.noOfElems - 1);
 function getPointCoords(pointNum, n) {
-    let x = Math.floor((pointNum) / (n ** 2));
-    let y = Math.floor(((pointNum) % (n ** 2)) / n);
+    let x = Math.floor((pointNum) / (n * n));
+    let y = Math.floor(((pointNum) % (n * n)) / n);
     let z = (pointNum) % n;
     return [x, y, z];
 }
