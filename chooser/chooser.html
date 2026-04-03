@@ -12,57 +12,62 @@
 
 <body>
     <font size=4pt>
-    <a style="font-size: medium;" href="../mathematics_of_dobble_II.html#setChooser">Back to main Page</a>
 
-    <div id="banner">
-        <blockquote>
-               <h1 style="color:Black; font-weight:bolder;">The Mathematics of Dobble</h1>
-               <h4 style="color:Black">John Longley, School of Informatics,<br> Smriti Subedi, BEng Software
-                  Engineering, <br> University of Edinburgh </h4>
-        </blockquote>
-    </div>
-    <hr style="height:10px; background-color:#9879b0">
-    <h1>Chooser</h1>
-    <p>This page generates card sets of different levels using mathematics and JavaScript. Choose a p+1 (prime number +
-        1) number, or p<sup>2</sup> + 1 (power of a prime number + 1) and submit it to see the complete card set of that
-        level and their symbols.</p>
+        <div id="banner">
+            <blockquote>
+                <h1 style="color:Black; font-weight:bolder;">The Mathematics of Dobble</h1>
+                <h4 style="color:Black">John Longley, School of Informatics,<br> Smriti Subedi, BEng Software
+                    Engineering, <br> University of Edinburgh </h4>
+                <a style="font-size: medium;" href="../mathematics_of_dobble_II.html#setChooser">Back to main Page</a>
+                <p></p>
+            </blockquote>
+        </div>
+        <hr style="height:10px; background-color:#9879b0">
+        <h1>Chooser</h1>
+        <p>This page generates card sets of different levels using mathematics and JavaScript. Choose a p+1 (prime
+            number +
+            1) number, or p<sup>2</sup> + 1 (power of a prime number + 1) and submit it to see the complete card set of
+            that
+            level and their symbols.</p>
 
-    <p id="chooserFeaturesDesc" style="display: none;">The chooser (containers with cards and symbols) below is
-        interactive.
-        The chooser can help you find specific cards. The unique features of a chooser are: </p>
-    <ul id="chooserFeatures" style="display: none;">
-        <li>When you click on any card, all the symbols contained in the card will be highlighted.</li>
-        <li>When you click on two cards, the common symbol between them will be highlighted.</li>
-        <li>Vice versa, when you click on one symbol, all the cards that contain the chosen symbol will be highlighted.
-        </li>
-        <li>When you click on two symbols, the card that contains both of the chosen symbols will be highlighted.</li>
-    </ul>
-    <select style="padding: 5px; border-radius: 5px;" id="controls" aria-placeholder="Choose Level">
-        <option value="">Choose Level</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-    </select>
-    <button style="padding: 5px; border-radius: 5px;" onclick="submit()">Submit</button>
-    <br>
-    <br>
-    <h3>Card container:</h3>
-    <div id="card-container">
-    </div>
-    <h3>Symbol container:</h3>
-    <div id="symbol-container"></div>
-    <div id="status"></div>
-    <p id="test"></p>
+        <p id="chooserFeaturesDesc" style="display: none;">The chooser (containers with cards and symbols) below is
+            interactive.
+            The chooser can help you find specific cards. The unique features of a chooser are: </p>
+        <ul id="chooserFeatures" style="display: none;">
+            <li>When you click on any card, all the symbols contained in the card will be highlighted.</li>
+            <li>When you click on two cards, the common symbol between them will be highlighted.</li>
+            <li>Vice versa, when you click on one symbol, all the cards that contain the chosen symbol will be
+                highlighted.
+            </li>
+            <li>When you click on two symbols, the card that contains both of the chosen symbols will be highlighted.
+            </li>
+        </ul>
+        <select style="padding: 5px; border-radius: 5px;" id="controls" aria-placeholder="Choose Level">
+            <option value="">Choose Level</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </select>
+        <button style="padding: 5px; border-radius: 5px;" onclick="submit()">Submit</button>
+        <br>
+        <br>
+        <h3>Card container:</h3>
+        <div id="card-container">
+        </div>
+        <h3>Symbol container:</h3>
+        <div id="symbol-container"></div>
+        <div id="status"></div>
+        <p id="test"></p>
 
-    <script src="card_gen.js"></script>
-    <script type="module" src="chooser.js"></script>
+        <script src="card_gen.js"></script>
+        <script type="module" src="chooser.js"></script>
 </body>
 
 </html>
