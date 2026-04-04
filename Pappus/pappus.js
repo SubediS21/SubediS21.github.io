@@ -357,7 +357,7 @@ function checkLine() {
         document.getElementById("int2line2").textContent !== "" &&
         document.getElementById("int3line1").textContent !== "" &&
         document.getElementById("int3line2").textContent !== "") {
-        setLineLabel("pStatus", "Well done! You have completed Pappus-Dobble!", "blue");
+        setLineLabel("pStatus", "Well done! You have completed Dobble-Pappus!", "blue");
     }
 }
 function clearCardPappus() {

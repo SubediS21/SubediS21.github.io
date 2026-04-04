@@ -1,4 +1,4 @@
-//level5
+﻿//level5
 const currentLevel = 5
 
 const currentCardContents = [['A', 'B', 'C', 'D', 'E'], ['A', 'F', 'G', 'H', 'I'], ['A', 'J', 'K', 'L', 'M'],
@@ -323,7 +323,7 @@ function checkLine() {
         document.getElementById("int2line2").textContent !== "" &&
         document.getElementById("int3line1").textContent !== "" &&
         document.getElementById("int3line2").textContent !== "") {
-        setLineLabel("dStatus", "Well done! You have completed Desargues-Dobble!", "blue");
+        setLineLabel("dStatus", "Well done! You have completed Dobble-Desargues!", "blue");
     }
 }
 
