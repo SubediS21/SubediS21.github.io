@@ -60,24 +60,6 @@ function renderCardGrid(cards, level) {
         });
 
         cardContainer.appendChild(cardBox);
-
-        /*
-        const title = document.createElement("div");
-        title.className = "card-title";
-        title.textContent = `Card ${card[0]}`;
-        cardBox.appendChild(title);
-        
-    
-        const symbolGrid = document.createElement("div");
-        symbolGrid.className = "card-symbols";
-        card[1].forEach((sym) => {
-            const spin = document.createElement("span");
-            spin.textContent = sym;
-            symbolGrid.appendChild(spin);
-        });
-        cardBox.appendChild(symbolGrid);
-    
-        cardContainer.appendChild(cardBox);*/
     });
 }
 
