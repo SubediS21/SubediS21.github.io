@@ -8,6 +8,7 @@
     <title>Geometry card tricks</title>
     <link rel="icon" type="image/x-icon" href="../logoDraft.png">
     <link href="pappusStyle.css" rel="stylesheet">
+    <link href="../navbar.css" rel="stylesheet">
 </head>
 
 <body>
@@ -100,7 +101,8 @@
             <b><i>intersect</i></b> the lines BX, CY, and AZ, respectively, then the three points of intersection are
             <b>collinear, on the Pappus line.</b>
         </p>
-        <img src="pappus1.png" style="height: 300px;" alt="Pappus' theorem. 3 points A,B,C on a line intersecnting with the 3 points X,Y,Z in another line on the Pappus line." />
+        <img src="pappus1.png" style="height: 300px;"
+            alt="Pappus' theorem. 3 points A,B,C on a line intersecnting with the 3 points X,Y,Z in another line on the Pappus line." />
 
         <h3>Play around with Pappus</h3>
         Use the following applet produced in GeoGebra to play around with the points on the solid lines to see
@@ -188,38 +190,51 @@
                     ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
                 <img id="pap_card5-5" src="../L5_cards/card5-5.png" alt="A,R,S,T,U" onclick="selectCard('pap_card5-5')"
                     ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-                <img id="pap_card5-6" src="../L5_cards/card5-6.png" alt="B,F,N,J,N,R" onclick="selectCard('pap_card5-6')"
-                    ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+                <img id="pap_card5-6" src="../L5_cards/card5-6.png" alt="B,F,N,J,N,R"
+                    onclick="selectCard('pap_card5-6')" ondragstart="dragStart(event)" ondrag="dragging(event)"
+                    draggable="true" />
                 <img id="pap_card5-7" src="../L5_cards/card5-7.png" alt="B,G,K,P,S" onclick="selectCard('pap_card5-7')"
                     ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
                 <img id="pap_card5-8" src="../L5_cards/card5-8.png" alt="B,H,M,Q,T" onclick="selectCard('pap_card5-8')"
                     ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
                 <img id="pap_card5-9" src="../L5_cards/card5-9.png" alt="B,I,L,O,U" onclick="selectCard('pap_card5-9')"
                     ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-                <img id="pap_card5-10" src="../L5_cards/card5-10.png" alt="C,F,K,O,T" onclick="selectCard('pap_card5-10')"
-                    ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-                <img id="pap_card5-11" src="../L5_cards/card5-11.png" alt="C,G,J,Q,U" onclick="selectCard('pap_card5-11')"
-                    ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-                <img id="pap_card5-12" src="../L5_cards/card5-12.png" alt="C,H,L,P,R" onclick="selectCard('pap_card5-12')"
-                    ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-                <img id="pap_card5-13" src="../L5_cards/card5-13.png" alt="C,I,M,N,S" onclick="selectCard('pap_card5-13')"
-                    ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-                <img id="pap_card5-14" src="../L5_cards/card5-14.png" alt="D,F,M,P,U" onclick="selectCard('pap_card5-14')"
-                    ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-                <img id="pap_card5-15" src="../L5_cards/card5-15.png" alt="D,G,L,N,T" onclick="selectCard('pap_card5-15')"
-                    ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-                <img id="pap_card5-16" src="../L5_cards/card5-16.png" alt="D,H,J,O,S" onclick="selectCard('pap_card5-16')"
-                    ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-                <img id="pap_card5-17" src="../L5_cards/card5-17.png" alt="D,I,K,Q,R" onclick="selectCard('pap_card5-17')"
-                    ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-                <img id="pap_card5-18" src="../L5_cards/card5-18.png" alt="E,F,L,Q,S" onclick="selectCard('pap_card5-18')"
-                    ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-                <img id="pap_card5-19" src="../L5_cards/card5-19.png" alt="E,G,M,O,R" onclick="selectCard('pap_card5-19')"
-                    ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-                <img id="pap_card5-20" src="../L5_cards/card5-20.png" alt="E,H,K,N,U" onclick="selectCard('pap_card5-20')"
-                    ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
-                <img id="pap_card5-21" src="../L5_cards/card5-21.png" alt="E,I,J,P,T" onclick="selectCard('pap_card5-21')"
-                    ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" />
+                <img id="pap_card5-10" src="../L5_cards/card5-10.png" alt="C,F,K,O,T"
+                    onclick="selectCard('pap_card5-10')" ondragstart="dragStart(event)" ondrag="dragging(event)"
+                    draggable="true" />
+                <img id="pap_card5-11" src="../L5_cards/card5-11.png" alt="C,G,J,Q,U"
+                    onclick="selectCard('pap_card5-11')" ondragstart="dragStart(event)" ondrag="dragging(event)"
+                    draggable="true" />
+                <img id="pap_card5-12" src="../L5_cards/card5-12.png" alt="C,H,L,P,R"
+                    onclick="selectCard('pap_card5-12')" ondragstart="dragStart(event)" ondrag="dragging(event)"
+                    draggable="true" />
+                <img id="pap_card5-13" src="../L5_cards/card5-13.png" alt="C,I,M,N,S"
+                    onclick="selectCard('pap_card5-13')" ondragstart="dragStart(event)" ondrag="dragging(event)"
+                    draggable="true" />
+                <img id="pap_card5-14" src="../L5_cards/card5-14.png" alt="D,F,M,P,U"
+                    onclick="selectCard('pap_card5-14')" ondragstart="dragStart(event)" ondrag="dragging(event)"
+                    draggable="true" />
+                <img id="pap_card5-15" src="../L5_cards/card5-15.png" alt="D,G,L,N,T"
+                    onclick="selectCard('pap_card5-15')" ondragstart="dragStart(event)" ondrag="dragging(event)"
+                    draggable="true" />
+                <img id="pap_card5-16" src="../L5_cards/card5-16.png" alt="D,H,J,O,S"
+                    onclick="selectCard('pap_card5-16')" ondragstart="dragStart(event)" ondrag="dragging(event)"
+                    draggable="true" />
+                <img id="pap_card5-17" src="../L5_cards/card5-17.png" alt="D,I,K,Q,R"
+                    onclick="selectCard('pap_card5-17')" ondragstart="dragStart(event)" ondrag="dragging(event)"
+                    draggable="true" />
+                <img id="pap_card5-18" src="../L5_cards/card5-18.png" alt="E,F,L,Q,S"
+                    onclick="selectCard('pap_card5-18')" ondragstart="dragStart(event)" ondrag="dragging(event)"
+                    draggable="true" />
+                <img id="pap_card5-19" src="../L5_cards/card5-19.png" alt="E,G,M,O,R"
+                    onclick="selectCard('pap_card5-19')" ondragstart="dragStart(event)" ondrag="dragging(event)"
+                    draggable="true" />
+                <img id="pap_card5-20" src="../L5_cards/card5-20.png" alt="E,H,K,N,U"
+                    onclick="selectCard('pap_card5-20')" ondragstart="dragStart(event)" ondrag="dragging(event)"
+                    draggable="true" />
+                <img id="pap_card5-21" src="../L5_cards/card5-21.png" alt="E,I,J,P,T"
+                    onclick="selectCard('pap_card5-21')" ondragstart="dragStart(event)" ondrag="dragging(event)"
+                    draggable="true" />
 
             </div>
             <div id="symbol-container">
