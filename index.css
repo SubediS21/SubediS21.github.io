@@ -37,3 +37,25 @@
 body {
     background-color: #c9eaf4;
 }
+
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 20px;
+    border: 2px solid purple;
+    outline: none;
+    background-color: #9879b0;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    opacity: 50%;
+}
+
+#myBtn:hover {
+    background-color: #555;
+    opacity: 90%;
+}

@@ -1,5 +1,7 @@
 .navbar {
     overflow: hidden;
+    padding-bottom: 20px;
+    padding-top: 12px;
 }
 
 .navbar div {
@@ -12,10 +14,10 @@
     float: left;
     background-color: #fae351;
     color: #000000;
-    padding: 15px;
-    font-size: 16px;
+    padding: 12px;
+    font-size: 17px;
     border: 2.5px solid #9879b0;
-    min-height: 20px;
+    min-height: 25px;
 }
 
 .part4,
@@ -23,10 +25,10 @@
     float: left;
     background-color: #d2c364;
     color: #000000;
-    padding: 15px;
+    padding: 12px;
     font-size: 16px;
     border: 2.5px solid #9879b0;
-    min-height: 20px;
+    min-height: 25px;
 }
 
 .part1hide,
